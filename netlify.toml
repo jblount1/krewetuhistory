@@ -1,6 +1,6 @@
 [build]
 publish = "historical_marker_site"
-command = "PYTHONPATH=historical_marker_workflow/src python3 -m marker_workflow.cli build-site"
+command = "python3 -m pip install ./historical_marker_workflow && PYTHONPATH=historical_marker_workflow/src python3 -m marker_workflow.cli build-site"
 
 [build.environment]
 PYTHON_VERSION = "3.11"

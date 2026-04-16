@@ -8,7 +8,9 @@ version = "0.1.0"
 description = "Box-centered intake automation for a digital historical marker workflow."
 readme = "README.md"
 requires-python = ">=3.9"
-dependencies = []
+dependencies = [
+  "pypdfium2>=4.30.0",
+]
 
 [project.scripts]
 marker-workflow = "marker_workflow.cli:main"
@@ -18,4 +20,3 @@ package-dir = {"" = "src"}
 
 [tool.setuptools.packages.find]
 where = ["src"]
-
