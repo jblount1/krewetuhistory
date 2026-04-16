@@ -433,10 +433,31 @@ class SiteBuilder:
             raise RuntimeError(f"Unable to download remote asset: {error.reason}") from error
 
     def _generate_pdf_preview(self, source_path: Path, preview_path: Path) -> Optional[Path]:
+        ensure_directory(preview_path.parent)
+
+        try:
+            import pypdfium2 as pdfium
+        except ImportError:
+            pdfium = None
+
+        if pdfium is not None:
+            try:
+                pdf = pdfium.PdfDocument(str(source_path))
+                page = pdf[0]
+                bitmap = page.render(scale=1.5)
+                pil_image = bitmap.to_pil()
+                pil_image.save(preview_path)
+                page.close()
+                pdf.close()
+                if preview_path.exists():
+                    return preview_path
+            except Exception:
+                if preview_path.exists():
+                    preview_path.unlink(missing_ok=True)
+
         sips = shutil.which("sips")
         if not sips:
             return None
-        ensure_directory(preview_path.parent)
         result = subprocess.run(
             [sips, "-s", "format", "png", str(source_path), "--out", str(preview_path)],
             check=False,
