@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Krewe TU History Story</title>
+    <meta
+      name="description"
+      content="Read an approved Krewe TU History story."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="assets/branding/krewe-tu-history-logo.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="story-page">
+    <div class="site-backdrop">
+      <header class="story-header">
+        <div class="site-nav">
+          <a class="brand-logo-link" href="index.html" aria-label="Krewe TU History home">
+            <img
+              class="brand-logo"
+              src="assets/branding/krewe-tu-history-logo.png"
+              alt="Krewe TU History logo"
+            />
+          </a>
+
+          <nav class="site-nav-links" aria-label="Primary">
+            <a class="nav-link" href="index.html">Home</a>
+            <a class="nav-link" href="explore.html">Explore</a>
+            <button
+              id="carousel-mode-toggle"
+              class="secondary-button button-reset"
+              type="button"
+              aria-pressed="false"
+            >
+              Carousel Mode: Off
+            </button>
+          </nav>
+        </div>
+      </header>
+
+      <main class="story-shell">
+        <section id="story-loading" class="story-loading">
+          <p class="section-kicker">Loading story</p>
+          <h1>Preparing the page…</h1>
+        </section>
+
+        <section id="story-empty" class="story-empty hidden">
+          <p class="section-kicker">Story archive</p>
+          <h1>Story not found</h1>
+          <p>The story you requested could not be found.</p>
+          <a class="secondary-button" href="explore.html">Back to Explore</a>
+        </section>
+
+        <article id="story-article" class="story-article hidden">
+          <div class="story-actions">
+            <a class="story-back-link" href="explore.html">← Back to Explore</a>
+            <a id="story-carousel-link" class="secondary-button hidden" href="carousel.html">Back to Carousel</a>
+          </div>
+          <header class="story-prose-header">
+            <h1 id="story-title"></h1>
+          </header>
+
+          <div id="story-media" class="story-media hidden"></div>
+          <div id="story-media-caption" class="story-media-caption hidden"></div>
+
+          <div id="story-body" class="story-prose"></div>
+
+          <section id="story-gallery" class="story-gallery hidden">
+            <h2>Additional Media</h2>
+            <div id="story-gallery-grid" class="story-gallery-grid"></div>
+          </section>
+
+          <div id="story-ai-note" class="story-ai-note hidden"></div>
+
+          <section id="story-references" class="story-references hidden">
+            <h2>References</h2>
+            <ul id="story-references-list"></ul>
+          </section>
+        </article>
+      </main>
+    </div>
+
+    <script src="site-config.js"></script>
+    <script type="module" src="story.js"></script>
+  </body>
+</html>

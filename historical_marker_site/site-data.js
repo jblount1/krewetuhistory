@@ -1,0 +1,311 @@
+const STORIES_PATH = "data/stories.json";
+const DEFAULT_SITE_CONFIG = Object.freeze({
+  dataSource: "static",
+  supabaseUrl: "",
+  supabaseAnonKey: "",
+  supabaseSchema: "public",
+  supabaseStoriesTable: "stories_public",
+});
+const ALLOWED_VIDEO_HOSTS = ["youtube.com", "youtu.be", "youtube-nocookie.com", "vimeo.com"];
+const AUTOPLAY_LAYOUTS = new Set(["video", "feature", "collage", "carousel", "gallery"]);
+
+export async function fetchStories() {
+  const config = getSiteConfig();
+  if (config.dataSource === "supabase" && config.supabaseUrl && config.supabaseAnonKey) {
+    try {
+      return await fetchStoriesFromSupabase(config);
+    } catch (error) {
+      console.warn("Falling back to static story data.", error);
+    }
+  }
+  const response = await fetch(STORIES_PATH, { cache: "no-store" });
+  if (!response.ok) {
+    throw new Error(`Unable to load ${STORIES_PATH}: ${response.status}`);
+  }
+  return response.json();
+}
+
+export function uniqueValues(values) {
+  return [...new Set(values.filter(Boolean))].sort((left, right) =>
+    String(left).localeCompare(String(right))
+  );
+}
+
+export function joinList(values, fallback = "Unknown") {
+  return values && values.length ? values.join(" • ") : fallback;
+}
+
+export function getKeywordValues(story) {
+  return story?.keywords || [];
+}
+
+export function storyHash(story) {
+  return story?.story_slug || "";
+}
+
+export function storyUrl(story, options = {}) {
+  const params = new URLSearchParams();
+  const slug = storyHash(story);
+  if (slug) {
+    params.set("story", slug);
+  }
+  if (options.ref) {
+    params.set("ref", options.ref);
+  }
+  if (options.slide) {
+    params.set("slide", options.slide);
+  }
+  return `story.html?${params.toString()}`;
+}
+
+export function findStoryIndexByHash(stories, hash) {
+  if (!hash) {
+    return -1;
+  }
+  return stories.findIndex((story) => storyHash(story) === hash);
+}
+
+export function findStoryBySlug(stories, slug) {
+  if (!slug) {
+    return null;
+  }
+  return stories.find((story) => storyHash(story) === slug) || null;
+}
+
+export function formatTimestamp(value) {
+  if (!value) {
+    return "Unavailable";
+  }
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    return "Unavailable";
+  }
+  return new Intl.DateTimeFormat("en-US", {
+    dateStyle: "long",
+    timeStyle: "short",
+  }).format(date);
+}
+
+export function storyExcerpt(story, maxLength = 80) {
+  const source = [story?.summary, story?.narrative, story?.context_connections]
+    .map((value) => String(value || "").replace(/\s+/g, " ").trim())
+    .find(Boolean);
+
+  if (!source) {
+    return "A closer look at this story.";
+  }
+  if (source.length <= maxLength) {
+    return source;
+  }
+
+  const clipped = source.slice(0, maxLength);
+  const cutoff = clipped.lastIndexOf(" ");
+  return `${(cutoff > 30 ? clipped.slice(0, cutoff) : clipped).trim()}…`;
+}
+
+export function canRenderMediaAsset(asset) {
+  if (!asset) {
+    return false;
+  }
+  if (asset.kind === "image") {
+    return Boolean(asset.url);
+  }
+  if (asset.kind === "pdf") {
+    return Boolean(asset.preview_url || asset.document_url || asset.url);
+  }
+  if (asset.kind === "video" || asset.kind === "video_embed") {
+    return isAllowedVideoUrl(asset.url);
+  }
+  return false;
+}
+
+export function getSiteConfig() {
+  return { ...DEFAULT_SITE_CONFIG, ...(window.KTH_SITE_CONFIG || {}) };
+}
+
+export function storyPreviewAsset(story) {
+  const assets = story?.media_assets || [];
+  return (
+    assets.find((asset) => asset.kind === "image" && canRenderMediaAsset(asset)) ||
+    assets.find((asset) => asset.kind === "pdf" && canRenderMediaAsset(asset)) ||
+    assets.find((asset) => (asset.kind === "video_embed" || asset.kind === "video") && canRenderMediaAsset(asset)) ||
+    null
+  );
+}
+
+export function buildMediaElement(asset, { layout = "detail" } = {}) {
+  if (!asset) {
+    return buildMissingAssetPlaceholder(layout);
+  }
+
+  if (asset.kind === "image" && asset.url) {
+    const image = document.createElement("img");
+    image.className = `asset-media asset-media--${layout}`;
+    image.src = asset.url;
+    image.alt = asset.caption || asset.filename || "Story image";
+    return image;
+  }
+
+  if (asset.kind === "pdf" && asset.preview_url) {
+    const image = document.createElement("img");
+    image.className = `asset-media asset-media--${layout}`;
+    image.src = asset.preview_url;
+    image.alt = asset.caption || asset.filename || "PDF preview";
+    return image;
+  }
+
+  if (asset.kind === "pdf" && (asset.document_url || asset.url)) {
+    const wrapper = document.createElement("div");
+    wrapper.className = "document-card";
+    wrapper.innerHTML = `
+      <strong>${asset.filename || "Document asset"}</strong>
+      <p>${asset.caption || "Open the source PDF in a new tab."}</p>
+      <a class="document-link" href="${asset.document_url || asset.url}" target="_blank" rel="noreferrer">Open PDF</a>
+    `;
+    return wrapper;
+  }
+
+  if (asset.kind === "video" || asset.kind === "video_embed") {
+    if (!isAllowedVideoUrl(asset.url)) {
+      return buildVideoUnavailable(layout);
+    }
+
+    const frame = document.createElement("iframe");
+    frame.className = `asset-embed asset-embed--${layout}`;
+    frame.src = withVideoParams(asset.url, { autoplay: AUTOPLAY_LAYOUTS.has(layout) });
+    frame.title = asset.caption || asset.filename || "Embedded video";
+    frame.allow =
+      "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+    frame.referrerPolicy = "strict-origin-when-cross-origin";
+    frame.allowFullscreen = true;
+    return frame;
+  }
+
+  return buildMissingAssetPlaceholder(layout);
+}
+
+export function isAllowedVideoUrl(url) {
+  if (!url) {
+    return false;
+  }
+  try {
+    const parsed = new URL(url, window.location.href);
+    const host = parsed.hostname.toLowerCase();
+    return ALLOWED_VIDEO_HOSTS.some((marker) => host.includes(marker));
+  } catch (_error) {
+    return false;
+  }
+}
+
+function buildMissingAssetPlaceholder(layout) {
+  const placeholder = document.createElement("div");
+  placeholder.className = `asset-placeholder asset-placeholder--${layout}`;
+  placeholder.innerHTML = `
+    <strong>No public asset is attached to this story yet.</strong>
+    <p>Add an approved image or PDF attachment in Airtable to display media here.</p>
+  `;
+  return placeholder;
+}
+
+function buildVideoUnavailable(layout) {
+  const placeholder = document.createElement("div");
+  placeholder.className = `asset-placeholder asset-placeholder--${layout} asset-placeholder--video`;
+  placeholder.innerHTML = `
+    <strong>Video unavailable</strong>
+    <p>This story's video could not be loaded.</p>
+  `;
+  return placeholder;
+}
+
+async function fetchStoriesFromSupabase(config) {
+  const endpoint = new URL(
+    `${config.supabaseUrl.replace(/\/$/, "")}/rest/v1/${encodeURIComponent(
+      config.supabaseStoriesTable
+    )}`
+  );
+  endpoint.searchParams.set("select", "story_slug,workflow_status,date_received,payload");
+  endpoint.searchParams.set("order", "date_received.desc.nullslast");
+
+  const response = await fetch(endpoint.toString(), {
+    headers: {
+      apikey: config.supabaseAnonKey,
+      Authorization: `Bearer ${config.supabaseAnonKey}`,
+      Accept: "application/json",
+      "Accept-Profile": config.supabaseSchema || "public",
+    },
+    cache: "no-store",
+  });
+
+  if (!response.ok) {
+    throw new Error(`Unable to load Supabase stories: ${response.status}`);
+  }
+
+  const rows = await response.json();
+  const stories = rows
+    .map((row) => normalizeSupabaseStory(row))
+    .filter(Boolean)
+    .filter((story) => {
+      const status = String(story.workflow_status || "").trim().toLowerCase();
+      return status === "approved" || status === "approved and published";
+    });
+
+  return {
+    generated_at: new Date().toISOString(),
+    source_mode: "supabase",
+    source_label: "Approved stories",
+    public_publish_ready: true,
+    story_count: stories.length,
+    stories,
+  };
+}
+
+function normalizeSupabaseStory(row) {
+  if (!row || typeof row !== "object") {
+    return null;
+  }
+
+  const payload = row.payload && typeof row.payload === "object" ? row.payload : {};
+  const story = {
+    ...payload,
+    story_slug: payload.story_slug || row.story_slug || "",
+    workflow_status: payload.workflow_status || row.workflow_status || "",
+    date_received: payload.date_received || row.date_received || "",
+  };
+
+  return story.story_slug ? story : null;
+}
+
+function withVideoParams(url, { autoplay = false } = {}) {
+  try {
+    const parsed = new URL(url, window.location.href);
+    const host = parsed.hostname.toLowerCase();
+
+    if (autoplay) {
+      parsed.searchParams.set("autoplay", "1");
+      parsed.searchParams.set("mute", "1");
+      parsed.searchParams.set("playsinline", "1");
+    } else {
+      parsed.searchParams.delete("autoplay");
+      parsed.searchParams.delete("mute");
+      parsed.searchParams.delete("playsinline");
+    }
+
+    if (host.includes("youtube.com") || host.includes("youtu.be") || host.includes("youtube-nocookie.com")) {
+      parsed.searchParams.set("enablejsapi", "1");
+      parsed.searchParams.set("rel", "0");
+      parsed.searchParams.set("cc_load_policy", "1");
+      parsed.searchParams.set("cc_lang_pref", "en");
+      parsed.searchParams.set("hl", "en");
+    }
+
+    if (host.includes("vimeo.com")) {
+      parsed.searchParams.set("autopause", "0");
+      parsed.searchParams.set("background", "0");
+      parsed.searchParams.set("texttrack", "en");
+    }
+
+    return parsed.toString();
+  } catch (_error) {
+    return url;
+  }
+}
