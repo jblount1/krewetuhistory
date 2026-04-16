@@ -1,0 +1,34 @@
+name: Sync Approved Stories to Supabase
+
+on:
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Sync Airtable stories to Supabase
+        env:
+          AIRTABLE_PERSONAL_ACCESS_TOKEN: ${{ secrets.AIRTABLE_PERSONAL_ACCESS_TOKEN }}
+          AIRTABLE_URL: ${{ secrets.AIRTABLE_URL }}
+          AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
+          AIRTABLE_SUBMISSIONS_TABLE: ${{ secrets.AIRTABLE_SUBMISSIONS_TABLE }}
+          AIRTABLE_ASSETS_TABLE: ${{ secrets.AIRTABLE_ASSETS_TABLE }}
+          AIRTABLE_DISPLAY_QUEUE_TABLE: ${{ secrets.AIRTABLE_DISPLAY_QUEUE_TABLE }}
+          SITE_SOURCE_MODE: airtable
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          SUPABASE_SCHEMA: ${{ secrets.SUPABASE_SCHEMA }}
+          SUPABASE_STORIES_TABLE: ${{ secrets.SUPABASE_STORIES_TABLE }}
+          SUPABASE_STORAGE_BUCKET: ${{ secrets.SUPABASE_STORAGE_BUCKET }}
+          SUPABASE_STORAGE_PREFIX: ${{ secrets.SUPABASE_STORAGE_PREFIX }}
+        run: PYTHONPATH=historical_marker_workflow/src python -m marker_workflow.cli sync-supabase

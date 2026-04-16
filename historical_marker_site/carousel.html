@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Krewe TU History Carousel</title>
+    <meta
+      name="description"
+      content="Editorial carousel mode for Krewe TU History, designed for readable public storytelling."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="assets/branding/krewe-tu-history-logo.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="carousel-page editorial-page">
+    <main class="display-layout display-layout--editorial">
+      <section id="carousel-empty" class="empty-state hidden" aria-live="polite">
+        <p class="section-kicker">Display status</p>
+        <h2>No stories are available yet.</h2>
+        <p>Rebuild the site data to publish approved stories into the carousel.</p>
+      </section>
+
+      <section id="carousel-stage" class="display-stage hidden" aria-live="polite">
+        <div id="carousel-media-frame" class="carousel-media-frame"></div>
+
+        <article class="display-story-panel">
+          <div class="display-copy-block">
+            <p id="carousel-theme" class="display-kicker"></p>
+            <h1 id="carousel-headline" class="display-headline"></h1>
+            <p id="carousel-copy" class="display-copy"></p>
+          </div>
+
+          <div class="display-footer-meta">
+            <article id="carousel-reference-card" class="display-reference-card">
+              <span class="meta-label">References</span>
+              <p id="carousel-references" class="display-reference-text"></p>
+            </article>
+
+            <article id="carousel-asset-card" class="asset-meta-card">
+              <h2 id="carousel-asset-heading">Media details</h2>
+              <div id="carousel-asset-details" class="asset-meta-list"></div>
+              <div id="carousel-document-links" class="document-link-row"></div>
+            </article>
+          </div>
+        </article>
+
+        <div class="display-controls">
+          <div id="carousel-position" class="section-badge">0 / 0</div>
+          <div class="display-nav">
+            <button
+              id="carousel-mode-toggle"
+              class="secondary-button button-reset"
+              type="button"
+              aria-pressed="true"
+            >
+              Carousel Mode: On
+            </button>
+            <a class="secondary-button" href="explore.html">Explore</a>
+            <a id="view-story" class="secondary-button" href="story.html">View Story</a>
+            <button
+              id="autoplay-toggle"
+              class="secondary-button button-reset"
+              type="button"
+              aria-pressed="true"
+            >
+              Pause
+            </button>
+            <button id="prev-story" class="secondary-button button-reset" type="button">
+              Prev
+            </button>
+            <button id="next-story" class="secondary-button button-reset" type="button">
+              Next
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="site-config.js"></script>
+    <script type="module" src="carousel.js"></script>
+  </body>
+</html>

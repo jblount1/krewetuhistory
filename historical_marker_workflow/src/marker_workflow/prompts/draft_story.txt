@@ -1,0 +1,6 @@
+Create a draft story package for editors. Use only supplied evidence.
+Return headline, summary_50, narrative_120_180, associated_media_assets,
+suggested_image_caption_placeholders, suggested_credits_line, questions_or_gaps,
+display_format_recommendation, themes, and community_labels.
+Preserve uncertainty and avoid inventing facts.
+

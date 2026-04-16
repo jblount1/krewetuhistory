@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Explore | Krewe TU History</title>
+    <meta
+      name="description"
+      content="Browse approved Krewe TU History stories."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="assets/branding/krewe-tu-history-logo.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="explore-page">
+    <div class="site-backdrop">
+      <header class="hero-shell hero-shell--streamlined explore-shell">
+        <div class="site-nav">
+          <a class="brand-logo-link" href="index.html" aria-label="Krewe TU History home">
+            <img
+              class="brand-logo"
+              src="assets/branding/krewe-tu-history-logo.png"
+              alt="Krewe TU History logo"
+            />
+          </a>
+
+          <nav class="site-nav-links site-nav-links--split" aria-label="Primary">
+            <div class="site-nav-link-group">
+              <a class="nav-link" href="index.html">Home</a>
+              <a class="nav-link" href="explore.html">Explore</a>
+            </div>
+            <button
+              id="carousel-mode-toggle"
+              class="secondary-button button-reset"
+              type="button"
+              aria-pressed="false"
+            >
+              Carousel Mode: Off
+            </button>
+          </nav>
+        </div>
+
+        <section class="hero-story hero-story--streamlined explore-intro">
+          <p class="section-kicker">Explore</p>
+          <h1>Browse the collection</h1>
+          <p class="hero-copy">
+            Search by title or excerpt, filter by theme, and open a full story when you are ready
+            to read more.
+          </p>
+          <div class="hero-actions">
+            <a class="secondary-button" href="carousel.html">Launch carousel</a>
+            <a
+              class="secondary-button"
+              href="https://airtable.com/appFG4KHwFm3LCbia/pag3sydEEuWcHEmYW/form"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Submit a story
+            </a>
+          </div>
+        </section>
+      </header>
+
+      <main class="home-layout">
+        <section id="empty-state" class="empty-state hidden" aria-live="polite">
+          <p class="section-kicker">Archive status</p>
+          <h2>No stories are available yet.</h2>
+          <p data-empty-copy>
+            Rebuild the site data to publish approved stories into the archive.
+          </p>
+        </section>
+
+        <section id="stories" class="archive-shell hidden" aria-live="polite">
+          <section class="archive-toolbar" aria-label="Story search and filters">
+            <label class="search-field">
+              <span class="filter-label">Search</span>
+              <input
+                id="story-search"
+                class="search-input"
+                type="search"
+                placeholder="Search by title or excerpt"
+                autocomplete="off"
+              />
+            </label>
+
+            <label class="select-field">
+              <span class="filter-label">Theme</span>
+              <select id="story-filter" class="filter-select">
+                <option value="all">All stories</option>
+              </select>
+            </label>
+          </section>
+
+          <div id="stories-loading" class="story-grid story-grid--skeleton" aria-hidden="true">
+            <article class="story-card story-card--skeleton"></article>
+            <article class="story-card story-card--skeleton"></article>
+            <article class="story-card story-card--skeleton"></article>
+          </div>
+
+          <div id="stories-empty" class="stories-empty hidden">
+            <p>No stories found.</p>
+          </div>
+
+          <div id="story-grid" class="story-grid"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="site-config.js"></script>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

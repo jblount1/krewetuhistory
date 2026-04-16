@@ -1,0 +1,6 @@
+Review this submission for public-display risk. Flag hateful or discriminatory material,
+sexual content, graphic violence, personal attacks, doxxing or personal private information,
+copyright or ownership concerns, defamatory claims, unverifiable historical claims,
+and spam or off-topic content. Return JSON only with flags, risk_level, rationale,
+and recommended_next_step. Never recommend automatic publication.
+
