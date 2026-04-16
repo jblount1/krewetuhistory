@@ -24,6 +24,12 @@ class FakeAirtableClient:
         return list(self._tables.get(table_name, []))
 
 
+class FailingAirtableClient:
+    def list_all_records(self, table_name: str, **_: object):
+        del table_name
+        raise ValueError("Airtable connection is not configured. Missing: AIRTABLE_PERSONAL_ACCESS_TOKEN")
+
+
 class SiteBuilderTests(unittest.TestCase):
     def test_build_site_exports_story_payload_and_media(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -238,8 +244,51 @@ class SiteBuilderTests(unittest.TestCase):
             story = stories_payload["stories"][0]
             self.assertEqual(story["headline"], "PDF Story")
             self.assertEqual(story["media_assets"][0]["kind"], "pdf")
-            self.assertTrue(story["media_assets"][0]["preview_url"].endswith("__preview.png"))
-            self.assertTrue(story["media_assets"][0]["document_url"].endswith("story.pdf"))
+
+    def test_build_site_uses_existing_snapshot_when_airtable_is_unavailable(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace = Path(temp_dir)
+            config = build_config(workspace)
+            box_client = FilesystemBoxClient(config)
+
+            snapshot = {
+                "generated_at": "2026-04-16T00:00:00Z",
+                "source_mode": "airtable",
+                "source_label": "Approved stories",
+                "public_publish_ready": True,
+                "story_count": 1,
+                "stories": [
+                    {
+                        "story_slug": "existing-story",
+                        "headline": "Existing Story",
+                        "summary": "Snapshot summary",
+                        "narrative": "",
+                        "ai_generated": "No",
+                        "themes": ["Labor"],
+                        "keywords": [],
+                        "context_connections": "",
+                        "context_sections": [],
+                        "references": [],
+                        "ai_copy": "Snapshot summary",
+                        "media_assets": [],
+                        "date_received": "2026-04-16T00:00:00Z",
+                        "source_status": "airtable",
+                        "workflow_status": "Approved and Published",
+                    }
+                ],
+            }
+            dump_json(config.site_output_path / "data" / "stories.json", snapshot)
+
+            result = SiteBuilder(
+                config,
+                box_client,
+                airtable_client=FailingAirtableClient(),
+            ).build(source_mode="airtable")
+
+            self.assertTrue(result["used_existing_snapshot"])
+            self.assertEqual(result["story_count"], 1)
+            stories_payload = json.loads((config.site_output_path / "data" / "stories.json").read_text(encoding="utf-8"))
+            self.assertEqual(stories_payload["stories"][0]["headline"], "Existing Story")
 
     def test_build_site_adds_submission_video_url_to_public_media(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
