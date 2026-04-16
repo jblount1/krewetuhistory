@@ -85,6 +85,6 @@ class SupabaseSyncService:
         return rewritten, uploaded_files
 
     def _remote_storage_path(self, relative_path: str) -> str:
-        cleaned = relative_path.lstrip("./").lstrip("/")
-        prefix = self.config.supabase_storage_prefix.strip("/")
+        cleaned = relative_path.strip().lstrip("./").lstrip("/")
+        prefix = self.config.supabase_storage_prefix.strip().strip("/")
         return f"{prefix}/{cleaned}" if prefix else cleaned

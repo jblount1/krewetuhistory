@@ -125,7 +125,7 @@ class AppConfig:
             supabase_schema=env_map.get("SUPABASE_SCHEMA", "public").strip() or "public",
             supabase_stories_table=env_map.get("SUPABASE_STORIES_TABLE", "stories_public").strip() or "stories_public",
             supabase_storage_bucket=env_map.get("SUPABASE_STORAGE_BUCKET", "stories-public").strip() or "stories-public",
-            supabase_storage_prefix=env_map.get("SUPABASE_STORAGE_PREFIX", "stories").strip("/"),
+            supabase_storage_prefix=env_map.get("SUPABASE_STORAGE_PREFIX", "stories").strip().strip("/"),
         )
 
     def ensure_runtime_directories(self) -> None:

@@ -46,15 +46,19 @@ jobs:
         run: npm install -g netlify-cli
 
       - name: Deploy preview
-        if: github.ref != 'refs/heads/main'
+        if: github.ref != 'refs/heads/main' && secrets.NETLIFY_AUTH_TOKEN != '' && secrets.NETLIFY_SITE_ID != ''
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         run: netlify deploy --dir historical_marker_site --message "Preview from ${{ github.ref_name }}"
 
       - name: Deploy production
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main' && secrets.NETLIFY_AUTH_TOKEN != '' && secrets.NETLIFY_SITE_ID != ''
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         run: netlify deploy --dir historical_marker_site --prod --message "Production deploy from main"
+
+      - name: Note skipped Netlify deploy
+        if: secrets.NETLIFY_AUTH_TOKEN == '' || secrets.NETLIFY_SITE_ID == ''
+        run: echo "Skipping Netlify deploy because NETLIFY_AUTH_TOKEN or NETLIFY_SITE_ID is not configured."

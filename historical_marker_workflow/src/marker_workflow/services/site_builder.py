@@ -37,7 +37,20 @@ class SiteBuilder:
         data_dir = ensure_directory(site_root / "data")
         media_dir = ensure_directory(site_root / "media")
         if mode == "airtable":
-            stories, copied_assets, resolved_mode = self._build_airtable_stories(media_dir, limit=limit)
+            try:
+                stories, copied_assets, resolved_mode = self._build_airtable_stories(media_dir, limit=limit)
+            except (RuntimeError, ValueError):
+                fallback_payload = self._existing_site_payload(data_dir / "stories.json")
+                if fallback_payload:
+                    return {
+                        "site_output_path": str(site_root),
+                        "data_path": str(data_dir / "stories.json"),
+                        "source_mode": fallback_payload.get("source_mode") or "airtable",
+                        "story_count": int(fallback_payload.get("story_count") or len(fallback_payload.get("stories") or [])),
+                        "copied_assets": 0,
+                        "used_existing_snapshot": True,
+                    }
+                raise
         else:
             story_package_paths, resolved_mode = self._story_package_paths(mode)
             if limit is not None:
@@ -66,6 +79,16 @@ class SiteBuilder:
             "story_count": len(stories),
             "copied_assets": copied_assets,
         }
+
+    def _existing_site_payload(self, path: Path) -> Optional[Dict[str, object]]:
+        if not path.exists() or not path.is_file():
+            return None
+        payload = load_json(path)
+        if not isinstance(payload, dict):
+            return None
+        if not isinstance(payload.get("stories"), list):
+            return None
+        return payload
 
     def _build_airtable_stories(self, media_root: Path, limit: Optional[int] = None) -> Tuple[List[Dict[str, object]], int, str]:
         submissions = self.airtable_client.list_all_records(self.config.airtable_submissions_table)
