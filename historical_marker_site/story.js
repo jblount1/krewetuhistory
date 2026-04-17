@@ -456,10 +456,10 @@ function escapeHtml(value) {
 function formatRichText(value) {
   const escaped = escapeHtml(value).replace(/\n/g, "<br />");
   return escaped.replace(
-    /(?:https?:\/\/|www\.)[^\s<]+/g,
+    /(?:https?:\/\/|www\.|(?:[a-z0-9-]+\.)+[a-z]{2,})[^\s<]*/gi,
     (rawMatch) => {
       const { cleanUrl, trailing } = splitTrailingPunctuation(rawMatch);
-      const href = cleanUrl.startsWith("www.") ? `https://${cleanUrl}` : cleanUrl;
+      const href = /^(?:https?:)?\/\//i.test(cleanUrl) ? cleanUrl : `https://${cleanUrl}`;
       return `<a href="${href}" target="_blank" rel="noopener noreferrer">${cleanUrl}</a>${trailing}`;
     }
   );
