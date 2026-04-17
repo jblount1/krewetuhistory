@@ -2500,6 +2500,16 @@ body.editorial-page {
   object-fit: contain !important;
 }
 
+.asset-media--feature:not(.asset-media--pdf-preview) {
+  object-fit: cover !important;
+  object-position: center center !important;
+}
+
+.asset-media--feature.asset-media--pdf-preview {
+  object-fit: contain !important;
+  object-position: center top !important;
+}
+
 .asset-embed--video {
   width: 100% !important;
   height: 100% !important;
