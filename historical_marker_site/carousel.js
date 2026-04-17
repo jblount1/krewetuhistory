@@ -168,7 +168,7 @@ function renderStory() {
     updateCarouselSlide(hash);
   }
 
-  const mediaStrategy = resolveMediaStrategy(story, state.storyIndex);
+  const mediaStrategy = resolveMediaStrategy(story);
   updateStageLayout(mediaStrategy.layout);
   renderText(story);
   renderReferences(story.references || []);
@@ -310,7 +310,7 @@ function renderAssetDetails(assets) {
   });
 }
 
-function resolveMediaStrategy(story, storyIndex) {
+function resolveMediaStrategy(story) {
   const assets = story.media_assets || [];
   const videos = assets.filter((asset) => asset.kind === "video" || asset.kind === "video_embed");
   const images = assets.filter((asset) => asset.kind === "image");
@@ -334,7 +334,7 @@ function resolveMediaStrategy(story, storyIndex) {
 
   if (images.length === 1) {
     return {
-      layout: storyIndex % 2 === 0 ? "feature-right" : "feature-left",
+      layout: "feature-left",
       asset: images[0],
       detailAssets: [images[0]],
     };
@@ -342,7 +342,7 @@ function resolveMediaStrategy(story, storyIndex) {
 
   if (documents.length) {
     return {
-      layout: storyIndex % 2 === 0 ? "feature-right" : "feature-left",
+      layout: "feature-left",
       asset: documents[0],
       detailAssets: [documents[0]],
     };
