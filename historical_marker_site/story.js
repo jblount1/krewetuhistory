@@ -125,7 +125,7 @@ function buildStoryBody(story) {
 }
 
 function sectionMarkup(title, body) {
-  return `<section class="story-body-section"><h2>${title}</h2><p>${escapeHtml(body).replace(/\n/g, "<br />")}</p></section>`;
+  return `<section class="story-body-section"><h2>${title}</h2><p>${formatRichText(body)}</p></section>`;
 }
 
 function contextSectionMarkup(sections) {
@@ -134,7 +134,7 @@ function contextSectionMarkup(sections) {
       const label = section.label && section.label !== "Context and Connections"
         ? `<strong>${escapeHtml(section.label)}:</strong> `
         : "";
-      return `<p>${label}${escapeHtml(section.text).replace(/\n/g, "<br />")}</p>`;
+      return `<p>${label}${formatRichText(section.text)}</p>`;
     })
     .join("");
   return `<section class="story-body-section"><h2>Context & Connections</h2>${paragraphs}</section>`;
@@ -182,7 +182,7 @@ function renderReferences(references) {
   elements.references.classList.remove("hidden");
   references.forEach((reference) => {
     const item = document.createElement("li");
-    item.textContent = reference;
+    item.innerHTML = formatRichText(reference);
     elements.referencesList.appendChild(item);
   });
 }
@@ -451,6 +451,28 @@ function escapeHtml(value) {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
+}
+
+function formatRichText(value) {
+  const escaped = escapeHtml(value).replace(/\n/g, "<br />");
+  return escaped.replace(
+    /(?:https?:\/\/|www\.)[^\s<]+/g,
+    (rawMatch) => {
+      const { cleanUrl, trailing } = splitTrailingPunctuation(rawMatch);
+      const href = cleanUrl.startsWith("www.") ? `https://${cleanUrl}` : cleanUrl;
+      return `<a href="${href}" target="_blank" rel="noopener noreferrer">${cleanUrl}</a>${trailing}`;
+    }
+  );
+}
+
+function splitTrailingPunctuation(value) {
+  let cleanUrl = value;
+  let trailing = "";
+  while (/[),.;!?]$/.test(cleanUrl)) {
+    trailing = cleanUrl.slice(-1) + trailing;
+    cleanUrl = cleanUrl.slice(0, -1);
+  }
+  return { cleanUrl, trailing };
 }
 
 init();

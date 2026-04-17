@@ -3018,6 +3018,19 @@ body.editorial-page {
   line-height: 1.8;
 }
 
+.story-prose a,
+.story-references a {
+  color: var(--brand-navy);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.16em;
+  word-break: break-word;
+}
+
+.story-prose a:hover,
+.story-references a:hover {
+  color: var(--brand-green-deep);
+}
+
 .story-media {
   margin-bottom: 28px;
   border-radius: 22px;
@@ -3059,6 +3072,15 @@ body.editorial-page {
 .story-media-citation {
   color: var(--brand-ink);
   font-size: 0.92rem;
+}
+
+.story-rights-note {
+  max-width: 65ch;
+  margin: 28px auto 0;
+  color: rgba(23, 50, 81, 0.56);
+  font-size: 0.82rem;
+  line-height: 1.6;
+  text-align: center;
 }
 
 .story-prose {
