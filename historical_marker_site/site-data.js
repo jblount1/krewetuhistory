@@ -61,6 +61,37 @@ export async function fetchStoryResponses(submissionRecordId) {
     .filter(Boolean);
 }
 
+export async function fetchSubmissionRecordIdBySlug(storySlug) {
+  const config = getSiteConfig();
+  if (!storySlug || config.dataSource !== "supabase" || !config.supabaseUrl || !config.supabaseAnonKey) {
+    return null;
+  }
+
+  const endpoint = new URL(
+    `${config.supabaseUrl.replace(/\/$/, "")}/rest/v1/${encodeURIComponent(
+      config.supabaseSubmissionsTable
+    )}`
+  );
+  endpoint.searchParams.set("select", "id");
+  endpoint.searchParams.set("story_slug", `eq.${storySlug}`);
+  endpoint.searchParams.set("limit", "1");
+
+  const response = await fetch(endpoint.toString(), {
+    headers: buildSupabaseHeaders(config),
+    cache: "no-store",
+  });
+
+  if (!response.ok) {
+    throw new Error(`Unable to resolve submission id: ${response.status}`);
+  }
+
+  const rows = await response.json();
+  if (!Array.isArray(rows) || !rows.length) {
+    return null;
+  }
+  return rows[0]?.id || null;
+}
+
 export function incrementStoryClicks(submissionRecordId) {
   const config = getSiteConfig();
   if (!submissionRecordId || config.dataSource !== "supabase" || !config.supabaseUrl || !config.supabaseAnonKey) {

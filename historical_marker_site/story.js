@@ -1,5 +1,6 @@
 import {
   buildMediaElement,
+  fetchSubmissionRecordIdBySlug,
   fetchStories,
   fetchStoryResponses,
   findStoryBySlug,
@@ -26,6 +27,7 @@ const elements = {
   responseLink: document.getElementById("story-response-link"),
   reactionsSummary: document.getElementById("story-reactions-summary"),
   reactionsRating: document.getElementById("story-reactions-rating"),
+  reactionsNote: document.getElementById("story-reactions-note"),
   reactionsComments: document.getElementById("story-reactions-comments"),
   reactionsComment: document.getElementById("story-reactions-comment"),
   carouselLink: document.getElementById("story-carousel-link"),
@@ -192,11 +194,20 @@ async function renderReactions(story) {
     ? Number(story.number_of_responses)
     : 0;
   const avgRating = Number.isFinite(Number(story?.avg_rating)) ? Number(story.avg_rating) : null;
+  let submissionRecordId = story?.submission_record_id || null;
 
   let comments = [];
-  if (responseCount > 0 && hasContent(story?.submission_record_id)) {
+  if (responseCount > 0 && !submissionRecordId && hasContent(story?.story_slug)) {
     try {
-      comments = await fetchStoryResponses(story.submission_record_id);
+      submissionRecordId = await fetchSubmissionRecordIdBySlug(story.story_slug);
+    } catch (error) {
+      console.error("Unable to resolve story submission id.", error);
+    }
+  }
+
+  if (responseCount > 0 && hasContent(submissionRecordId)) {
+    try {
+      comments = await fetchStoryResponses(submissionRecordId);
     } catch (error) {
       console.error("Unable to load story reactions.", error);
     }
@@ -265,11 +276,13 @@ function renderReactionComments(comments) {
   const cleanedComments = comments.filter(hasContent);
 
   if (!cleanedComments.length) {
+    elements.reactionsNote.classList.add("hidden");
     elements.reactionsComments.classList.add("hidden");
     elements.reactionsComment.textContent = "";
     return;
   }
 
+  elements.reactionsNote.classList.remove("hidden");
   elements.reactionsComments.classList.remove("hidden");
   elements.reactionsComment.textContent = cleanedComments[0];
 

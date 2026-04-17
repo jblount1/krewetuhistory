@@ -2909,10 +2909,11 @@ body.editorial-page {
 }
 
 .story-reactions-count {
-  margin: 0;
+  margin: 12px 0 0;
   color: var(--brand-muted);
   font-size: 0.95rem;
   font-weight: 700;
+  text-align: center;
 }
 
 .story-reactions-actions {
@@ -2933,9 +2934,17 @@ body.editorial-page {
 }
 
 .story-reactions-summary {
-  margin-top: 18px;
+  margin-top: 14px;
   display: grid;
   justify-items: center;
+}
+
+.story-reactions-note {
+  margin: 14px 0 0;
+  color: var(--brand-muted);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-align: center;
 }
 
 .story-reactions-rating {
@@ -2964,7 +2973,7 @@ body.editorial-page {
 }
 
 .story-reactions-comments {
-  margin-top: 18px;
+  margin-top: 10px;
   display: grid;
   justify-items: center;
 }
