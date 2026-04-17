@@ -3377,3 +3377,25 @@ body.editorial-page {
   width: min(820px, 100%) !important;
   margin: 0 auto !important;
 }
+
+.carousel-page .display-stage--copy-heavy.display-stage--feature-left,
+.carousel-page .display-stage--copy-heavy.display-stage--feature-right {
+  grid-template-columns: minmax(0, 1.22fr) minmax(520px, 0.78fr) !important;
+  gap: 24px !important;
+}
+
+.carousel-page .display-stage--copy-heavy.display-stage--feature-left {
+  grid-template-columns: minmax(520px, 0.78fr) minmax(0, 1.22fr) !important;
+}
+
+.carousel-page .display-stage--copy-heavy .display-headline {
+  max-width: 18ch !important;
+  font-size: clamp(2.55rem, 3.45vw, 4.55rem) !important;
+  line-height: 0.96 !important;
+}
+
+.carousel-page .display-stage--copy-heavy .display-copy {
+  max-width: 42ch !important;
+  font-size: clamp(1.02rem, 1.24vw, 1.34rem) !important;
+  line-height: 1.52 !important;
+}
