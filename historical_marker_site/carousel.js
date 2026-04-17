@@ -275,6 +275,17 @@ function renderAssetDetails(assets) {
     return;
   }
 
+  const shouldHideForSingleVisual =
+    assets.length === 1 &&
+    assets[0] &&
+    ["image", "pdf"].includes(assets[0].kind) &&
+    !assets[0].document_url;
+
+  if (shouldHideForSingleVisual) {
+    elements.assetCard.classList.add("hidden");
+    return;
+  }
+
   elements.assetCard.classList.remove("hidden");
   elements.assetHeading.textContent = assets.length > 1 ? "Images on this slide" : "Media details";
 
