@@ -13,6 +13,7 @@ from .adapters.supabase_client import SupabaseClient
 from .config import AppConfig
 from .services.audit import AuditLogger, WorkflowStateStore
 from .services.airtable_editorial import AirtableEditorialWorkflow
+from .services.airtable_click_sync import AirtableClickSyncService
 from .services.duplicate_detector import DuplicateDetector
 from .services.extractor import ExtractionService
 from .services.generator import OutputGenerator
@@ -89,6 +90,11 @@ def build_parser() -> argparse.ArgumentParser:
         help="Build the public Airtable story payload, upload public media to Supabase Storage, and upsert story rows.",
     )
     sync_supabase.add_argument("--limit", type=int, default=None)
+
+    subparsers.add_parser(
+        "sync-clicks-to-airtable",
+        help="Copy live click counts from Supabase submissions back into the Airtable Submissions table.",
+    )
     return parser
 
 
@@ -135,6 +141,13 @@ def main(argv: Optional[List[str]] = None) -> int:
             supabase_client=SupabaseClient(config),
         )
         result = syncer.sync_public_stories(limit=args.limit)
+    elif args.command == "sync-clicks-to-airtable":
+        syncer = AirtableClickSyncService(
+            config=config,
+            airtable_client=AirtableClient(config),
+            supabase_client=SupabaseClient(config),
+        )
+        result = syncer.sync_clicks()
     else:  # pragma: no cover - argparse prevents this branch
         parser.error(f"Unsupported command: {args.command}")
         return 2

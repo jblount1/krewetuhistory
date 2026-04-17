@@ -78,6 +78,20 @@ class SupabaseClient:
         response = self._request_json(request)
         return response if isinstance(response, list) else []
 
+    def list_submission_clicks(self) -> List[Dict[str, object]]:
+        self.ensure_configured()
+        endpoint = self._rest_endpoint(
+            self.config.supabase_submissions_table,
+            select='id,airtable_id,"Clicks"',
+        )
+        request = Request(
+            endpoint,
+            headers=self._auth_headers(),
+            method="GET",
+        )
+        response = self._request_json(request)
+        return response if isinstance(response, list) else []
+
     def upload_public_file(self, local_path: Path, remote_path: str, content_type: str) -> str:
         self.ensure_configured()
         bucket = quote(self.config.supabase_storage_bucket, safe="")
