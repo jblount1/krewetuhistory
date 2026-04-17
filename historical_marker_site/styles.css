@@ -3036,6 +3036,10 @@ body.editorial-page {
   background: rgba(12, 40, 87, 0.05);
 }
 
+.asset-media--pdf-preview {
+  object-position: center top !important;
+}
+
 .story-media-caption {
   max-width: 65ch;
   margin: -10px 0 28px;

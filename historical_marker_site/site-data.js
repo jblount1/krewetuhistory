@@ -238,7 +238,7 @@ export function buildMediaElement(asset, { layout = "detail" } = {}) {
 
   if (asset.kind === "pdf" && asset.preview_url) {
     const image = document.createElement("img");
-    image.className = `asset-media asset-media--${layout}`;
+    image.className = `asset-media asset-media--${layout} asset-media--pdf-preview`;
     image.src = asset.preview_url;
     image.alt = asset.caption || asset.filename || "PDF preview";
     return image;
