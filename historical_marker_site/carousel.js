@@ -275,13 +275,11 @@ function renderAssetDetails(assets) {
     return;
   }
 
-  const shouldHideForSingleVisual =
-    assets.length === 1 &&
-    assets[0] &&
-    ["image", "pdf"].includes(assets[0].kind) &&
-    !assets[0].document_url;
+  const shouldHideForVisibleVisuals = assets.every(
+    (asset) => asset && ["image", "pdf"].includes(asset.kind)
+  );
 
-  if (shouldHideForSingleVisual) {
+  if (shouldHideForVisibleVisuals) {
     elements.assetCard.classList.add("hidden");
     return;
   }
