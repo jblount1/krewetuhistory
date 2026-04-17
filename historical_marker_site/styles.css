@@ -2885,7 +2885,7 @@ body.editorial-page {
 
 .story-reactions {
   max-width: 65ch;
-  margin-top: 32px;
+  margin: 32px auto 0;
   padding: 22px 24px;
   border-radius: 22px;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(237, 244, 251, 0.82));
