@@ -2,6 +2,7 @@ import {
   buildMediaElement,
   canRenderMediaAsset,
   fetchStories,
+  incrementStoryClicks,
   storyExcerpt,
   storyPreviewAsset,
   storyUrl,
@@ -154,6 +155,14 @@ function renderStoryGrid() {
       <p class="story-card-summary">${storyExcerpt(story, 80)}</p>
       <a class="story-card-link" href="${storyHref}">Read Story</a>
     `;
+    const link = copy.querySelector(".story-card-link");
+    if (link) {
+      link.addEventListener("click", () => {
+        incrementStoryClicks(story.submission_record_id).catch((error) => {
+          console.error("Unable to track Explore click.", error);
+        });
+      });
+    }
     card.appendChild(copy);
 
     elements.storyGrid.appendChild(card);

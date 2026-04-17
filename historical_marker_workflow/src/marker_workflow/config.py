@@ -52,6 +52,7 @@ class AppConfig:
     airtable_submissions_table: str
     airtable_assets_table: str
     airtable_display_queue_table: str
+    airtable_responses_table: str
     airtable_base_url: str
     airtable_timeout_seconds: int
     supabase_url: Optional[str]
@@ -59,6 +60,8 @@ class AppConfig:
     supabase_service_role_key: Optional[str]
     supabase_schema: str
     supabase_stories_table: str
+    supabase_submissions_table: str
+    supabase_responses_table: str
     supabase_storage_bucket: str
     supabase_storage_prefix: str
 
@@ -107,6 +110,7 @@ class AppConfig:
             airtable_submissions_table=env_map.get("AIRTABLE_SUBMISSIONS_TABLE", "Submissions").strip() or "Submissions",
             airtable_assets_table=env_map.get("AIRTABLE_ASSETS_TABLE", "Assets").strip() or "Assets",
             airtable_display_queue_table=env_map.get("AIRTABLE_DISPLAY_QUEUE_TABLE", "Display Queue").strip() or "Display Queue",
+            airtable_responses_table=env_map.get("AIRTABLE_RESPONSES_TABLE", "Responses").strip() or "Responses",
             airtable_base_url=env_map.get("AIRTABLE_BASE_URL", "https://api.airtable.com/v0").rstrip("/"),
             airtable_timeout_seconds=int(env_map.get("AIRTABLE_TIMEOUT_SECONDS", "20")),
             supabase_url=(env_map.get("SUPABASE_URL") or "").strip().rstrip("/") or None,
@@ -124,6 +128,8 @@ class AppConfig:
             or None,
             supabase_schema=env_map.get("SUPABASE_SCHEMA", "public").strip() or "public",
             supabase_stories_table=env_map.get("SUPABASE_STORIES_TABLE", "stories_public").strip() or "stories_public",
+            supabase_submissions_table=env_map.get("SUPABASE_SUBMISSIONS_TABLE", "submissions").strip() or "submissions",
+            supabase_responses_table=env_map.get("SUPABASE_RESPONSES_TABLE", "responses").strip() or "responses",
             supabase_storage_bucket=env_map.get("SUPABASE_STORAGE_BUCKET", "stories-public").strip() or "stories-public",
             supabase_storage_prefix=env_map.get("SUPABASE_STORAGE_PREFIX", "stories").strip().strip("/"),
         )

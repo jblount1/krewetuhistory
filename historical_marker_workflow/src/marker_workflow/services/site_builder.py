@@ -286,6 +286,11 @@ class SiteBuilder:
             "context_sections": self._context_sections(submission_fields),
             "references": self._normalize_references(submission_fields.get("References")),
             "ai_copy": ai_copy,
+            "response_qr": self._first_attachment_url(submission_fields.get("Response QR")),
+            "response_link": self._text_value(submission_fields.get("Response Link")),
+            "avg_rating": self._numeric_value(submission_fields.get("Avg Rating")),
+            "number_of_responses": self._integer_value(submission_fields.get("Number of Responses")),
+            "clicks": self._integer_value(submission_fields.get("Clicks"), default=0),
             "media_assets": media_assets,
             "date_received": date_received,
             "source_status": "airtable",
@@ -326,6 +331,31 @@ class SiteBuilder:
             parts = [self._text_value(item) for item in value.values()]
             return "\n".join(part for part in parts if part).strip()
         return str(value).strip()
+
+    def _integer_value(self, value: object, default: Optional[int] = None) -> Optional[int]:
+        if value in (None, ""):
+            return default
+        try:
+            return int(float(str(value).strip()))
+        except (TypeError, ValueError):
+            return default
+
+    def _numeric_value(self, value: object) -> Optional[float]:
+        if value in (None, ""):
+            return None
+        try:
+            return float(str(value).strip())
+        except (TypeError, ValueError):
+            return None
+
+    def _first_attachment_url(self, value: object) -> Optional[str]:
+        if not isinstance(value, list) or not value:
+            return None
+        first = value[0]
+        if isinstance(first, dict):
+            url = first.get("url")
+            return str(url).strip() if url else None
+        return None
 
     def _build_airtable_media_assets(
         self,

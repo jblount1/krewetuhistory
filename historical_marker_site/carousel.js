@@ -2,6 +2,7 @@ import {
   buildMediaElement,
   fetchStories,
   findStoryIndexByHash,
+  incrementStoryClicks,
   joinList,
   storyHash,
   storyUrl,
@@ -92,6 +93,11 @@ function bindEvents() {
   elements.prevStory.addEventListener("click", () => shiftStory(-1));
   elements.nextStory.addEventListener("click", () => shiftStory(1));
   elements.autoplayToggle.addEventListener("click", toggleAutoplay);
+  elements.viewStory.addEventListener("click", () => {
+    incrementStoryClicks(currentStory()?.submission_record_id).catch((error) => {
+      console.error("Unable to track carousel story click.", error);
+    });
+  });
   window.addEventListener("keydown", handleKeyboard);
   ["click", "scroll", "keydown", "touchstart"].forEach((eventName) => {
     window.addEventListener(eventName, handlePausedInteraction, { passive: true });
@@ -419,6 +425,9 @@ function toggleAutoplay() {
   }
   state.autoplayEnabled = !state.autoplayEnabled;
   if (!state.autoplayEnabled) {
+    incrementStoryClicks(currentStory()?.submission_record_id).catch((error) => {
+      console.error("Unable to track carousel pause click.", error);
+    });
     teardownActiveMedia();
     startPauseResumeTimer();
     syncAutoplayButton();

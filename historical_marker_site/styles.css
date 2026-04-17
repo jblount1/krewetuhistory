@@ -2883,6 +2883,103 @@ body.editorial-page {
   line-height: 1.7;
 }
 
+.story-reactions {
+  max-width: 65ch;
+  margin-top: 32px;
+  padding: 22px 24px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(237, 244, 251, 0.82));
+  border: 1px solid rgba(12, 40, 87, 0.08);
+  box-shadow: var(--shadow-soft);
+}
+
+.story-reactions-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.story-reactions-header h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: var(--brand-navy);
+}
+
+.story-reactions-count {
+  margin: 0;
+  color: var(--brand-muted);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.story-reactions-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+
+.story-response-qr {
+  width: 116px;
+  height: 116px;
+  object-fit: cover;
+  border-radius: 18px;
+  background: white;
+  border: 1px solid rgba(12, 40, 87, 0.08);
+  box-shadow: var(--shadow-soft);
+}
+
+.story-reactions-summary {
+  margin-top: 18px;
+}
+
+.story-reactions-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.story-rating-star {
+  display: inline-flex;
+  width: 22px;
+  height: 22px;
+}
+
+.story-rating-star svg {
+  width: 100%;
+  height: 100%;
+}
+
+.story-rating-star-base {
+  fill: rgba(12, 40, 87, 0.16);
+}
+
+.story-rating-star-fill {
+  fill: var(--brand-green);
+}
+
+.story-reactions-comments {
+  margin-top: 18px;
+}
+
+.story-reactions-comment {
+  min-height: 4.6rem;
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: rgba(12, 40, 87, 0.05);
+  color: var(--brand-ink);
+  font-size: 1rem;
+  line-height: 1.7;
+  transition: opacity 180ms ease;
+}
+
+.story-reactions-comment.is-fading {
+  opacity: 0.24;
+}
+
 .story-references {
   max-width: 65ch;
   margin-top: 24px;
@@ -3174,6 +3271,15 @@ body.editorial-page {
 
   .story-gallery-grid {
     grid-template-columns: 1fr;
+  }
+
+  .story-reactions {
+    padding: 18px;
+  }
+
+  .story-reactions-actions {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
   .home-page .hero-story--streamlined h1 {

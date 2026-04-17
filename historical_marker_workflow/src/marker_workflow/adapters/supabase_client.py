@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Dict, Iterable, Optional
+from typing import Dict, Iterable, List, Optional
 from urllib.error import HTTPError, URLError
 from urllib.parse import quote
 from urllib.request import Request, urlopen
@@ -24,11 +24,46 @@ class SupabaseClient:
             joined = ", ".join(missing)
             raise ValueError(f"Supabase connection is not configured. Missing: {joined}")
 
-    def upsert_stories(self, stories: Iterable[Dict[str, object]]) -> Dict[str, object]:
+    def upsert_stories(self, stories: Iterable[Dict[str, object]]) -> List[Dict[str, object]]:
+        return self.upsert_rows(
+            table_name=self.config.supabase_stories_table,
+            rows=stories,
+            conflict_key="story_slug",
+            select="story_slug,headline,workflow_status,date_received,payload,synced_at",
+        )
+
+    def upsert_submissions(self, submissions: Iterable[Dict[str, object]]) -> List[Dict[str, object]]:
+        return self.upsert_rows(
+            table_name=self.config.supabase_submissions_table,
+            rows=submissions,
+            conflict_key="airtable_id",
+            select='id,airtable_id,story_slug,headline,"Response QR","Response Link","Avg Rating","Number of Responses","Clicks"',
+        )
+
+    def upsert_responses(self, responses: Iterable[Dict[str, object]]) -> List[Dict[str, object]]:
+        return self.upsert_rows(
+            table_name=self.config.supabase_responses_table,
+            rows=responses,
+            conflict_key="airtable_id",
+            select='id,submission_id,"Response","Show response",airtable_id',
+        )
+
+    def upsert_rows(
+        self,
+        *,
+        table_name: str,
+        rows: Iterable[Dict[str, object]],
+        conflict_key: str,
+        select: str = "*",
+    ) -> List[Dict[str, object]]:
         self.ensure_configured()
-        payload = json.dumps(list(stories), ensure_ascii=True).encode("utf-8")
+        payload_rows = list(rows)
+        if not payload_rows:
+            return []
+        payload = json.dumps(payload_rows, ensure_ascii=True).encode("utf-8")
         endpoint = self._rest_endpoint(
-            f"{self.config.supabase_stories_table}?on_conflict=story_slug"
+            f"{table_name}?on_conflict={quote(conflict_key, safe='')}",
+            select=select,
         )
         request = Request(
             endpoint,
@@ -40,7 +75,8 @@ class SupabaseClient:
                 "Prefer": "resolution=merge-duplicates,return=representation",
             },
         )
-        return self._request_json(request)
+        response = self._request_json(request)
+        return response if isinstance(response, list) else []
 
     def upload_public_file(self, local_path: Path, remote_path: str, content_type: str) -> str:
         self.ensure_configured()
@@ -65,9 +101,12 @@ class SupabaseClient:
         object_path = quote(remote_path.strip("/"), safe="/")
         return f"{self.config.supabase_url}/storage/v1/object/public/{bucket}/{object_path}"
 
-    def _rest_endpoint(self, resource: str) -> str:
-        schema = quote(self.config.supabase_schema, safe="")
-        return f"{self.config.supabase_url}/rest/v1/{resource}&select=story_slug" if "?" in resource else f"{self.config.supabase_url}/rest/v1/{resource}?select=story_slug"
+    def _rest_endpoint(self, resource: str, *, select: str = "*") -> str:
+        encoded_select = quote(select, safe='*()," ')
+        encoded_select = encoded_select.replace(" ", "%20")
+        if "?" in resource:
+            return f"{self.config.supabase_url}/rest/v1/{resource}&select={encoded_select}"
+        return f"{self.config.supabase_url}/rest/v1/{resource}?select={encoded_select}"
 
     def _auth_headers(self) -> Dict[str, str]:
         token = self.config.supabase_service_role_key or ""
@@ -80,7 +119,7 @@ class SupabaseClient:
             "Content-Profile": schema,
         }
 
-    def _request_json(self, request: Request, allow_empty: bool = False) -> Optional[Dict[str, object]]:
+    def _request_json(self, request: Request, allow_empty: bool = False) -> Optional[object]:
         try:
             with urlopen(request, timeout=30) as response:
                 raw = response.read()

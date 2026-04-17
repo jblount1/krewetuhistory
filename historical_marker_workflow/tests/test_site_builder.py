@@ -13,11 +13,12 @@ from support import build_config
 
 
 class FakeAirtableClient:
-    def __init__(self, submissions=None, assets=None, display_queue=None) -> None:
+    def __init__(self, submissions=None, assets=None, display_queue=None, responses=None) -> None:
         self._tables = {
             "Submissions": submissions or [],
             "Assets": assets or [],
             "Display Queue": display_queue or [],
+            "Responses": responses or [],
         }
 
     def list_all_records(self, table_name: str, **_: object):
@@ -108,10 +109,19 @@ class SiteBuilderTests(unittest.TestCase):
                             "Tulane Connection": "Research project",
                             "Global Community Connection": "Port networks",
                             "Context and Connections": "New Orleans, Tulane, and port networks shaped this story.",
-                            "References": "Author. Title. 2026.",
-                            "Workflow Status": "Approved and Published",
-                        },
-                    }
+                        "References": "Author. Title. 2026.",
+                        "Response QR": [
+                            {
+                                "url": "https://assets.example/qr.png",
+                                "filename": "qr.png",
+                            }
+                        ],
+                        "Response Link": "https://example.com/react",
+                        "Avg Rating": 4.2,
+                        "Number of Responses": 12,
+                        "Workflow Status": "Approved and Published",
+                    },
+                }
                 ],
                 assets=[
                     {
@@ -171,6 +181,11 @@ class SiteBuilderTests(unittest.TestCase):
                 stories_payload["stories"][0]["ai_copy"],
                 "Submission summary",
             )
+            self.assertEqual(stories_payload["stories"][0]["response_qr"], "https://assets.example/qr.png")
+            self.assertEqual(stories_payload["stories"][0]["response_link"], "https://example.com/react")
+            self.assertEqual(stories_payload["stories"][0]["avg_rating"], 4.2)
+            self.assertEqual(stories_payload["stories"][0]["number_of_responses"], 12)
+            self.assertEqual(stories_payload["stories"][0]["clicks"], 0)
             self.assertNotIn("contributor_name", stories_payload["stories"][0])
             self.assertTrue((config.site_output_path / "media" / "SUB-AIRTABLE-1" / "river.png").exists())
 

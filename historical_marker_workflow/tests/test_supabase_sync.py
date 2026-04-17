@@ -15,7 +15,9 @@ from test_site_builder import FakeAirtableClient
 class FakeSupabaseClient:
     def __init__(self) -> None:
         self.uploads = []
-        self.rows = []
+        self.story_rows = []
+        self.submission_rows = []
+        self.response_rows = []
 
     def upload_public_file(self, *, local_path: Path, remote_path: str, content_type: str) -> str:
         self.uploads.append(
@@ -28,8 +30,20 @@ class FakeSupabaseClient:
         return f"https://supabase.example/storage/v1/object/public/stories-public/{remote_path}"
 
     def upsert_stories(self, stories):
-        self.rows = list(stories)
-        return self.rows
+        self.story_rows = list(stories)
+        return self.story_rows
+
+    def upsert_submissions(self, submissions):
+        self.submission_rows = []
+        for index, row in enumerate(submissions, start=1):
+            payload = dict(row)
+            payload["id"] = f"submission-{index}"
+            self.submission_rows.append(payload)
+        return self.submission_rows
+
+    def upsert_responses(self, responses):
+        self.response_rows = list(responses)
+        return self.response_rows
 
 
 class SupabaseSyncTests(unittest.TestCase):
@@ -49,6 +63,16 @@ class SupabaseSyncTests(unittest.TestCase):
                             "Summary": "Submission summary",
                             "Narrative": "Submission narrative",
                             "Theme": "Labor",
+                            "Response QR": [
+                                {
+                                    "url": "https://assets.example/qr.png",
+                                    "filename": "qr.png",
+                                }
+                            ],
+                            "Response Link": "https://example.com/react",
+                            "Avg Rating": 4.5,
+                            "Number of Responses": 2,
+                            "Clicks": None,
                             "Workflow Status": "Approved and Published",
                         },
                     }
@@ -69,6 +93,24 @@ class SupabaseSyncTests(unittest.TestCase):
                             "MLA Citation": "Archive. Story PDF. 2026.",
                         },
                     }
+                ],
+                responses=[
+                    {
+                        "id": "recResponse1",
+                        "fields": {
+                            "Response": "This helped me understand the story.",
+                            "Submissions": ["recSubmission1"],
+                            "Show response": True,
+                        },
+                    },
+                    {
+                        "id": "recResponse2",
+                        "fields": {
+                            "Response": "Keep this private.",
+                            "Submissions": ["recSubmission1"],
+                            "Show response": False,
+                        },
+                    },
                 ],
             )
 
@@ -93,13 +135,20 @@ class SupabaseSyncTests(unittest.TestCase):
             ).sync_public_stories()
 
             self.assertEqual(result["stories_synced"], 1)
+            self.assertEqual(result["submissions_synced"], 1)
+            self.assertEqual(result["responses_synced"], 2)
             self.assertEqual(result["uploaded_files"], 2)
-            self.assertEqual(len(fake_supabase.rows), 1)
-            payload = fake_supabase.rows[0]["payload"]
+            self.assertEqual(len(fake_supabase.story_rows), 1)
+            self.assertEqual(len(fake_supabase.submission_rows), 1)
+            self.assertEqual(len(fake_supabase.response_rows), 2)
+            payload = fake_supabase.story_rows[0]["payload"]
             self.assertEqual(payload["story_slug"], "supabase-story")
             self.assertEqual(payload["workflow_status"], "Approved and Published")
+            self.assertEqual(payload["submission_record_id"], "submission-1")
             self.assertEqual(payload["media_assets"][0]["preview_url"], "https://supabase.example/storage/v1/object/public/stories-public/stories/media/SUB-SUPABASE-1/story__preview.png")
             self.assertEqual(payload["media_assets"][0]["document_url"], "https://supabase.example/storage/v1/object/public/stories-public/stories/media/SUB-SUPABASE-1/story.pdf")
+            self.assertTrue(fake_supabase.response_rows[0]["Show response"])
+            self.assertFalse(fake_supabase.response_rows[1]["Show response"])
 
 
 if __name__ == "__main__":  # pragma: no cover

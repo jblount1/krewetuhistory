@@ -5,6 +5,8 @@ const DEFAULT_SITE_CONFIG = Object.freeze({
   supabaseAnonKey: "",
   supabaseSchema: "public",
   supabaseStoriesTable: "stories_public",
+  supabaseSubmissionsTable: "submissions",
+  supabaseResponsesTable: "responses",
 });
 const ALLOWED_VIDEO_HOSTS = ["youtube.com", "youtu.be", "youtube-nocookie.com", "vimeo.com"];
 const AUTOPLAY_LAYOUTS = new Set(["video", "feature", "collage", "carousel", "gallery"]);
@@ -23,6 +25,63 @@ export async function fetchStories() {
     throw new Error(`Unable to load ${STORIES_PATH}: ${response.status}`);
   }
   return response.json();
+}
+
+export async function fetchStoryResponses(submissionRecordId) {
+  const config = getSiteConfig();
+  if (!submissionRecordId || config.dataSource !== "supabase" || !config.supabaseUrl || !config.supabaseAnonKey) {
+    return [];
+  }
+
+  const endpoint = new URL(
+    `${config.supabaseUrl.replace(/\/$/, "")}/rest/v1/${encodeURIComponent(
+      config.supabaseResponsesTable
+    )}`
+  );
+  endpoint.searchParams.set("select", 'airtable_id,response:"Response"');
+  endpoint.searchParams.set("submission_id", `eq.${submissionRecordId}`);
+  endpoint.searchParams.set("Show response", "is.true");
+  endpoint.searchParams.set("order", "airtable_id.asc");
+
+  const response = await fetch(endpoint.toString(), {
+    headers: buildSupabaseHeaders(config),
+    cache: "no-store",
+  });
+
+  if (!response.ok) {
+    throw new Error(`Unable to load story responses: ${response.status}`);
+  }
+
+  const rows = await response.json();
+  if (!Array.isArray(rows)) {
+    return [];
+  }
+  return rows
+    .map((row) => String(row?.response || "").trim())
+    .filter(Boolean);
+}
+
+export function incrementStoryClicks(submissionRecordId) {
+  const config = getSiteConfig();
+  if (!submissionRecordId || config.dataSource !== "supabase" || !config.supabaseUrl || !config.supabaseAnonKey) {
+    return Promise.resolve();
+  }
+
+  const endpoint = `${config.supabaseUrl.replace(/\/$/, "")}/rest/v1/rpc/increment_clicks`;
+  return fetch(endpoint, {
+    method: "POST",
+    headers: {
+      ...buildSupabaseHeaders(config),
+      "Content-Type": "application/json",
+      Prefer: "return=minimal",
+    },
+    body: JSON.stringify({ story_id: submissionRecordId }),
+    keepalive: true,
+  }).then((response) => {
+    if (!response.ok) {
+      throw new Error(`Unable to increment clicks: ${response.status}`);
+    }
+  });
 }
 
 export function uniqueValues(values) {
@@ -227,12 +286,7 @@ async function fetchStoriesFromSupabase(config) {
   endpoint.searchParams.set("order", "date_received.desc.nullslast");
 
   const response = await fetch(endpoint.toString(), {
-    headers: {
-      apikey: config.supabaseAnonKey,
-      Authorization: `Bearer ${config.supabaseAnonKey}`,
-      Accept: "application/json",
-      "Accept-Profile": config.supabaseSchema || "public",
-    },
+    headers: buildSupabaseHeaders(config),
     cache: "no-store",
   });
 
@@ -256,6 +310,16 @@ async function fetchStoriesFromSupabase(config) {
     public_publish_ready: true,
     story_count: stories.length,
     stories,
+  };
+}
+
+function buildSupabaseHeaders(config) {
+  return {
+    apikey: config.supabaseAnonKey,
+    Authorization: `Bearer ${config.supabaseAnonKey}`,
+    Accept: "application/json",
+    "Accept-Profile": config.supabaseSchema || "public",
+    "Content-Profile": config.supabaseSchema || "public",
   };
 }
 
