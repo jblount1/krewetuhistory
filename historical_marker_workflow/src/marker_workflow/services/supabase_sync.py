@@ -147,7 +147,9 @@ class SupabaseSyncService:
                     "airtable_id": record.get("id"),
                     "submission_id": submission_id,
                     "Response": self._null_if_blank(fields.get("Response")),
-                    "Show response": self._checkbox_value(fields.get("Show response")),
+                    "Show response": self._checkbox_value(
+                        fields.get("Show Response", fields.get("Show response"))
+                    ),
                 }
             )
 

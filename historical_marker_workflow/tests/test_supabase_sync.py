@@ -100,7 +100,7 @@ class SupabaseSyncTests(unittest.TestCase):
                         "fields": {
                             "Response": "This helped me understand the story.",
                             "Submissions": ["recSubmission1"],
-                            "Show response": True,
+                            "Show Response": True,
                         },
                     },
                     {
