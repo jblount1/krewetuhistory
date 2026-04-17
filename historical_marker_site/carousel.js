@@ -170,8 +170,7 @@ function renderStory() {
 
   const mediaStrategy = resolveMediaStrategy(story, state.storyIndex);
   updateStageLayout(mediaStrategy.layout);
-  const copy = renderText(story);
-  applyLayoutDensity(story, mediaStrategy, copy);
+  renderText(story);
   renderReferences(story.references || []);
   renderMedia(mediaStrategy);
   elements.viewStory.href = isCarouselMode()
@@ -190,7 +189,6 @@ function renderText(story) {
   elements.headline.textContent = headline;
   elements.copy.textContent = copy;
   applyAdaptiveType(headline, copy);
-  return copy;
 }
 
 function renderReferences(references) {
@@ -483,19 +481,6 @@ function updateStageLayout(layout) {
     "display-stage--text-only"
   );
   elements.stage.classList.add(`display-stage--${layout}`);
-}
-
-function applyLayoutDensity(story, mediaStrategy, copy) {
-  elements.stage.classList.remove("display-stage--copy-heavy");
-  if (!["feature-left", "feature-right"].includes(mediaStrategy.layout)) {
-    return;
-  }
-
-  const headlineLength = String(story?.headline || "").trim().length;
-  const copyLength = String(copy || "").trim().length;
-  if (headlineLength > 38 || copyLength > 180) {
-    elements.stage.classList.add("display-stage--copy-heavy");
-  }
 }
 
 function resolveDisplayCopy(story) {
