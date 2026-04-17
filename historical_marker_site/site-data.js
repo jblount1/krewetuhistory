@@ -38,9 +38,8 @@ export async function fetchStoryResponses(submissionRecordId) {
       config.supabaseResponsesTable
     )}`
   );
-  endpoint.searchParams.set("select", 'airtable_id,response:"Response"');
+  endpoint.searchParams.set("select", '*');
   endpoint.searchParams.set("submission_id", `eq.${submissionRecordId}`);
-  endpoint.searchParams.set("Show response", "is.true");
   endpoint.searchParams.set("order", "airtable_id.asc");
 
   const response = await fetch(endpoint.toString(), {
@@ -57,7 +56,8 @@ export async function fetchStoryResponses(submissionRecordId) {
     return [];
   }
   return rows
-    .map((row) => String(row?.response || "").trim())
+    .filter((row) => row && row["Show response"] === true)
+    .map((row) => String(row?.Response || "").trim())
     .filter(Boolean);
 }
 

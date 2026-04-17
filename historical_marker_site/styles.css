@@ -2895,10 +2895,11 @@ body.editorial-page {
 
 .story-reactions-header {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
   gap: 14px;
   flex-wrap: wrap;
+  text-align: center;
 }
 
 .story-reactions-header h2 {
@@ -2915,10 +2916,9 @@ body.editorial-page {
 }
 
 .story-reactions-actions {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  flex-wrap: wrap;
+  display: grid;
+  justify-items: center;
+  gap: 16px;
   margin-top: 18px;
 }
 
@@ -2934,6 +2934,8 @@ body.editorial-page {
 
 .story-reactions-summary {
   margin-top: 18px;
+  display: grid;
+  justify-items: center;
 }
 
 .story-reactions-rating {
@@ -2963,9 +2965,13 @@ body.editorial-page {
 
 .story-reactions-comments {
   margin-top: 18px;
+  display: grid;
+  justify-items: center;
 }
 
 .story-reactions-comment {
+  width: 100%;
+  max-width: 52ch;
   min-height: 4.6rem;
   padding: 16px 18px;
   border-radius: 18px;
@@ -2973,6 +2979,7 @@ body.editorial-page {
   color: var(--brand-ink);
   font-size: 1rem;
   line-height: 1.7;
+  text-align: center;
   transition: opacity 180ms ease;
 }
 
@@ -3278,8 +3285,7 @@ body.editorial-page {
   }
 
   .story-reactions-actions {
-    align-items: flex-start;
-    flex-direction: column;
+    justify-items: center;
   }
 
   .home-page .hero-story--streamlined h1 {
