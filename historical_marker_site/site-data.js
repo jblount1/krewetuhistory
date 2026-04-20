@@ -15,7 +15,7 @@ export async function fetchStories() {
   const config = getSiteConfig();
   if (config.dataSource === "supabase" && config.supabaseUrl && config.supabaseAnonKey) {
     try {
-      return await fetchStoriesFromSupabase(config);
+      return normalizeStoriesPayload(await fetchStoriesFromSupabase(config));
     } catch (error) {
       console.warn("Falling back to static story data.", error);
     }
@@ -24,7 +24,7 @@ export async function fetchStories() {
   if (!response.ok) {
     throw new Error(`Unable to load ${STORIES_PATH}: ${response.status}`);
   }
-  return response.json();
+  return normalizeStoriesPayload(await response.json());
 }
 
 export async function fetchStoryResponses(submissionRecordId) {
@@ -376,6 +376,32 @@ function normalizeSupabaseStory(row) {
   };
 
   return story.story_slug ? story : null;
+}
+
+function normalizeStoriesPayload(payload) {
+  if (!payload || typeof payload !== "object") {
+    return payload;
+  }
+
+  return {
+    ...payload,
+    stories: Array.isArray(payload.stories)
+      ? payload.stories.map((story) => normalizeStoryRecord(story)).filter(Boolean)
+      : [],
+  };
+}
+
+function normalizeStoryRecord(story) {
+  if (!story || typeof story !== "object") {
+    return null;
+  }
+
+  return {
+    ...story,
+    media_assets: Array.isArray(story.media_assets)
+      ? story.media_assets.map((asset) => normalizeStoryMediaAsset(asset))
+      : [],
+  };
 }
 
 function normalizeStoryMediaAsset(asset) {
