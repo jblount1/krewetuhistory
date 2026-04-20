@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import copy
 import mimetypes
+import re
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
@@ -230,7 +231,13 @@ class SupabaseSyncService:
     def _remote_storage_path(self, relative_path: str) -> str:
         cleaned = relative_path.strip().lstrip("./").lstrip("/")
         prefix = self.config.supabase_storage_prefix.strip().strip("/")
-        return f"{prefix}/{cleaned}" if prefix else cleaned
+        safe_cleaned = "/".join(self._sanitize_storage_segment(segment) for segment in cleaned.split("/") if segment)
+        return f"{prefix}/{safe_cleaned}" if prefix else safe_cleaned
+
+    def _sanitize_storage_segment(self, segment: str) -> str:
+        safe = re.sub(r"[^A-Za-z0-9._-]+", "-", str(segment).strip())
+        safe = re.sub(r"-{2,}", "-", safe).strip("-")
+        return safe or "file"
 
     def _text_value(self, value: object) -> str:
         if value is None:
