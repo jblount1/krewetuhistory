@@ -610,11 +610,13 @@ class SiteBuilder:
                 video_id = parse_qs(parsed.query).get("v", [""])[0]
             elif parsed.path.startswith("/embed/"):
                 video_id = parsed.path.split("/embed/", 1)[1].split("/", 1)[0]
+            elif parsed.path.startswith("/shorts/"):
+                video_id = parsed.path.split("/shorts/", 1)[1].split("/", 1)[0]
             else:
                 video_id = ""
         else:
             return None
-        return f"https://www.youtube.com/embed/{video_id}" if video_id else None
+        return f"https://www.youtube-nocookie.com/embed/{video_id}" if video_id else None
 
     def _vimeo_embed_url(self, value: str) -> Optional[str]:
         parsed = urlparse(value)
