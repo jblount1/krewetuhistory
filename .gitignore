@@ -1,0 +1,14 @@
+.DS_Store
+__pycache__/
+*.pyc
+*.pyo
+.env
+.env.*
+.workflow_local/
+historical_marker_workflow/.workflow_local/
+box_project_root/
+.netlify/
+.tools/
+Submissions/
+Intake/
+ILP Capstone Proposal - 2026.02.03 - Copy.docx
