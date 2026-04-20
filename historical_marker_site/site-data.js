@@ -508,21 +508,21 @@ function normalizeVideoEmbedUrl(url) {
 
     if (host.includes("youtu.be")) {
       const videoId = parsed.pathname.replace(/^\/+/, "").split("/", 1)[0];
-      return videoId ? `https://www.youtube-nocookie.com/embed/${videoId}` : null;
+      return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
     }
 
     if (host.includes("youtube.com") || host.includes("youtube-nocookie.com")) {
       if (parsed.pathname === "/watch") {
         const videoId = parsed.searchParams.get("v");
-        return videoId ? `https://www.youtube-nocookie.com/embed/${videoId}` : null;
+        return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
       }
       if (parsed.pathname.startsWith("/shorts/")) {
         const videoId = parsed.pathname.split("/shorts/", 1)[1].split("/", 1)[0];
-        return videoId ? `https://www.youtube-nocookie.com/embed/${videoId}` : null;
+        return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
       }
       if (parsed.pathname.startsWith("/embed/")) {
         const videoId = parsed.pathname.split("/embed/", 1)[1].split("/", 1)[0];
-        return videoId ? `https://www.youtube-nocookie.com/embed/${videoId}` : null;
+        return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
       }
     }
 
