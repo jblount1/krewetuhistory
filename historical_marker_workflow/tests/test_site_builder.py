@@ -342,7 +342,7 @@ class SiteBuilderTests(unittest.TestCase):
             self.assertEqual(stories_payload["stories"][0]["ai_copy"], "Summary")
             asset = stories_payload["stories"][0]["media_assets"][0]
             self.assertEqual(asset["kind"], "video_embed")
-            self.assertEqual(asset["url"], "https://www.youtube.com/embed/abc123xyz89")
+            self.assertEqual(asset["url"], "https://www.youtube-nocookie.com/embed/abc123xyz89")
 
     def test_build_site_falls_back_when_ai_copy_contains_error_text(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
