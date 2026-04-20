@@ -265,7 +265,9 @@ export function buildMediaElement(asset, { layout = "detail" } = {}) {
 
     const frame = document.createElement("iframe");
     frame.className = `asset-embed asset-embed--${layout}`;
-    frame.src = withVideoParams(asset.url, { autoplay: AUTOPLAY_LAYOUTS.has(layout) });
+    frame.src = withVideoParams(normalizeVideoEmbedUrl(asset.url), {
+      autoplay: AUTOPLAY_LAYOUTS.has(layout),
+    });
     frame.title = asset.caption || asset.filename || "Embedded video";
     frame.allow =
       "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
@@ -403,6 +405,44 @@ function withVideoParams(url, { autoplay = false } = {}) {
     }
 
     return parsed.toString();
+  } catch (_error) {
+    return url;
+  }
+}
+
+function normalizeVideoEmbedUrl(url) {
+  try {
+    const parsed = new URL(url, window.location.href);
+    const host = parsed.hostname.toLowerCase();
+
+    if (host.includes("youtu.be")) {
+      const videoId = parsed.pathname.replace(/^\/+/, "").split("/", 1)[0];
+      return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
+    }
+
+    if (host.includes("youtube.com") || host.includes("youtube-nocookie.com")) {
+      if (parsed.pathname === "/watch") {
+        const videoId = parsed.searchParams.get("v");
+        return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
+      }
+
+      if (parsed.pathname.startsWith("/shorts/")) {
+        const videoId = parsed.pathname.split("/shorts/", 1)[1].split("/", 1)[0];
+        return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
+      }
+
+      if (parsed.pathname.startsWith("/embed/")) {
+        const videoId = parsed.pathname.split("/embed/", 1)[1].split("/", 1)[0];
+        return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
+      }
+    }
+
+    if (host.includes("vimeo.com") && !host.includes("player.vimeo.com")) {
+      const videoId = parsed.pathname.replace(/^\/+/, "").split("/", 1)[0];
+      return /^\d+$/.test(videoId) ? `https://player.vimeo.com/video/${videoId}` : url;
+    }
+
+    return url;
   } catch (_error) {
     return url;
   }
