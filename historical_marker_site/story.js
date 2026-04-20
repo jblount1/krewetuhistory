@@ -381,7 +381,12 @@ function showNotFound() {
 function selectPrimaryAsset(story) {
   const assets = story?.media_assets || [];
   return (
-    assets.find((asset) => asset.kind === "video_embed" || asset.kind === "video") ||
+    assets.find(
+      (asset) =>
+        asset.kind === "video_embed" ||
+        asset.kind === "video" ||
+        asset.kind === "external"
+    ) ||
     assets.find((asset) => asset.kind === "image") ||
     assets.find((asset) => asset.kind === "pdf") ||
     null

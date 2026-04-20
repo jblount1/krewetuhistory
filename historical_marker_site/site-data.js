@@ -367,12 +367,35 @@ function normalizeSupabaseStory(row) {
   const payload = row.payload && typeof row.payload === "object" ? row.payload : {};
   const story = {
     ...payload,
+    media_assets: Array.isArray(payload.media_assets)
+      ? payload.media_assets.map((asset) => normalizeStoryMediaAsset(asset))
+      : [],
     story_slug: payload.story_slug || row.story_slug || "",
     workflow_status: payload.workflow_status || row.workflow_status || "",
     date_received: payload.date_received || row.date_received || "",
   };
 
   return story.story_slug ? story : null;
+}
+
+function normalizeStoryMediaAsset(asset) {
+  if (!asset || typeof asset !== "object") {
+    return asset;
+  }
+
+  const normalizedUrl = normalizeVideoEmbedUrl(asset.url);
+  if (isAllowedVideoUrl(normalizedUrl)) {
+    if (asset.kind === "video" || asset.kind === "video_embed" || asset.kind === "external") {
+      return {
+        ...asset,
+        kind: "video_embed",
+        url: normalizedUrl,
+        source_url: asset.source_url || asset.url,
+      };
+    }
+  }
+
+  return asset;
 }
 
 function withVideoParams(url, { autoplay = false } = {}) {
