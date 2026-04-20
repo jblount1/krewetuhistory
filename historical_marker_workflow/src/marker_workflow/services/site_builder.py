@@ -93,6 +93,19 @@ class SiteBuilder:
     def _build_airtable_stories(self, media_root: Path, limit: Optional[int] = None) -> Tuple[List[Dict[str, object]], int, str]:
         submissions = self.airtable_client.list_all_records(self.config.airtable_submissions_table)
         assets = self.airtable_client.list_all_records(self.config.airtable_assets_table)
+        display_queue = self.airtable_client.list_all_records(self.config.airtable_display_queue_table)
+
+        publish_order_by_submission: Dict[str, int] = {}
+        for queue_record in display_queue:
+            fields = queue_record.get("fields", {})
+            linked_ids = fields.get("Linked Submission") or []
+            if not linked_ids:
+                continue
+            publish_order = self._integer_value(fields.get("Publish Order"))
+            if publish_order is None:
+                continue
+            for submission_record_id in linked_ids:
+                publish_order_by_submission[str(submission_record_id)] = publish_order
 
         assets_by_submission: Dict[str, List[dict]] = {}
         for asset in assets:
@@ -109,11 +122,14 @@ class SiteBuilder:
                 media_root=media_root,
             )
             if story:
+                story["publish_order"] = publish_order_by_submission.get(str(submission.get("id", "")))
                 stories.append(story)
                 copied_assets += story_copied_assets
 
         stories.sort(
             key=lambda story: (
+                story.get("publish_order") is None,
+                story.get("publish_order") if story.get("publish_order") is not None else 10**9,
                 -(self._date_sort_value(story.get("date_received"))),
                 str(story.get("headline") or "").lower(),
             )
