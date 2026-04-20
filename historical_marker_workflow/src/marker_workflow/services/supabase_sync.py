@@ -26,9 +26,31 @@ class SupabaseSyncService:
         build_result = self.site_builder.build(source_mode="airtable", limit=limit)
         payload = load_json(Path(build_result["data_path"]))
         stories = payload.get("stories") or []
+        rewritten_stories: List[Dict[str, object]] = []
+        uploaded_files = 0
+        uploaded_urls: Dict[str, str] = {}
+
+        for story in stories:
+            story_payload = copy.deepcopy(story)
+            response_qr, qr_uploads = self._rewrite_public_path(
+                story_payload.get("response_qr"), uploaded_urls
+            )
+            story_payload["response_qr"] = response_qr
+            media_assets, story_uploads = self._rewrite_media_assets(
+                story_payload.get("media_assets") or [], uploaded_urls
+            )
+            story_payload["media_assets"] = media_assets
+            uploaded_files += qr_uploads + story_uploads
+            rewritten_stories.append(story_payload)
+
         story_slugs = {
             str(story.get("story_slug") or "").strip()
-            for story in stories
+            for story in rewritten_stories
+            if str(story.get("story_slug") or "").strip()
+        }
+        stories_by_slug = {
+            str(story.get("story_slug") or "").strip(): story
+            for story in rewritten_stories
             if str(story.get("story_slug") or "").strip()
         }
 
@@ -36,7 +58,11 @@ class SupabaseSyncService:
         submission_ids_by_airtable_id: Dict[str, str] = {}
         submission_ids_by_story_slug: Dict[str, str] = {}
         if story_slugs:
-            submissions_synced = self._sync_submissions(story_slugs=story_slugs, limit=limit)
+            submissions_synced = self._sync_submissions(
+                story_slugs=story_slugs,
+                stories_by_slug=stories_by_slug,
+                limit=limit,
+            )
             submission_ids_by_airtable_id = {
                 str(row.get("airtable_id") or ""): str(row.get("id") or "")
                 for row in submissions_synced
@@ -51,15 +77,11 @@ class SupabaseSyncService:
         responses_synced, unresolved_responses = self._sync_responses(submission_ids_by_airtable_id)
 
         synced_rows: List[Dict[str, object]] = []
-        uploaded_files = 0
-        for story in stories:
-            story_payload = copy.deepcopy(story)
+        for story_payload in rewritten_stories:
+            story_payload = copy.deepcopy(story_payload)
             story_payload["submission_record_id"] = submission_ids_by_story_slug.get(
                 str(story_payload.get("story_slug") or "").strip()
             )
-            media_assets, story_uploads = self._rewrite_media_assets(story_payload.get("media_assets") or [])
-            story_payload["media_assets"] = media_assets
-            uploaded_files += story_uploads
             synced_rows.append(
                 {
                     "story_slug": story_payload.get("story_slug"),
@@ -85,7 +107,13 @@ class SupabaseSyncService:
             "upsert_response_count": len(response or []),
         }
 
-    def _sync_submissions(self, *, story_slugs: set[str], limit: Optional[int]) -> List[Dict[str, object]]:
+    def _sync_submissions(
+        self,
+        *,
+        story_slugs: set[str],
+        stories_by_slug: Dict[str, Dict[str, object]],
+        limit: Optional[int],
+    ) -> List[Dict[str, object]]:
         del limit
         submissions = self.site_builder.airtable_client.list_all_records(self.config.airtable_submissions_table)
 
@@ -105,7 +133,7 @@ class SupabaseSyncService:
                     "airtable_id": submission.get("id"),
                     "story_slug": story_slug,
                     "headline": headline,
-                    "Response QR": self._first_attachment_url(fields.get("Response QR")),
+                    "Response QR": stories_by_slug.get(story_slug, {}).get("response_qr"),
                     "Response Link": self._null_if_blank(fields.get("Response Link")),
                     "Avg Rating": self._numeric_value(fields.get("Avg Rating")),
                     "Number of Responses": self._integer_value(fields.get("Number of Responses")),
@@ -156,33 +184,48 @@ class SupabaseSyncService:
         synced = self.supabase_client.upsert_responses(rows)
         return len(synced), unresolved
 
-    def _rewrite_media_assets(self, assets: List[Dict[str, object]]) -> Tuple[List[Dict[str, object]], int]:
+    def _rewrite_media_assets(
+        self,
+        assets: List[Dict[str, object]],
+        uploaded_urls: Optional[Dict[str, str]] = None,
+    ) -> Tuple[List[Dict[str, object]], int]:
         rewritten: List[Dict[str, object]] = []
         uploaded_files = 0
-        uploaded_urls: Dict[str, str] = {}
+        uploaded_urls = uploaded_urls or {}
 
         for asset in assets:
             public_asset = copy.deepcopy(asset)
             for key in ("url", "preview_url", "document_url"):
-                value = public_asset.get(key)
-                if not isinstance(value, str) or not value or value.startswith("http://") or value.startswith("https://"):
-                    continue
-                local_path = (self.config.site_output_path / value).resolve()
-                if not local_path.exists() or not local_path.is_file():
-                    continue
-                if value not in uploaded_urls:
-                    remote_path = self._remote_storage_path(value)
-                    content_type = mimetypes.guess_type(local_path.name)[0] or "application/octet-stream"
-                    uploaded_urls[value] = self.supabase_client.upload_public_file(
-                        local_path=local_path,
-                        remote_path=remote_path,
-                        content_type=content_type,
-                    )
-                    uploaded_files += 1
-                public_asset[key] = uploaded_urls[value]
+                rewritten_value, upload_count = self._rewrite_public_path(public_asset.get(key), uploaded_urls)
+                public_asset[key] = rewritten_value
+                uploaded_files += upload_count
             rewritten.append(public_asset)
 
         return rewritten, uploaded_files
+
+    def _rewrite_public_path(
+        self,
+        value: object,
+        uploaded_urls: Dict[str, str],
+    ) -> Tuple[object, int]:
+        if not isinstance(value, str) or not value or value.startswith("http://") or value.startswith("https://"):
+            return value, 0
+
+        local_path = (self.config.site_output_path / value).resolve()
+        if not local_path.exists() or not local_path.is_file():
+            return value, 0
+
+        if value not in uploaded_urls:
+            remote_path = self._remote_storage_path(value)
+            content_type = mimetypes.guess_type(local_path.name)[0] or "application/octet-stream"
+            uploaded_urls[value] = self.supabase_client.upload_public_file(
+                local_path=local_path,
+                remote_path=remote_path,
+                content_type=content_type,
+            )
+            return uploaded_urls[value], 1
+
+        return uploaded_urls[value], 0
 
     def _remote_storage_path(self, relative_path: str) -> str:
         cleaned = relative_path.strip().lstrip("./").lstrip("/")

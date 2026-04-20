@@ -274,6 +274,12 @@ class SiteBuilder:
         if not date_received:
             date_received = submission.get("createdTime")
 
+        response_qr = self._build_response_qr_asset(
+            submission_id=submission_id,
+            value=submission_fields.get("Response QR"),
+            media_root=media_root,
+        )
+
         story = {
             "story_slug": slugify(headline or submission_id),
             "headline": headline,
@@ -286,7 +292,7 @@ class SiteBuilder:
             "context_sections": self._context_sections(submission_fields),
             "references": self._normalize_references(submission_fields.get("References")),
             "ai_copy": ai_copy,
-            "response_qr": self._first_attachment_url(submission_fields.get("Response QR")),
+            "response_qr": response_qr,
             "response_link": self._text_value(submission_fields.get("Response Link")),
             "avg_rating": self._numeric_value(submission_fields.get("Avg Rating")),
             "number_of_responses": self._integer_value(submission_fields.get("Number of Responses")),
@@ -356,6 +362,30 @@ class SiteBuilder:
             url = first.get("url")
             return str(url).strip() if url else None
         return None
+
+    def _build_response_qr_asset(
+        self,
+        *,
+        submission_id: str,
+        value: object,
+        media_root: Path,
+    ) -> Optional[str]:
+        if not isinstance(value, list) or not value:
+            return None
+        first = value[0]
+        if not isinstance(first, dict):
+            return None
+        attachment_url = str(first.get("url") or "").strip()
+        if not attachment_url:
+            return None
+        filename = first.get("filename") or "response-qr"
+        local_url, _was_downloaded = self._safe_media_url(
+            submission_id=submission_id,
+            filename=filename,
+            remote_url=attachment_url,
+            media_root=media_root,
+        )
+        return local_url
 
     def _build_airtable_media_assets(
         self,

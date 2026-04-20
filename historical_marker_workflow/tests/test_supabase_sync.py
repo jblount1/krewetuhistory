@@ -137,7 +137,7 @@ class SupabaseSyncTests(unittest.TestCase):
             self.assertEqual(result["stories_synced"], 1)
             self.assertEqual(result["submissions_synced"], 1)
             self.assertEqual(result["responses_synced"], 2)
-            self.assertEqual(result["uploaded_files"], 2)
+            self.assertEqual(result["uploaded_files"], 3)
             self.assertEqual(len(fake_supabase.story_rows), 1)
             self.assertEqual(len(fake_supabase.submission_rows), 1)
             self.assertEqual(len(fake_supabase.response_rows), 2)
@@ -145,8 +145,13 @@ class SupabaseSyncTests(unittest.TestCase):
             self.assertEqual(payload["story_slug"], "supabase-story")
             self.assertEqual(payload["workflow_status"], "Approved and Published")
             self.assertEqual(payload["submission_record_id"], "submission-1")
+            self.assertEqual(payload["response_qr"], "https://supabase.example/storage/v1/object/public/stories-public/stories/media/SUB-SUPABASE-1/qr.png")
             self.assertEqual(payload["media_assets"][0]["preview_url"], "https://supabase.example/storage/v1/object/public/stories-public/stories/media/SUB-SUPABASE-1/story__preview.png")
             self.assertEqual(payload["media_assets"][0]["document_url"], "https://supabase.example/storage/v1/object/public/stories-public/stories/media/SUB-SUPABASE-1/story.pdf")
+            self.assertEqual(
+                fake_supabase.submission_rows[0]["Response QR"],
+                "https://supabase.example/storage/v1/object/public/stories-public/stories/media/SUB-SUPABASE-1/qr.png",
+            )
             self.assertTrue(fake_supabase.response_rows[0]["Show response"])
             self.assertFalse(fake_supabase.response_rows[1]["Show response"])
 

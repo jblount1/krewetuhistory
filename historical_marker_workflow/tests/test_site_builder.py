@@ -181,13 +181,14 @@ class SiteBuilderTests(unittest.TestCase):
                 stories_payload["stories"][0]["ai_copy"],
                 "Submission summary",
             )
-            self.assertEqual(stories_payload["stories"][0]["response_qr"], "https://assets.example/qr.png")
+            self.assertEqual(stories_payload["stories"][0]["response_qr"], "media/SUB-AIRTABLE-1/qr.png")
             self.assertEqual(stories_payload["stories"][0]["response_link"], "https://example.com/react")
             self.assertEqual(stories_payload["stories"][0]["avg_rating"], 4.2)
             self.assertEqual(stories_payload["stories"][0]["number_of_responses"], 12)
             self.assertEqual(stories_payload["stories"][0]["clicks"], 0)
             self.assertNotIn("contributor_name", stories_payload["stories"][0])
             self.assertTrue((config.site_output_path / "media" / "SUB-AIRTABLE-1" / "river.png").exists())
+            self.assertTrue((config.site_output_path / "media" / "SUB-AIRTABLE-1" / "qr.png").exists())
 
     def test_build_site_omits_non_published_airtable_records_and_generates_pdf_preview(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
