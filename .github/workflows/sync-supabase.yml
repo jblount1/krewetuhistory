@@ -27,11 +27,14 @@ jobs:
           AIRTABLE_SUBMISSIONS_TABLE: ${{ secrets.AIRTABLE_SUBMISSIONS_TABLE }}
           AIRTABLE_ASSETS_TABLE: ${{ secrets.AIRTABLE_ASSETS_TABLE }}
           AIRTABLE_DISPLAY_QUEUE_TABLE: ${{ secrets.AIRTABLE_DISPLAY_QUEUE_TABLE }}
+          AIRTABLE_RESPONSES_TABLE: ${{ secrets.AIRTABLE_RESPONSES_TABLE }}
           SITE_SOURCE_MODE: airtable
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
           SUPABASE_SCHEMA: ${{ secrets.SUPABASE_SCHEMA }}
           SUPABASE_STORIES_TABLE: ${{ secrets.SUPABASE_STORIES_TABLE }}
+          SUPABASE_SUBMISSIONS_TABLE: ${{ secrets.SUPABASE_SUBMISSIONS_TABLE }}
+          SUPABASE_RESPONSES_TABLE: ${{ secrets.SUPABASE_RESPONSES_TABLE }}
           SUPABASE_STORAGE_BUCKET: ${{ secrets.SUPABASE_STORAGE_BUCKET }}
           SUPABASE_STORAGE_PREFIX: ${{ secrets.SUPABASE_STORAGE_PREFIX }}
         run: PYTHONPATH=historical_marker_workflow/src python -m marker_workflow.cli sync-supabase
