@@ -334,7 +334,8 @@ async function fetchStoriesFromSupabase(config) {
     .filter((story) => {
       const status = String(story.workflow_status || "").trim().toLowerCase();
       return status === "approved" || status === "approved and published";
-    });
+    })
+    .sort((left, right) => compareStoryOrder(left, right));
 
   return {
     generated_at: new Date().toISOString(),
@@ -395,6 +396,29 @@ function normalizeStoryRecord(story) {
     ...story,
     media_assets: Array.isArray(story.media_assets) ? story.media_assets : [],
   };
+}
+
+function compareStoryOrder(left, right) {
+  const leftOrder = Number.isFinite(Number(left?.publish_order)) ? Number(left.publish_order) : null;
+  const rightOrder = Number.isFinite(Number(right?.publish_order)) ? Number(right.publish_order) : null;
+
+  if (leftOrder !== null && rightOrder !== null && leftOrder !== rightOrder) {
+    return leftOrder - rightOrder;
+  }
+  if (leftOrder !== null && rightOrder === null) {
+    return -1;
+  }
+  if (leftOrder === null && rightOrder !== null) {
+    return 1;
+  }
+
+  const leftDate = Date.parse(String(left?.date_received || "")) || 0;
+  const rightDate = Date.parse(String(right?.date_received || "")) || 0;
+  if (leftDate !== rightDate) {
+    return rightDate - leftDate;
+  }
+
+  return String(left?.headline || "").localeCompare(String(right?.headline || ""));
 }
 
 function withVideoParams(url, { autoplay = false } = {}) {
