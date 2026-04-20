@@ -310,12 +310,7 @@ function renderAssetDetails(assets) {
 
 function resolveMediaStrategy(story) {
   const assets = story.media_assets || [];
-  const videos = assets.filter(
-    (asset) =>
-      asset.kind === "video" ||
-      asset.kind === "video_embed" ||
-      (asset.kind === "external" && asset.url)
-  );
+  const videos = assets.filter((asset) => asset.kind === "video" || asset.kind === "video_embed");
   const images = assets.filter((asset) => asset.kind === "image");
   const documents = assets.filter((asset) => asset.kind === "pdf");
   const visualAssets = [...images, ...documents].slice(0, MAX_COLLAGE_ASSETS);

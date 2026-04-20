@@ -13,7 +13,7 @@ MEDIA_TYPE_MAP = {
     "document": {".txt", ".md", ".rtf", ".doc", ".docx", ".odt"},
     "pdf": {".pdf"},
     "presentation": {".ppt", ".pptx", ".key"},
-    "image": {".jpg", ".jpeg", ".png", ".gif", ".tif", ".tiff", ".heic", ".webp"},
+    "image": {".jpg", ".jpeg", ".png", ".gif", ".tif", ".tiff", ".heic", ".webp", ".avif"},
     "audio": {".mp3", ".wav", ".m4a", ".aac", ".flac"},
     "video": {".mp4", ".mov", ".m4v", ".avi", ".mkv"},
     "spreadsheet": {".csv", ".tsv", ".xls", ".xlsx"},
@@ -156,4 +156,3 @@ def coerce_bool(value: Any, default: bool = False) -> bool:
     if isinstance(value, bool):
         return value
     return str(value).strip().lower() in {"1", "true", "yes", "on"}
-

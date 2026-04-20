@@ -594,8 +594,6 @@ class SiteBuilder:
                 video_id = parse_qs(parsed.query).get("v", [""])[0]
             elif parsed.path.startswith("/embed/"):
                 video_id = parsed.path.split("/embed/", 1)[1].split("/", 1)[0]
-            elif parsed.path.startswith("/shorts/"):
-                video_id = parsed.path.split("/shorts/", 1)[1].split("/", 1)[0]
             else:
                 video_id = ""
         else:
