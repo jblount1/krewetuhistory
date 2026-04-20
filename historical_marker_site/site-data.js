@@ -206,6 +206,9 @@ export function canRenderMediaAsset(asset) {
   if (asset.kind === "video" || asset.kind === "video_embed") {
     return isAllowedVideoUrl(asset.url);
   }
+  if (asset.kind === "external") {
+    return isAllowedVideoUrl(asset.url);
+  }
   return false;
 }
 
@@ -255,7 +258,7 @@ export function buildMediaElement(asset, { layout = "detail" } = {}) {
     return wrapper;
   }
 
-  if (asset.kind === "video" || asset.kind === "video_embed") {
+  if (asset.kind === "video" || asset.kind === "video_embed" || asset.kind === "external") {
     if (!isAllowedVideoUrl(asset.url)) {
       return buildVideoUnavailable(layout);
     }
