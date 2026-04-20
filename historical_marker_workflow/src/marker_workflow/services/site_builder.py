@@ -616,7 +616,7 @@ class SiteBuilder:
                 video_id = ""
         else:
             return None
-        return f"https://www.youtube-nocookie.com/embed/{video_id}" if video_id else None
+        return f"https://www.youtube.com/embed/{video_id}" if video_id else None
 
     def _vimeo_embed_url(self, value: str) -> Optional[str]:
         parsed = urlparse(value)
