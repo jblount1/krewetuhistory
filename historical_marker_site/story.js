@@ -88,7 +88,7 @@ async function renderStory(story) {
   if (primaryAsset) {
     elements.media.classList.remove("hidden");
     elements.media.innerHTML = "";
-    elements.media.appendChild(buildMediaElement(primaryAsset, { layout: "detail" }));
+    elements.media.appendChild(buildPrimaryMedia(primaryAsset));
     renderMediaCaption(primaryAsset);
   } else {
     elements.media.classList.add("hidden");
@@ -111,7 +111,7 @@ function buildStoryBody(story) {
     sections.push(sectionMarkup("Summary", story.summary));
   }
   if (hasContent(story.narrative)) {
-    sections.push(sectionMarkup("Narrative", story.narrative));
+    sections.push(sectionMarkup("Additional Context", story.narrative));
   }
 
   const contextSections = (story.context_sections || []).filter(
@@ -344,17 +344,7 @@ function renderRemainingMedia(assets) {
     const mediaShell = document.createElement("div");
     mediaShell.className = "story-gallery-media";
 
-    if (asset.kind === "pdf" && (asset.preview_url || asset.url)) {
-      const link = document.createElement("a");
-      link.className = "story-gallery-link";
-      link.href = asset.document_url || asset.url;
-      link.target = "_blank";
-      link.rel = "noreferrer";
-      link.appendChild(buildMediaElement(asset, { layout: "card" }));
-      mediaShell.appendChild(link);
-    } else {
-      mediaShell.appendChild(buildMediaElement(asset, { layout: "card" }));
-    }
+    mediaShell.appendChild(buildLinkedMedia(asset, { layout: "card", className: "story-gallery-link" }));
 
     const meta = document.createElement("div");
     meta.className = "story-gallery-meta";
@@ -369,6 +359,32 @@ function renderRemainingMedia(assets) {
     }
     elements.galleryGrid.appendChild(card);
   });
+}
+
+function buildPrimaryMedia(asset) {
+  return buildLinkedMedia(asset, { layout: "detail", className: "story-media-link" });
+}
+
+function buildLinkedMedia(asset, { layout, className }) {
+  const media = buildMediaElement(asset, { layout });
+  const href =
+    asset?.kind === "pdf"
+      ? asset.document_url || asset.url
+      : asset?.kind === "image"
+        ? asset.url
+        : "";
+
+  if (!hasContent(href)) {
+    return media;
+  }
+
+  const link = document.createElement("a");
+  link.className = className;
+  link.href = href;
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
+  link.appendChild(media);
+  return link;
 }
 
 function showNotFound() {
