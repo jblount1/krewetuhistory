@@ -255,9 +255,6 @@ function buildCarouselMedia(asset, layout) {
   if (asset.caption) {
     overlayBits.push(`<p class="media-overlay-caption">${escapeHtml(asset.caption)}</p>`);
   }
-  if (asset.mla_citation) {
-    overlayBits.push(`<p class="media-overlay-reference">${escapeHtml(asset.mla_citation)}</p>`);
-  }
 
   if (!overlayBits.length) {
     return media;
