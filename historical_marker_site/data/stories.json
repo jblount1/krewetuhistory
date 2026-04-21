@@ -1,10 +1,110 @@
 {
-  "generated_at": "2026-04-17T19:01:24Z",
+  "generated_at": "2026-04-21T18:26:12Z",
   "source_mode": "airtable",
   "source_label": "Approved stories",
   "public_publish_ready": false,
-  "story_count": 5,
+  "story_count": 10,
   "stories": [
+    {
+      "story_slug": "deep-roots-in-new-ground-vietnamese-new-orleans",
+      "headline": "Deep Roots in New Ground: Vietnamese New Orleans",
+      "summary": "Vietnamese people are among the newest major communities in New Orleans, but in the half century since their arrival, they have become one of its most visible and deeply rooted. Their story begins not with choice, but with crisis. On April 18, 1975, as Saigon fell to North Vietnamese troops, President Gerald Ford authorized the resettlement of Southeast Asian refugees across the United States. The Catholic dioceses of Louisiana, working through the US Catholic Conference, stepped in as sponsors, and the Archdiocese of New Orleans found housing for Vietnamese families in Orleans and Jefferson Parishes.\n\nThe anchor of Vietnamese New Orleans became the Versailles community in New Orleans East, built around a large vacant apartment complex along Chef Menteur Highway. Most early settlers were Catholic, and Mary Queen of Vietnam Church rose as both a spiritual home and a cultural center for the neighborhood. Across the river in Marrero, another community formed in Jefferson Parish, drawing both Catholics and Buddhists.\n\nVietnamese families entered the economy through fishing, shrimping, and the Gulf seafood industry, later expanding into nail salons, construction, and small business ownership, sustained by deep networks of mutual aid and ethnic solidarity. By 2018, roughly 29,000 people of Vietnamese ancestry lived in Louisiana, with 87% of Vietnamese young people aged 18-21 enrolled in higher education, nearly double the state average.\n\nThey also faced displacement twice over. After Hurricane Katrina devastated New Orleans East in 2005, Vietnamese residents were among the earliest to return and rebuild. Then the 2010 Deepwater Horizon oil spill hit Gulf Coast fishers hard, with Vietnamese Americans making up a substantial share of those whose livelihoods were destroyed. Both times, the community's response was the same: collective action and rebuilding.",
+      "narrative": "",
+      "ai_generated": "Yes",
+      "themes": [
+        "Migration"
+      ],
+      "keywords": [
+        "History",
+        "Community",
+        "Heritage",
+        "migration",
+        "refugee"
+      ],
+      "context_connections": "New Orleans: The Versailles neighborhood in New Orleans East is the heart of Vietnamese New Orleans, one of the largest Vietnamese enclaves in the entire South [ equivalent from page]. Mary Queen of Vietnam Church has anchored the community since the 1970s, serving as a center of faith, organizing, and cultural life. When the city tried to site a toxic landfill two miles from Versailles after Katrina, Vietnamese residents organized, protested, and won, a moment of civic power that put the community on the political map of New Orleans for good. Global: The Vietnamese community in New Orleans is part of a diaspora shaped by one of the most consequential conflicts of the 20th century. The fall of Saigon in April 1975 displaced millions of people across Vietnam, Laos, and Cambodia, scattering them to refugee camps and then to cities across the globe. Those who came to Louisiana carried the full weight of that rupture: lost homes, lost country, lost family members, and a faith, largely Catholic, that connected them to the existing religious infrastructure of southern Louisiana in ways that shaped where they settled and how quickly they found footing. Their story is a New Orleans story, but it begins in the South China Sea.",
+      "context_sections": [
+        {
+          "label": "New Orleans Connection",
+          "text": "The Versailles neighborhood in New Orleans East is the heart of Vietnamese New Orleans, one of the largest Vietnamese enclaves in the entire South [ equivalent from page]. Mary Queen of Vietnam Church has anchored the community since the 1970s, serving as a center of faith, organizing, and cultural life. When the city tried to site a toxic landfill two miles from Versailles after Katrina, Vietnamese residents organized, protested, and won, a moment of civic power that put the community on the political map of New Orleans for good."
+        },
+        {
+          "label": "Global Community Connection",
+          "text": "The Vietnamese community in New Orleans is part of a diaspora shaped by one of the most consequential conflicts of the 20th century. The fall of Saigon in April 1975 displaced millions of people across Vietnam, Laos, and Cambodia, scattering them to refugee camps and then to cities across the globe. Those who came to Louisiana carried the full weight of that rupture: lost homes, lost country, lost family members, and a faith, largely Catholic, that connected them to the existing religious infrastructure of southern Louisiana in ways that shaped where they settled and how quickly they found footing. Their story is a New Orleans story, but it begins in the South China Sea."
+        }
+      ],
+      "references": [
+        "Bankston, Carl L., III. \"Vietnamese.\" 64 Parishes, Louisiana Endowment for the Humanities, 3 Dec. 2020, updated 6 May 2024, 64parishes.org/entry/vietnamese-in-louisiana.",
+        "\"Fall of Saigon, Part 2: Vietnamese Refugees Settle, Thrive in New Orleans Area.\" YouTube, uploaded by WVUE FOX 8 New Orleans, 30 Apr. 2025, www.youtube.com/watch?v=Yf_BOulvB9M."
+      ],
+      "ai_copy": "Did you know? After fleeing war in 1975, Vietnamese families built vibrant communities in New Orleans East\u2014transforming crisis into culture, resilience, and activism, and making Versailles one of the South\u2019s largest Vietnamese enclaves!",
+      "response_qr": "media/DEEP-ROOTS-IN-NEW-GROUND:-VIETNAMESE-NEW-ORLEANS-recTRuHiH2UHgPOHu/qr",
+      "response_link": "https://airtable.com/appFG4KHwFm3LCbia/pagdSMLDvEmEw6ttl/form?prefill_Submissions=DEEP-ROOTS-IN-NEW-GROUND%3A-VIETNAMESE-NEW-ORLEANS-recTRuHiH2UHgPOHu&hide_Submissions=true",
+      "avg_rating": null,
+      "number_of_responses": 0,
+      "clicks": 1,
+      "media_assets": [
+        {
+          "filename": "video-url",
+          "kind": "video_embed",
+          "url": "https://www.youtube.com/embed/Yf_BOulvB9M",
+          "source_url": "https://www.youtube.com/watch?v=Yf_BOulvB9M",
+          "caption": "Deep Roots in New Ground: Vietnamese New Orleans",
+          "mla_citation": "",
+          "missing": false,
+          "external": true
+        }
+      ],
+      "date_received": "2026-04-20T19:12:29.000Z",
+      "source_status": "airtable",
+      "workflow_status": "Approved and Published",
+      "publish_order": 1
+    },
+    {
+      "story_slug": "cuban-history-in-new-orleans",
+      "headline": "Cuban History in New Orleans ",
+      "summary": "Cuba and New Orleans share a deep historical relationship rooted in trade, colonial history, and migration spanning several centuries. The Port of New Orleans served as a major commercial hub connecting the two regions, with roughly a third of all exports \u2014 including over 1.2 million tons of sugar and molasses \u2014 flowing to Cuba, supporting thousands of Louisiana jobs. Cuban cultural influence in New Orleans traces back to 1762, when Spanish colonial rule began and lasted 38 years. Following devastating fires in the 1790s, Spanish colonizers rebuilt New Orleans modeled after Havana, which is why the French Quarter carries more Cuban than French architectural character. Cuban immigration between 1778 and 1802 deepened these ties, and by 1870 roughly 3,000 Cubans called New Orleans home. The successful slave rebellion in French Saint-Domingue and economic opportunity in Louisiana drew additional waves of Cuban migrants. The Spanish-American War in 1898 further entangled the two regions when U.S. troops departed from New Orleans bound for Cuba, where Spain's defeat led to Cuban independence in 1902. The relationship remained strong through the mid-twentieth century until Fidel Castro's 1959 overthrow of the Cuban government and the subsequent U.S. trade embargo severed formal economic ties. Despite this rupture, a Cuban community persists in New Orleans today, with Cuban music, cuisine, traditions, and cultural celebrations woven throughout the city's identity.",
+      "narrative": "For centuries, Cuba and New Orleans were connected by culture and commerce. About a third of all exports leaving the Port of New Orleans went to Cuba, including more than 1.2 million tons of sugar and molasses. According to\u202f64 Parishes, that trade connection supported more than 6,000 Louisiana jobs. \n\nThe Cuban influence on New Orleans dates back to 1762 when 38 years of Spanish rule began.\u202f \n\n\u201cThe Spanish rebuilt the city in the 1790s after fires burned most of the wooden structures built by the French,\u201d the\u202fNational Park Service\u202fstates. \u201cThey modeled their reconstructed city on Havana. This means the French Quarter looks more Cuban than French!\u201d \n\nAdditional Cuban influence arrived with immigrants from 1778 to 1802. By 1870, there were 3,000 Cubans living in New Orleans. \n\n\u201cMany families had relatives and businesses in both cities,\u201d the National Park Service states. \u201cMore Cuban influence arrived after the successful slave rebellion in French Saint-Domingue. Others moved to seek their fortunes in Louisiana. Each added a little more Cuban influence to the area.\u201d \n\nWhen the Spanish-American War began in 1898, U.S. troops shipped out from New Orleans to Cuba, where Spain\u2019s defeat set the stage for Cuban independence in 1902. \n\nAccording to 64 Parishes, the relationship between Cuba and New Orleans remained strong until Fidel Castro overthrew the Cuban government in 1959. When he instituted Communist-leaning reforms, the U.S. imposed a trade embargo that still exists with exceptions.\u202f \n\nFamily ties and job opportunities in the sugar industry drew more Cubans to Louisiana during the time frame, the National Park Service states. \n\nToday, \u201ca Cuban community still exists in New Orleans, though not in any specific neighborhood,\u201d the National Park Service continues. \u201cCuban celebrations, music, traditions, cuisine and saint\u2019s days have integrated into New Orleans\u2019 culture.\u201d ",
+      "ai_generated": "Yes",
+      "themes": [
+        "Migration"
+      ],
+      "keywords": [
+        "History",
+        "Community",
+        "Heritage",
+        "tradition",
+        "migration"
+      ],
+      "context_connections": "",
+      "context_sections": [],
+      "references": [
+        "\"A Friendship Interrupted.\" 64 Parishes, Louisiana Endowment for the Humanities, 64parishes.org/a-friendship-interrupted.",
+        "\"Cubans in the Delta.\" National Park Service, U.S. Department of the Interior, www.nps.gov/jela/learn/historyculture/cubans-in-the-delta.htm."
+      ],
+      "ai_copy": "Did you know? New Orleans\u2019 French Quarter is more Cuban than French, thanks to centuries of Cuban trade, migration, and culture\u2014sugar, music, and architecture all connect Tulane and the city to a vibrant global Cuban legacy!",
+      "response_qr": "media/CUBAN-HISTORY-IN-NEW-ORLEANS--recnClP5vgjOqi4J5/qr",
+      "response_link": "https://airtable.com/appFG4KHwFm3LCbia/pagdSMLDvEmEw6ttl/form?prefill_Submissions=CUBAN-HISTORY-IN-NEW-ORLEANS--recnClP5vgjOqi4J5&hide_Submissions=true",
+      "avg_rating": null,
+      "number_of_responses": 0,
+      "clicks": 0,
+      "media_assets": [
+        {
+          "filename": "Havana-LOC.webp",
+          "kind": "image",
+          "url": "media/CUBAN-HISTORY-IN-NEW-ORLEANS--recnClP5vgjOqi4J5/Havana-LOC.webp",
+          "document_url": null,
+          "preview_url": null,
+          "caption": "The Spanish used Havana, Cuba, as a model for rebuilding New Orleans in the 1790s after fires destroyed many buildings.",
+          "mla_citation": "\"A Friendship Interrupted.\" 64 Parishes, Louisiana Endowment for the Humanities, 64parishes.org/a-friendship-interrupted.",
+          "missing": false,
+          "source_path": "https://v5.airtableusercontent.com/v3/u/52/52/1776808800000/hyEVoldqol-g5e1b9b4v4A/v5eynZYUCPWhzdHQ9lV6uZUm7r8U6ufmn0_aqMBK1b_j4IpmljedWwZ4pOhy9z38wpLe1Q27l4boCgKqNfSEORJzE1lkBvBorQ-wxZB1BGMXS90h9QaA5w5qVn5N7DQ98lEFrNKkUDTY2CiH70UfIMy1dvE5UGV4UwH8bHxk_p8/rIRN-WZPQPWANe_I-DtiGaw2keuBrWO0JnkqZzKeak0"
+        }
+      ],
+      "date_received": "2026-04-14T18:54:05.000Z",
+      "source_status": "airtable",
+      "workflow_status": "Approved and Published",
+      "publish_order": 2
+    },
     {
       "story_slug": "white-gold-sugar-slavery-and-new-orleans",
       "headline": "White Gold: Sugar, Slavery, and New Orleans",
@@ -33,11 +133,11 @@
         "Woodruff, Judy, interviewer. \"Before Cotton, Sugar Established American Reliance on Slave Labor.\" PBS NewsHour, YouTube, 14 Aug. 2019, www.youtube.com/watch?v=BLzgD11RwEc. Interview with Khalil Gibran Muhammad."
       ],
       "ai_copy": "Did you know? The sugar in your kitchen traces back to 1751 New Orleans, where Louisiana\u2019s sweet industry\u2014and its global reach\u2014was built on the labor of enslaved Black people. This history still shapes our world today.",
-      "response_qr": "https://v5.airtableusercontent.com/v3/u/52/52/1776463200000/AtFCYMBGTgjVNq-WoJP7ug/7JSchpJGQBSiDFcpYAVbtBJZS1x3gI8w3k_uBqYtNkQcLSjdBsAMYt-7e_b33M4zkLYoSbzhQU4_a8aYFxqBYELymUn1L6Ml2XVdZlcZ70GriI4usggdqK3q_AEZxkjmAwO1CeXgIYu1qj8Bu--ZHQ/wvV8jRFAM0uvq-xaUZppOMPq57nT8wFuo9ew3df3p28",
+      "response_qr": "media/WHITE-GOLD:-SUGAR,-SLAVERY,-AND-NEW-ORLEANS-recojuqaXtdDIji1Y/qr",
       "response_link": "https://airtable.com/appFG4KHwFm3LCbia/pagdSMLDvEmEw6ttl/form?prefill_Submissions=WHITE-GOLD%3A-SUGAR%2C-SLAVERY%2C-AND-NEW-ORLEANS-recojuqaXtdDIji1Y&hide_Submissions=true",
       "avg_rating": 5.0,
       "number_of_responses": 1,
-      "clicks": 0,
+      "clicks": 3,
       "media_assets": [
         {
           "filename": "Muhammad, Khalil Gibran - White Gold - NYT - 2019.08.14.pdf",
@@ -48,7 +148,7 @@
           "caption": "PDF of Professor Muhammad's New York Times article from the 1619 project.",
           "mla_citation": "Muhammad, Khalil Gibran. \"Sugar.\" The New York Times Magazine, 14 Aug. 2019, www.nytimes.com/interactive/2019/08/14/magazine/sugar-slave-trade-slavery.html. Part of The 1619 Project.",
           "missing": false,
-          "source_path": "https://v5.airtableusercontent.com/v3/u/52/52/1776463200000/RyTox1Mrx4vsRBMy9gWRmA/MyhLEI09_o7HWJPC7_28wN0UmjOry_6VlcMloAYRaFLtGMarYFFBQcn1x5o2usjf_neQBesUz_H4fEU0-MAJ0O0IfKNNio29ffoCuopkh7-B7r-Y60kkOuGUoPTPovqjJ7ZhrHxsGEcfQEFFN9-OLBQivi-H8vKl0-ffwSi9SkqWJ75VWUETr-RoCj6NEerLqHX00VwaItXZ5_O_hT_DSQ/fLuASuc0-lGIhAFnPRpfZVpZgkrsC1bcIFq8bnuNaJ8"
+          "source_path": "https://v5.airtableusercontent.com/v3/u/52/52/1776808800000/zBKU_1YxERGb06JaO12YXQ/0BqDAsls_HAYT2yE9tjv_MkuWxld1xlI7tX7UcDe8Rp6EnV2l3KvbTnjqlT2rt9oK3958mmz2256tSMpi4PwJd-zbSoKRsrAV9BmnoNVrIclrs-mfeeQmDWhxBsS7iOlQo16iKbmWCJzW9u9w1p51pLWDfy6WNQZjYJRF9NOLkJxo-Kz35q8jquGNyw7pNQxc5MUB1Ro5tpMSi_a5itBMg/Lgn3FI2sKpl_kVVI150dcqsqwz6JzSGYULvPLr0FAmE"
         },
         {
           "filename": "video-url",
@@ -63,59 +163,168 @@
       ],
       "date_received": "2026-04-16T16:20:56.000Z",
       "source_status": "airtable",
-      "workflow_status": "Approved and Published"
+      "workflow_status": "Approved and Published",
+      "publish_order": 3
     },
     {
-      "story_slug": "louisiana-sugar-production-and-chinese-migration",
-      "headline": "Louisiana Sugar Production and Chinese Migration",
-      "summary": "After the Civil War, Louisiana's wealthiest sugar planters faced a labor crisis and turned to Chinese immigrant workers as a solution, recruiting thousands between 1866 and 1870 from the Caribbean, California, and China. Planters believed Chinese workers would be cheap, docile, and submissive \u2014 a racial wedge designed to discipline newly freed Black workers and suppress wages across the sugar region. Chinese workers were paid around $14 per month, significantly below the roughly $20 per month earned by local Black men, and were housed in buildings within former slave quarters. The anticipated rivalry between Black and Chinese laborers never materialized \u2014 on the ground, Chinese workers demanded equal wages, fled exploitative contracts, and adapted to seasonal labor patterns much like their Black counterparts. As they moved through Louisiana seeking better opportunities, Chinese workers gradually disappeared from the historical record, their presence absorbed into a landscape that had no interest in memorializing them. The linked article argues that this largely forgotten episode was central to reinforcing the racist foundations of American citizenship after abolition \u2014 using the figure of the racialized Chinese laborer to justify exclusion at the precise moment slavery formally ended.",
-      "narrative": "",
-      "ai_generated": "Yes",
+      "story_slug": "tulane-s-draper-collection-on-mardi-gras-indians",
+      "headline": "Tulane's Draper Collection on Mardi Gras Indians",
+      "summary": "The archival collection contains audio reel-to-reel and cassette tapes, photographic negatives, research notes, annotated drafts, and related materials compiled by David Elliott Draper for his 1973 Tulane University Ph.D. dissertation, The Mardi Gras Indians: The Ethnomusicology of Black Associations in New Orleans. Draper\u2019s research documents members of several Mardi Gras Indian tribes during the early 1970s, including the Black Eagles, Golden Arrows, Golden Eagles, and Wild Magnolias. Audio recordings capture Mardi Gras Indian practices and gatherings across New Orleans, including locations such as the intersection of Second and Dryades Streets in Central City, as well as events such as St. Joseph\u2019s Night and the 1971 New Orleans Jazz & Heritage Festival. In keeping with TUSC\u2019s approach to responsible stewardship, the collection is presented with recognition that Mardi Gras Indian and Black Masking Indian traditions are living cultural practices shaped and sustained by the communities who carry them. While the materials are preserved and made accessible by TUSC, cultural authority remains with the tribes and individuals represented. TUSC welcomes ongoing community input to help ensure that description, access, and use of the materials remain accurate and respectful. \n\nThe finding aid is available online, and a companion digital collection, Recordings and Photographs from the David Elliott Draper Collection on Mardi Gras Indians, can be accessed at libguides.tulane.edu/DigitalCollections/MardiGrasIndians-1970s.",
+      "narrative": "https://library.tulane.edu/news/Now_open_for_research_The_David_Elliott_Draper_collection_on_Mardi_Gras_Indians",
+      "ai_generated": "No",
       "themes": [
-        "Labor"
+        "Culture & Tradition"
       ],
       "keywords": [
-        "History",
-        "migration"
+        "Community",
+        "Heritage",
+        "tradition",
+        "art",
+        "pride"
       ],
       "context_connections": "",
       "context_sections": [],
       "references": [
-        "Jung, Moon-Ho. \"Making Sugar, Making 'Coolies': Chinese Laborers Toiled Alongside Black Workers on 19th-Century Louisiana Plantations.\" ARCADE, Stanford Humanities Center, shc.stanford.edu/arcade/interventions/making-sugar-making-coolies-chinese-laborers-toiled-alongside-black-workers-0."
+        "\"Now Open for Research: The David Elliott Draper Collection on Mardi Gras Indians.\" Tulane University Libraries, 13 Apr. 2026, library.tulane.edu/news/Now_open_for_research_The_David_Elliott_Draper_collection_on_Mardi_Gras_Indians."
       ],
-      "ai_copy": "Did you know? After the Civil War, Chinese immigrants joined Black workers on Louisiana sugar plantations, challenging exploitation and reshaping labor history\u2014an untold story connecting New Orleans to global struggles for justice!",
-      "response_qr": "https://v5.airtableusercontent.com/v3/u/52/52/1776463200000/q8JQdBjte3yTwj8QFWDegw/qslFaO9bx6AKyPb645hRIOXThKPpPnHAT7wEYZcLkIQr-4KhDmo6CJgB_hbXRBzIRgO7l-WU2w0_woShXVCSB-AtCNvlADG8DoZUsNf9lxyL9oF_7p6FVoX1Zgwg00awOse8m-jkTnMaphw47Q2LQw/Uj8bnzwRJtORdppVpUy0UjeayGRvs_NY3LIfoZk_9HA",
-      "response_link": "https://airtable.com/appFG4KHwFm3LCbia/pagdSMLDvEmEw6ttl/form?prefill_Submissions=LOUISIANA-SUGAR-PRODUCTION-AND-CHINESE-MIGRATION-recN0BWHB8hM6O6Tf&hide_Submissions=true",
+      "ai_copy": "Did you know? Tulane\u2019s Draper Collection brings the vibrant music, art, and traditions of 1970s Mardi Gras Indian tribes to life\u2014preserving New Orleans\u2019 living culture and community pride for the world to discover!",
+      "response_qr": "media/TULANE'S-DRAPER-COLLECTION-ON-MARDI-GRAS-INDIANS-recJcrfXGzLWxCJf3/qr",
+      "response_link": "https://airtable.com/appFG4KHwFm3LCbia/pagdSMLDvEmEw6ttl/form?prefill_Submissions=TULANE%27S-DRAPER-COLLECTION-ON-MARDI-GRAS-INDIANS-recJcrfXGzLWxCJf3&hide_Submissions=true",
       "avg_rating": null,
       "number_of_responses": 0,
       "clicks": 0,
       "media_assets": [
         {
-          "filename": "chinese sugar workers.jpg",
+          "filename": "Photograph of an unidentified Mardi Gras Indian with community members, circa early 1970s, New Orleans, David Elliott Draper collection on Mardi Gras Indians, HJA-113, Tulane University Special Collections.png",
           "kind": "image",
-          "url": "media/LOUISIANA-SUGAR-PRODUCTION-AND-CHINESE-MIGRATION-recN0BWHB8hM6O6Tf/chinese sugar workers.jpg",
+          "url": "media/TULANE'S-DRAPER-COLLECTION-ON-MARDI-GRAS-INDIANS-recJcrfXGzLWxCJf3/Photograph of an unidentified Mardi Gras Indian with community members, circa early 1970s, New Orleans, David Elliott Draper collection on Mardi Gras Indians, HJA-113, Tulane University Special Collections.png",
           "document_url": null,
           "preview_url": null,
-          "caption": "Harvesting on a Louisiana sugar plantation, 1875.",
-          "mla_citation": "Jung, Moon-Ho. \"Making Sugar, Making 'Coolies': Chinese Laborers Toiled Alongside Black Workers on 19th-Century Louisiana Plantations.\" ARCADE, Stanford Humanities Center, shc.stanford.edu/arcade/interventions/making-sugar-making-coolies-chinese-laborers-toiled-alongside-black-workers-0.",
+          "caption": "Photograph of an unidentified Mardi Gras Indian with community members, circa early 1970s, New Orleans",
+          "mla_citation": "David Elliott Draper collection on Mardi Gras Indians, HJA-113, Tulane University Special Collections",
           "missing": false,
-          "source_path": "https://v5.airtableusercontent.com/v3/u/52/52/1776463200000/XTQjXRnVlbWe3hLkw6jwCw/jO7m04tDWAtk5wNri7mje7hWUVZOQCiPov61pBcs_L0-fBIHeoY2f0CKO8DZoY_L9OYaNb4k1vYvkk90naEl5Xw719hagUHO4-Azr-2gV9sFWlK_wci1E_S2rDlhURrjb72asGg8U6GC6xaDvmDOYxfkp11wZLu7hc1aep6lvws/raXfJdiiRawz4V6OwX-cs_L_MpWmNjT7RYyICjPtcyQ"
-        },
-        {
-          "filename": "chinese sugar workers 2.jpeg",
-          "kind": "image",
-          "url": "media/LOUISIANA-SUGAR-PRODUCTION-AND-CHINESE-MIGRATION-recN0BWHB8hM6O6Tf/chinese sugar workers 2.jpeg",
-          "document_url": null,
-          "preview_url": null,
-          "caption": "An 1871 engraving titled \u2018Chinese cheap labor in Louisiana - Chinamen at work on the Milloudon Sugar Plantation.\u2019",
-          "mla_citation": "Jung, Moon-Ho. \"Making Sugar, Making 'Coolies': Chinese Laborers Toiled Alongside Black Workers on 19th-Century Louisiana Plantations.\" ARCADE, Stanford Humanities Center, shc.stanford.edu/arcade/interventions/making-sugar-making-coolies-chinese-laborers-toiled-alongside-black-workers-0.",
-          "missing": false,
-          "source_path": "https://v5.airtableusercontent.com/v3/u/52/52/1776463200000/bZVXQXgGV1vkh_2iL2SXRA/Rbj4oSJ9ZV9DhYdL2rgvKMznl3bi9KP3vzFtkFpo6vAuwwAc8eNtuyhs68oYqo-FLs2c0mPR6o32zqTjYNu12Sdv44xL8y_IyOOR56SxQ8I9xtRmh4bWCoh6TnxJDHLQbEtcCw-MbH6yADxPLVkBHgIotQnZqG9IIrqKGH8VSCc/PezzFZJ9LT0_qZwIVPhyFnZuwEC1dHKg5yHpceujr7s"
+          "source_path": "https://v5.airtableusercontent.com/v3/u/52/52/1776808800000/Z1jnbbHA9srMLve7rtGnjw/WhuDT1Hpwpg-ZubKdBFq1WtvRDf5vxzUniWTXOoUDOX08MTAcsfZrsSwUceJ7K7UxqA9WA3URN_ayPGFgPZ1gMNnLzrcLtnSks9Qh5rUkNJjUh69PCB7OtAZyFe8Dy2eNOejNu007AU-Kov5Z2l5H0a8ZmmRVftMTomLnvC5vwB8wN5bZzdKLXYAgdCRYz1RfJX5jtu2S3Kug1H-IrjCDmpJxBuLJuODT8goiU7cfOWNX3urtGntJbRJg8RVf0Utq5BVOfkZ-C0ZqXSgzmtAvu0sFjElUAQZuTwUYqHkDPiE1UlQJokgsq5YdS8ranKR0kPqyMry0rhDtlP7LRujpeCFq31NqYbc1JdaFVR8tMnnJkPT2KDOBu70OfjSxyY_/l2WCf-br_HgtzcfZXA_0_rp4RgTqaN442sGGOJkWEP8"
         }
       ],
-      "date_received": "2026-04-14T21:01:55.000Z",
+      "date_received": "2026-04-17T14:20:26.000Z",
       "source_status": "airtable",
-      "workflow_status": "Approved and Published"
+      "workflow_status": "Approved and Published",
+      "publish_order": 4
+    },
+    {
+      "story_slug": "honduras-and-new-orleans-over-a-century-of-connection",
+      "headline": "Honduras & New Orleans: Over a Century of Connection ",
+      "summary": "In the late 1800s, New Orleans-based fruit companies used the Port of New Orleans as the gateway for banana imports from Honduras's North Coast. These companies built railroads, canals, and company towns in Honduras, extracted enormous wealth, and left behind a trail of political manipulation, and military interventions, that transformed Honduras into the original \"banana republic.\" But they also built a direct human connection between New Orleans and cities like La Ceiba. Honduran dockworkers and merchant seamen who worked the shipping lanes began arriving in New Orleans as early as the 1930s.\n\nNew Orleans attracted Hondurans because of its accessibility, environmental similarities, Catholic culture, and the prospect of continued employment in the fruit trade. Those who came were a racially and ethnically diverse group, including white European descendants, mestizos, Afro-Indigenous communities like the Garifuna people, and Black West Indians. By the early 1960s, New Orleans had the largest Honduran population in the United States. That population doubled between 1970 and 1980.\n\nThe community built roots across the region, living in Jefferson, Orleans, St. Bernard, and Plaquemines Parishes, with no single concentrated neighborhood but a strong, shared cultural presence. Hondurans maintained their heritage through language, food, music, dance, and faith. The Feast of Our Lady of Suyapa, Honduras's patron saint, is celebrated annually at churches across the metro area, and traditional foods like baleadas, sopa de caracol, and carne asada remain central to community life.",
+      "narrative": "",
+      "ai_generated": "Yes",
+      "themes": [
+        "Migration"
+      ],
+      "keywords": [
+        "History",
+        "Community",
+        "migration"
+      ],
+      "context_connections": "New Orleans: New Orleans was the commercial engine of the banana trade, and that history planted deep roots. Hondurans built community across Jefferson, Orleans, and surrounding parishes, drawn by faith, climate, culture, and kin. By the early 1960s, New Orleans held the largest Honduran population in the entire country. That connection endures today: Spanish language newspapers, Honduran business leaders, restaurants, and churches serving the community are woven throughout the region, and the annual Feast of Our Lady of Suyapa draws thousands to celebrate Honduran heritage on New Orleans soil. Global: The Honduran community in New Orleans is the direct human legacy of a commercial relationship the city built. The United Fruit Company, headquartered in New Orleans, owned vast amounts of Honduran land, employed its residents, and had a significant economic and social impact on the country and people of Honduras. The people who eventually migrated to New Orleans followed the same routes the bananas had traveled. As the Historic New Orleans Collection notes, New Orleans attracted Hondurans because of its accessibility, environmental similarities, Catholic culture, and the prospect of continued employment in the fruit trade. Today, those links between Honduras and New Orleans remain strong, even after the company's headquarters left the city in 1985 when it became Chiquita Brands.",
+      "context_sections": [
+        {
+          "label": "New Orleans Connection",
+          "text": "New Orleans was the commercial engine of the banana trade, and that history planted deep roots. Hondurans built community across Jefferson, Orleans, and surrounding parishes, drawn by faith, climate, culture, and kin. By the early 1960s, New Orleans held the largest Honduran population in the entire country. That connection endures today: Spanish language newspapers, Honduran business leaders, restaurants, and churches serving the community are woven throughout the region, and the annual Feast of Our Lady of Suyapa draws thousands to celebrate Honduran heritage on New Orleans soil."
+        },
+        {
+          "label": "Global Community Connection",
+          "text": "The Honduran community in New Orleans is the direct human legacy of a commercial relationship the city built. The United Fruit Company, headquartered in New Orleans, owned vast amounts of Honduran land, employed its residents, and had a significant economic and social impact on the country and people of Honduras. The people who eventually migrated to New Orleans followed the same routes the bananas had traveled. As the Historic New Orleans Collection notes, New Orleans attracted Hondurans because of its accessibility, environmental similarities, Catholic culture, and the prospect of continued employment in the fruit trade. Today, those links between Honduras and New Orleans remain strong, even after the company's headquarters left the city in 1985 when it became Chiquita Brands."
+        }
+      ],
+      "references": [
+        "Chambers, Glenn, Jr. \"New Orleans as a Nexus of Power.\" 64 Parishes, Louisiana Endowment for the Humanities, 64parishes.org/new-orleans-as-a-nexus-of-power.",
+        "Kramer, Alex. \"New Orleans, Honduras, United Fruit Company, Katrina.\" Verite News, 1 Oct. 2025, veritenews.org/2025/10/01/new-orleans-honduras-united-fruit-company-katrina/.",
+        "Neu, Denese. \"Honduran Identity within South Louisiana Culture.\" Louisiana Folklife, Louisiana Division of the Arts, www.louisianafolklife.org/lt/articles_essays/hondurans1.html.",
+        "Beyer, Becky and Minzala Mvula. \"The Honduran Community in New Orleans.\" ViaNolaVie, 14 Aug. 2017, www.vianolavie.org/2017/08/14/honduran-community/.",
+        "Venegas, Laura. \"\u00bfCu\u00e1l es la conexi\u00f3n entre Honduras y Nueva Orleans?\" YouTube, 15 Sep. 2018. https://youtu.be/jDanYDwrp1c?si=zzW9oFjE7h4CVuTY."
+      ],
+      "ai_copy": "Did you know? New Orleans became home to the largest Honduran community in the U.S. thanks to the banana trade, blending vibrant traditions, food, and festivals that still connect the city to Honduras today!",
+      "response_qr": "media/HONDURAS-&-NEW-ORLEANS:-OVER-A-CENTURY-OF-CONNECTION--recQGOQm3IVMLHbJm/qr",
+      "response_link": "https://airtable.com/appFG4KHwFm3LCbia/pagdSMLDvEmEw6ttl/form?prefill_Submissions=HONDURAS-%26-NEW-ORLEANS%3A-OVER-A-CENTURY-OF-CONNECTION--recQGOQm3IVMLHbJm&hide_Submissions=true",
+      "avg_rating": null,
+      "number_of_responses": 0,
+      "clicks": 0,
+      "media_assets": [
+        {
+          "filename": "video-url",
+          "kind": "video_embed",
+          "url": "https://www.youtube.com/embed/jDanYDwrp1c",
+          "source_url": "https://youtu.be/jDanYDwrp1c?si=6piet3I1uRPYOTrB",
+          "caption": "Honduras & New Orleans: Over a Century of Connection ",
+          "mla_citation": "",
+          "missing": false,
+          "external": true
+        }
+      ],
+      "date_received": "2026-04-20T20:20:05.000Z",
+      "source_status": "airtable",
+      "workflow_status": "Approved and Published",
+      "publish_order": 5
+    },
+    {
+      "story_slug": "new-orleans-jewish-community-300-years-of-home",
+      "headline": "New Orleans' Jewish Community: 300 Years of Home",
+      "summary": "Jewish people have been part of New Orleans since before it was American. The first known Jewish settler, Isaac Monsanto, arrived from Curacao in 1757 and built a successful trading business in the French colonial city, even though French law technically banned Jewish people from the territory. Merchants proved more valuable than religious exclusion, and Monsanto sued in colonial courts, bought property, and brought his siblings to join him. That pragmatic tolerance, interrupted briefly when a Spanish colonial governor expelled Jewish merchants in 1769, set the tone for the next 250 years.\n\nBy the early 19th century, Jewish people were woven into the commercial and civic fabric of the city. Judah Touro arrived in 1801 and became one of the first great Jewish philanthropists in American history, funding synagogues, hospitals, and charities before his death in 1854. Touro Infirmary still operates today. In 1827, 33 Jewish settlers founded Shaarai Chesed, Gates of Mercy, the first Jewish congregation established outside the original 13 states.\n\nThe community grew through waves of immigration: German and Alsatian families in the mid-1800s, Eastern European families at the turn of the century, each wave building institutions along Dryades Street and beyond. Jewish people held seats in the state legislature, the U.S. Senate, and the governor's cabinet. When elite social clubs and Mardi Gras krewes began excluding them, they built their own: the Harmony Club, the Young Men's Hebrew Association, and eventually their own krewes.\n\nHurricane Katrina reshaped the community again. Beth Israel's building was devastated and roughly 30% of Jewish New Orleanians did not return. But the community rebuilt, and today New Orleans sustains multiple active congregations, a Jewish Community Center, and a Hillel at Tulane University.",
+      "narrative": "The Museum of the Southern Jewish Experience:\nLocated at 818 Howard Avenue in New Orleans' Arts District, the Museum of the Southern Jewish Experience (MSJE) explores how Jewish people in the American South shaped, and were shaped by, the distinct cultural communities around them. The museum traces its origins to 1986, when it opened as a small clearinghouse at a Jewish summer camp in Utica, Mississippi, preserving the history of Jewish communities in small Southern towns as younger generations moved away. It relocated to New Orleans in 2021, reopening in a renovated 1916 building steps from the National WWII Museum and the Ogden Museum of Southern Art. Its galleries cover Jewish immigration and settlement, religious life and traditions, responses to the Holocaust, oral histories of survivors who came to the South, and the complicated role of Southern Jewish people during the Civil Rights movement, including the history of Jewish slaveholders. The museum sits at the intersection of two questions it takes seriously: what does it mean to be fully Jewish and fully Southern at the same time ? Learn more at msje.org",
+      "ai_generated": "Yes",
+      "themes": [
+        "Migration"
+      ],
+      "keywords": [
+        "History",
+        "Community",
+        "migration",
+        "Heritage"
+      ],
+      "context_connections": "New Orleans: Jewish people have shaped New Orleans since the colonial era, building businesses, funding hospitals, and serving in public office for nearly 300 years. Institutions they created \u2014 Touro Infirmary, the New Orleans Museum of Art, Isidore Newman School \u2014 remain central to the city today. Their story is one of deep belonging, interrupted by periodic exclusion, and sustained by an insistence on civic participation even when the city's elite social circles closed their doors. Tulane: The Jewish community's relationship with Tulane goes back to the 19th century, when Herman Kohlmeyer served as a longtime professor of Hebrew and Oriental Literature and occasionally filled in as a temporary rabbi at New Orleans congregations. Jewish philanthropy also helped sustain Tulane's growth, with Jewish individuals and organizations funding education across the city from primary schools through the university level. Today, Tulane houses one of the most active Jewish Studies departments in the country, home to the Stuart and Suzanne Grant Center for the American Jewish Experience, with a particular focus on Jewish life in the Gulf South. Howard-Tilton Memorial Library holds archives for more than 30 Jewish institutions and individuals, making Tulane one of the primary research centers for the history of Jewish New Orleans. Global: New Orleans' Jewish community was built by successive waves of displacement and migration: Sephardic Jewish families from Curacao, German and Alsatian Jewish families fleeing poverty and instability in Europe, Eastern European Jewish families escaping pogroms and persecution in the late 19th and early 20th centuries. Each group carried distinct languages, liturgies, and traditions, and each settled into a city already shaped by the logic of the Atlantic world. The story of Jewish people in New Orleans is inseparable from the larger story of Jewish diaspora, the centuries-long dispersal of a people who built community wherever they landed.",
+      "context_sections": [
+        {
+          "label": "New Orleans Connection",
+          "text": "Jewish people have shaped New Orleans since the colonial era, building businesses, funding hospitals, and serving in public office for nearly 300 years. Institutions they created \u2014 Touro Infirmary, the New Orleans Museum of Art, Isidore Newman School \u2014 remain central to the city today. Their story is one of deep belonging, interrupted by periodic exclusion, and sustained by an insistence on civic participation even when the city's elite social circles closed their doors."
+        },
+        {
+          "label": "Tulane Connection",
+          "text": "The Jewish community's relationship with Tulane goes back to the 19th century, when Herman Kohlmeyer served as a longtime professor of Hebrew and Oriental Literature and occasionally filled in as a temporary rabbi at New Orleans congregations. Jewish philanthropy also helped sustain Tulane's growth, with Jewish individuals and organizations funding education across the city from primary schools through the university level. Today, Tulane houses one of the most active Jewish Studies departments in the country, home to the Stuart and Suzanne Grant Center for the American Jewish Experience, with a particular focus on Jewish life in the Gulf South. Howard-Tilton Memorial Library holds archives for more than 30 Jewish institutions and individuals, making Tulane one of the primary research centers for the history of Jewish New Orleans."
+        },
+        {
+          "label": "Global Community Connection",
+          "text": "New Orleans' Jewish community was built by successive waves of displacement and migration: Sephardic Jewish families from Curacao, German and Alsatian Jewish families fleeing poverty and instability in Europe, Eastern European Jewish families escaping pogroms and persecution in the late 19th and early 20th centuries. Each group carried distinct languages, liturgies, and traditions, and each settled into a city already shaped by the logic of the Atlantic world. The story of Jewish people in New Orleans is inseparable from the larger story of Jewish diaspora, the centuries-long dispersal of a people who built community wherever they landed."
+        }
+      ],
+      "references": [
+        "\"New Orleans, Louisiana.\" Encyclopedia of Southern Jewish Communities. Institute for Southern Jewish Life,",
+        "www.isjl.org/louisiana-new-orleans-encyclopedia.html.",
+        "Kahn, Cathy. \"New Orleans Jews Shaped Local History.\" Tulane University News, 21 Jan. 2018,",
+        "news.tulane.edu/news/new-orleans-jews-shaped-local-history.",
+        "@DoctorsDreams. \"NOLA Southern Jewish Experience Museum.\" YouTube, 4 Oct. 2025, www.youtube.com/shorts/AE_SI52_s9Y."
+      ],
+      "ai_copy": "Did you know? For nearly 300 years, Jewish New Orleanians have shaped the city\u2014founding hospitals, building synagogues, creating their own Mardi Gras krewes, and connecting Tulane, New Orleans, and the global Jewish community!",
+      "response_qr": "media/NEW-ORLEANS'-JEWISH-COMMUNITY:-300-YEARS-OF-HOME-recXZjOfigNpCDuTG/qr",
+      "response_link": "https://airtable.com/appFG4KHwFm3LCbia/pagdSMLDvEmEw6ttl/form?prefill_Submissions=NEW-ORLEANS%27-JEWISH-COMMUNITY%3A-300-YEARS-OF-HOME-recXZjOfigNpCDuTG&hide_Submissions=true",
+      "avg_rating": null,
+      "number_of_responses": 0,
+      "clicks": 2,
+      "media_assets": [
+        {
+          "filename": "video-url",
+          "kind": "video_embed",
+          "url": "https://www.youtube.com/embed/AE_SI52_s9Y",
+          "source_url": "https://youtube.com/shorts/AE_SI52_s9Y?si=EuLCmLyBvCdHgrk9",
+          "caption": "New Orleans' Jewish Community: 300 Years of Home",
+          "mla_citation": "",
+          "missing": false,
+          "external": true
+        }
+      ],
+      "date_received": "2026-04-20T19:01:19.000Z",
+      "source_status": "airtable",
+      "workflow_status": "Approved and Published",
+      "publish_order": 6
     },
     {
       "story_slug": "the-forgotten-history-of-chinatown-in-new-orleans",
@@ -135,63 +344,54 @@
       "context_connections": "",
       "context_sections": [],
       "references": [
-        "Paik, Frances. \"Exploring the Forgotten History of Chinatown in New Orleans.\" ViaNolaVie, 17 Mar. 2023, www.vianolavie.org/2023/03/17/exploring-the-forgotten-history-of-chinatown-in-new-orleans/."
+        "Paik, Frances. \"Exploring the Forgotten History of Chinatown in New Orleans.\" ViaNolaVie, 17 Mar. 2023, www.vianolavie.org/2023/03/17/exploring-the-forgotten-history-of-chinatown-in-new-orleans/.",
+        "Campanella, Richard. \"The Lost History of New Orleans' Two Chinatowns.\" The Times-Picayune / NOLA.com, 6 Mar. 2015, www.nola.com/entertainment_life/home_garden/the-lost-history-of-new-orleans-two-chinatowns/article_e1ecdfe5-3419-5ecf-8143-b14b98c2a389.html.",
+        "\"China Town on Tulane.\" YouTube, uploaded by WVUE FOX 8 New Orleans, 11 Jun. 2025, www.youtube.com/watch?v=E-7dWBqZc0c."
       ],
       "ai_copy": "Did you know? New Orleans once had a lively Chinatown where Chinese restaurants served both soul food and Chinese dishes\u2014creating a unique cultural blend enjoyed by locals like Louis Armstrong!",
-      "response_qr": "https://v5.airtableusercontent.com/v3/u/52/52/1776463200000/OXvY-nv0H6ExC5R0qU3Jkw/5As1q_y8CrnsPiLgWB-eZsWFY7YeOZn_sRQVX09w3xNHa4CQ4lWXmVsQAznWvM9tU5HtBnt7RSZHV8PlVsaoFo1PunxnfVKgFgr6BoOxT62r63WdQLuSYyy9tPLAZHjM6R1glVYs1MB7rPgSZDXziQ/QFxbrVtxQ_3WdiBO92M12XPVmx-7MObVAkY6xJIS8hQ",
+      "response_qr": "media/THE-FORGOTTEN-HISTORY-OF-CHINATOWN-IN-NEW-ORLEANS-recGdrUW80YmHg8FO/qr",
       "response_link": "https://airtable.com/appFG4KHwFm3LCbia/pagdSMLDvEmEw6ttl/form?prefill_Submissions=THE-FORGOTTEN-HISTORY-OF-CHINATOWN-IN-NEW-ORLEANS-recGdrUW80YmHg8FO&hide_Submissions=true",
-      "avg_rating": null,
-      "number_of_responses": 0,
-      "clicks": 0,
-      "media_assets": [],
-      "date_received": "2026-04-14T20:50:00.000Z",
-      "source_status": "airtable",
-      "workflow_status": "Approved and Published"
-    },
-    {
-      "story_slug": "cuban-history-in-new-orleans",
-      "headline": "Cuban History in New Orleans ",
-      "summary": "Cuba and New Orleans share a deep historical relationship rooted in trade, colonial history, and migration spanning several centuries. The Port of New Orleans served as a major commercial hub connecting the two regions, with roughly a third of all exports \u2014 including over 1.2 million tons of sugar and molasses \u2014 flowing to Cuba, supporting thousands of Louisiana jobs. Cuban cultural influence in New Orleans traces back to 1762, when Spanish colonial rule began and lasted 38 years. Following devastating fires in the 1790s, Spanish colonizers rebuilt New Orleans modeled after Havana, which is why the French Quarter carries more Cuban than French architectural character. Cuban immigration between 1778 and 1802 deepened these ties, and by 1870 roughly 3,000 Cubans called New Orleans home. The successful slave rebellion in French Saint-Domingue and economic opportunity in Louisiana drew additional waves of Cuban migrants. The Spanish-American War in 1898 further entangled the two regions when U.S. troops departed from New Orleans bound for Cuba, where Spain's defeat led to Cuban independence in 1902. The relationship remained strong through the mid-twentieth century until Fidel Castro's 1959 overthrow of the Cuban government and the subsequent U.S. trade embargo severed formal economic ties. Despite this rupture, a Cuban community persists in New Orleans today, with Cuban music, cuisine, traditions, and cultural celebrations woven throughout the city's identity.",
-      "narrative": "For centuries, Cuba and New Orleans were connected by culture and commerce. About a third of all exports leaving the Port of New Orleans went to Cuba, including more than 1.2 million tons of sugar and molasses. According to\u202f64 Parishes, that trade connection supported more than 6,000 Louisiana jobs. \n\nThe Cuban influence on New Orleans dates back to 1762 when 38 years of Spanish rule began.\u202f \n\n\u201cThe Spanish rebuilt the city in the 1790s after fires burned most of the wooden structures built by the French,\u201d the\u202fNational Park Service\u202fstates. \u201cThey modeled their reconstructed city on Havana. This means the French Quarter looks more Cuban than French!\u201d \n\nAdditional Cuban influence arrived with immigrants from 1778 to 1802. By 1870, there were 3,000 Cubans living in New Orleans. \n\n\u201cMany families had relatives and businesses in both cities,\u201d the National Park Service states. \u201cMore Cuban influence arrived after the successful slave rebellion in French Saint-Domingue. Others moved to seek their fortunes in Louisiana. Each added a little more Cuban influence to the area.\u201d \n\nWhen the Spanish-American War began in 1898, U.S. troops shipped out from New Orleans to Cuba, where Spain\u2019s defeat set the stage for Cuban independence in 1902. \n\nAccording to 64 Parishes, the relationship between Cuba and New Orleans remained strong until Fidel Castro overthrew the Cuban government in 1959. When he instituted Communist-leaning reforms, the U.S. imposed a trade embargo that still exists with exceptions.\u202f \n\nFamily ties and job opportunities in the sugar industry drew more Cubans to Louisiana during the time frame, the National Park Service states. \n\nToday, \u201ca Cuban community still exists in New Orleans, though not in any specific neighborhood,\u201d the National Park Service continues. \u201cCuban celebrations, music, traditions, cuisine and saint\u2019s days have integrated into New Orleans\u2019 culture.\u201d ",
-      "ai_generated": "Yes",
-      "themes": [
-        "Migration"
-      ],
-      "keywords": [
-        "History",
-        "Community",
-        "Heritage",
-        "tradition",
-        "migration"
-      ],
-      "context_connections": "",
-      "context_sections": [],
-      "references": [
-        "\"A Friendship Interrupted.\" 64 Parishes, Louisiana Endowment for the Humanities, 64parishes.org/a-friendship-interrupted.",
-        "\"Cubans in the Delta.\" National Park Service, U.S. Department of the Interior, www.nps.gov/jela/learn/historyculture/cubans-in-the-delta.htm."
-      ],
-      "ai_copy": "Did you know? New Orleans\u2019 French Quarter is more Cuban than French, thanks to centuries of Cuban trade, migration, and culture\u2014sugar, music, and architecture all connect Tulane and the city to a vibrant global Cuban legacy!",
-      "response_qr": "https://v5.airtableusercontent.com/v3/u/52/52/1776463200000/oEhW4DtlIHO13qnJW98iIg/wUCQIrb03n_1ZtmYaR8jbtAoDXHpyfQcOJj6aLRMv2PIMB2XFer9r0M04Mp6El-OCw_-8Cm4M2Vgrm2In3bOPwkgPxDTXo7fM7rFibhNwskKhp9AMFV_gO148xTeoQ0_7qQ59idxqFjeinFb5m7fcw/mVIv4WbnGSo9fBW-5jfYvFY_r9RGhyaujjEtoSO5bt8",
-      "response_link": "https://airtable.com/appFG4KHwFm3LCbia/pagdSMLDvEmEw6ttl/form?prefill_Submissions=CUBAN-HISTORY-IN-NEW-ORLEANS--recnClP5vgjOqi4J5&hide_Submissions=true",
       "avg_rating": null,
       "number_of_responses": 0,
       "clicks": 0,
       "media_assets": [
         {
-          "filename": "Havana-LOC.webp",
+          "filename": "nolachinatownlocations.jpg",
           "kind": "image",
-          "url": "media/CUBAN-HISTORY-IN-NEW-ORLEANS--recnClP5vgjOqi4J5/Havana-LOC.webp",
+          "url": "media/THE-FORGOTTEN-HISTORY-OF-CHINATOWN-IN-NEW-ORLEANS-recGdrUW80YmHg8FO/nolachinatownlocations.jpg",
           "document_url": null,
           "preview_url": null,
-          "caption": "The Spanish used Havana, Cuba, as a model for rebuilding New Orleans in the 1790s after fires destroyed many buildings.",
-          "mla_citation": "\"A Friendship Interrupted.\" 64 Parishes, Louisiana Endowment for the Humanities, 64parishes.org/a-friendship-interrupted.",
+          "caption": "Image by Tulane geographer Richard Campanella",
+          "mla_citation": "Campanella, Richard. \"The Lost History of New Orleans' Two Chinatowns.\" The Times-Picayune / NOLA.com, 6 Mar. 2015, www.nola.com/entertainment_life/home_garden/the-lost-history-of-new-orleans-two-chinatowns/article_e1ecdfe5-3419-5ecf-8143-b14b98c2a389.html.",
           "missing": false,
-          "source_path": "https://v5.airtableusercontent.com/v3/u/52/52/1776463200000/X6ou4ofUueR-bofNPArv-Q/rv-dzr1Ym6gD9gwcBAvlf28LWVyFS9UuGXfbF08xkNReeu0IJODe1ZbRto3Es6QUwlaXB3RCIWAbwca3VCzSrpEqCYzzrRfQqWeH7_kTv1EJjmFU9RE9qzf2iqd_4aQG-W9StcPrVssANrygBnJU1C_qljdwPvlZa71fhjMpu60/6gVHEPFAdLMxljELu_fPaMz4IiqTansDRjSNNhg5has"
+          "source_path": "https://v5.airtableusercontent.com/v3/u/52/52/1776808800000/IUeoinJcVbtTNWkKxlySqA/QeIK00pYBG888QJXb38_K6B9DB-QHfa_Gtbx1n6CI6lMp1AZqNKskRMnGhWER_2XpW7FNSfn69uxjnm2S1NBkeCrec0UNCjFnZtGoZV5Z00EJJHugRn7lsc0IQ7s6YH67xU4-bOFg_2RvDUSt-2d9FgVMjY6t2rajOYnYYoe8knvBLDcWSMBNi_6111Mnv80/PMRZOyHSW4RhiS38NjWgrK43WnuHE8G0yAM_nhNGZlU"
+        },
+        {
+          "filename": "bourbon st chinatown.avif",
+          "kind": "image",
+          "url": "media/THE-FORGOTTEN-HISTORY-OF-CHINATOWN-IN-NEW-ORLEANS-recGdrUW80YmHg8FO/bourbon st chinatown.avif",
+          "document_url": null,
+          "preview_url": null,
+          "caption": "The former headquarters of the Chinese Merchants Association at 530 Bourbon St. in New Orleans, part of a Chinatown neighborhood that formed in the 1940s after a larger one was destroyed by fire.",
+          "mla_citation": "Jung, Moon-Ho. \"Making Sugar, Making 'Coolies': Chinese Laborers Toiled Alongside Black Workers on 19th-Century Louisiana Plantations.\" ARCADE, Stanford Humanities Center, shc.stanford.edu/arcade/interventions/making-sugar-making-coolies-chinese-laborers-toiled-alongside-black-workers-0.",
+          "missing": false,
+          "source_path": "https://v5.airtableusercontent.com/v3/u/52/52/1776808800000/k76YvBVAWgKQVJM1zRWI2w/Kcljf4zlO0ZuHRI5wuxAP5aglPZ68wgnb6jAyU6zhuvlcV_X_GCSIK0ahEtWq_8Ve948QkCyeUREbegvzhpMNKx51N7vbzmzdSpEWKekOlenY5DRXHCAvpDAm2tfRNNliyzS66YJzd-kJP3t0KZSf81oUUfudZ2lx__xnsPLxms/6Apzw8a48Y-ZS54L5M1p_hi61MLXNU_DdQnouCoH9Is"
+        },
+        {
+          "filename": "video-url",
+          "kind": "video_embed",
+          "url": "https://www.youtube.com/embed/E-7dWBqZc0c",
+          "source_url": "https://youtu.be/E-7dWBqZc0c?si=hlLUFUHiOzE3Cu1F",
+          "caption": "The Forgotten History of Chinatown in New Orleans",
+          "mla_citation": "",
+          "missing": false,
+          "external": true
         }
       ],
-      "date_received": "2026-04-14T18:54:05.000Z",
+      "date_received": "2026-04-14T20:50:00.000Z",
       "source_status": "airtable",
-      "workflow_status": "Approved and Published"
+      "workflow_status": "Approved and Published",
+      "publish_order": 7
     },
     {
       "story_slug": "president-ford-s-vietnam-speech",
@@ -225,11 +425,11 @@
         "Tulane University. \"50th Anniversary of President Ford's 'Vietnam Speech'.\" YouTube, 22 Apr. 2025, www.youtube.com/watch?v=AruV1ckoB80."
       ],
       "ai_copy": "Did you know? In 1975, President Ford chose Tulane\u2019s gym to announce the end of U.S. involvement in Vietnam, linking New Orleans\u2019 history to a global turning point and cementing Tulane\u2019s place in world affairs!",
-      "response_qr": "https://v5.airtableusercontent.com/v3/u/52/52/1776463200000/i2N6u7hFb180w4vGQ7zjCA/FEGfjzgqsx-vM-h9n5XQPqaRfW6yRRSwf1IL77Spkr2ucQtKhUaNbJ_YIZpe5_AdDAIu1GsZ99si-OTuu7oHIcuX9RrZSCyk5pjAr1DHfNZuDAecADF2TdxcpcxY44Y2NngcQBnbPV2HmGmLD7IjRQ/yfIp0GCoTMGrfAR8yyXTNx0oMludrayHC1tJCE7L3d8",
+      "response_qr": "media/PRESIDENT-FORD'S-\"VIETNAM-SPEECH\"-recu16YGhfpKezVNS/qr",
       "response_link": "https://airtable.com/appFG4KHwFm3LCbia/pagdSMLDvEmEw6ttl/form?prefill_Submissions=PRESIDENT-FORD%27S-%22VIETNAM-SPEECH%22-recu16YGhfpKezVNS&hide_Submissions=true",
       "avg_rating": 4.666666666666667,
       "number_of_responses": 3,
-      "clicks": 0,
+      "clicks": 3,
       "media_assets": [
         {
           "filename": "video-url",
@@ -244,7 +444,113 @@
       ],
       "date_received": "2026-04-14T16:13:24.000Z",
       "source_status": "airtable",
-      "workflow_status": "Approved and Published"
+      "workflow_status": "Approved and Published",
+      "publish_order": 8
+    },
+    {
+      "story_slug": "trading-one-west-bank-for-another",
+      "headline": "\"Trading one West Bank for Another\"",
+      "summary": "New Orleans is a city of hidden layers, and one of its least visible communities is the Palestinians and Arab Muslims who have lived, worked, and prayed here for generations. The center of this community is Masjid Abu Bakr al-Siddique, a mosque in Metairie built in 1988 that serves roughly 15,000 Muslims across the metro area. It functions as the social, spiritual, and cultural hub for families from Palestine, Syria, Yemen, Egypt, Pakistan, and beyond.\n\nMany Palestinians arrived after the Six-Day War of 1967, pushed from their homes with no clear destination. One phrase captures the experience with bitter precision: they came \"trading one West Bank for another.\" H.A., a Palestinian student at Xavier University who grew up in the Abu Bakr community, describes a city with few Arab spaces but people who are genuinely curious. That tension between invisibility and openness runs through almost every account of Palestinian life here.\n\nNavigating identity in New Orleans is not simple. Alaa Malik, a Tulane student who worships at Abu Bakr, says plainly: \"So many of what Muslims believe is in contrast to what the city is.\" After September 11, the mosque put up a gate for the first time in response to hostilities from the surrounding neighborhood.\n\nInterfaith coordinator Anwer B., Iraqi-born and a nearly 30-year New Orleans resident, offers a different vision. He describes Muslims who ride Mardi Gras krewes, eat red beans on Mondays, and throw crawfish boils for their neighbors. Belonging, he argues, doesn't require erasure. \"The difference is that we don't put sausage in our crawfish. It's not a huge difference.\"",
+      "narrative": "Read the full story on ViaNolaVie!",
+      "ai_generated": "Yes",
+      "themes": [
+        "Migration"
+      ],
+      "keywords": [
+        "Community",
+        "refugee",
+        "migration"
+      ],
+      "context_connections": "New Orleans: Palestinians and other Arab families have been part of New Orleans for generations, many arriving after the 1967 Six-Day War with no clear destination and ending up in a city that wasn't their first choice but became their home. The community anchors itself at Masjid Abu Bakr al-Siddique in Metairie, one of three mosques serving an estimated 15,000 Muslims across the metro area. Their story is one familiar to New Orleans: people displaced by forces beyond their control, arriving somewhere new, and quietly building something lasting. Global: The Palestinian presence in New Orleans is part of a larger pattern of forced migration that has shaped cities across the world. After the Six-Day War in 1967, hundreds of thousands of Palestinians were pushed from their homes, scattering to wherever they could go. Some ended up in Kuwait, some in Jordan, some, eventually, in Louisiana. Syrian families fled civil war. Yemeni families fled conflict. Each community carried its language, its food, its faith across borders and oceans and landed, often by circumstance rather than choice, in a city already shaped by that same logic of displacement and survival.",
+      "context_sections": [
+        {
+          "label": "New Orleans Connection",
+          "text": "Palestinians and other Arab families have been part of New Orleans for generations, many arriving after the 1967 Six-Day War with no clear destination and ending up in a city that wasn't their first choice but became their home. The community anchors itself at Masjid Abu Bakr al-Siddique in Metairie, one of three mosques serving an estimated 15,000 Muslims across the metro area. Their story is one familiar to New Orleans: people displaced by forces beyond their control, arriving somewhere new, and quietly building something lasting."
+        },
+        {
+          "label": "Global Community Connection",
+          "text": "The Palestinian presence in New Orleans is part of a larger pattern of forced migration that has shaped cities across the world. After the Six-Day War in 1967, hundreds of thousands of Palestinians were pushed from their homes, scattering to wherever they could go. Some ended up in Kuwait, some in Jordan, some, eventually, in Louisiana. Syrian families fled civil war. Yemeni families fled conflict. Each community carried its language, its food, its faith across borders and oceans and landed, often by circumstance rather than choice, in a city already shaped by that same logic of displacement and survival."
+        }
+      ],
+      "references": [
+        "Nave, Ashleigh. \"Krewe: New Orleans' Hidden Community.\" ViaNolaVie, 7 Jan. 2020, www.vianolavie.org/2020/01/07/krewe-new-orleans-hidden-community/.",
+        "\"Viral Video Shows New Orleans Locals Vibing to a Palestinian Zaffa...\" YouTube, uploaded by [@almamlakaen], www.youtube.com/shorts/_F9Zf5mR35I."
+      ],
+      "ai_copy": "Did you know? After the 1967 Six-Day War, Palestinian and Arab Muslim families made New Orleans home, blending global traditions at Masjid Abu Bakr\u2014where Mardi Gras, red beans, and crawfish meet cultures from Palestine to Pakistan!",
+      "response_qr": "media/\"TRADING-ONE-WEST-BANK-FOR-ANOTHER\"-recBkUlIOGgMh07BP/qr",
+      "response_link": "https://airtable.com/appFG4KHwFm3LCbia/pagdSMLDvEmEw6ttl/form?prefill_Submissions=%22TRADING-ONE-WEST-BANK-FOR-ANOTHER%22-recBkUlIOGgMh07BP&hide_Submissions=true",
+      "avg_rating": null,
+      "number_of_responses": 0,
+      "clicks": 1,
+      "media_assets": [
+        {
+          "filename": "video-url",
+          "kind": "video_embed",
+          "url": "https://www.youtube.com/embed/_F9Zf5mR35I",
+          "source_url": "https://youtube.com/shorts/_F9Zf5mR35I?si=7Y1bC9WTcYKfY6CD",
+          "caption": "\"Trading one West Bank for Another\"",
+          "mla_citation": "",
+          "missing": false,
+          "external": true
+        }
+      ],
+      "date_received": "2026-04-20T18:29:30.000Z",
+      "source_status": "airtable",
+      "workflow_status": "Approved and Published",
+      "publish_order": 9
+    },
+    {
+      "story_slug": "louisiana-sugar-production-and-chinese-migration",
+      "headline": "Louisiana Sugar Production and Chinese Migration",
+      "summary": "After the Civil War, Louisiana's wealthiest sugar planters faced a labor crisis and turned to Chinese immigrant workers as a solution, recruiting thousands between 1866 and 1870 from the Caribbean, California, and China. Planters believed Chinese workers would be cheap, docile, and submissive \u2014 a racial wedge designed to discipline newly freed Black workers and suppress wages across the sugar region. Chinese workers were paid around $14 per month, significantly below the roughly $20 per month earned by local Black men, and were housed in buildings within former slave quarters. The anticipated rivalry between Black and Chinese laborers never materialized \u2014 on the ground, Chinese workers demanded equal wages, fled exploitative contracts, and adapted to seasonal labor patterns much like their Black counterparts. As they moved through Louisiana seeking better opportunities, Chinese workers gradually disappeared from the historical record, their presence absorbed into a landscape that had no interest in memorializing them. The linked article argues that this largely forgotten episode was central to reinforcing the racist foundations of American citizenship after abolition \u2014 using the figure of the racialized Chinese laborer to justify exclusion at the precise moment slavery formally ended.",
+      "narrative": "",
+      "ai_generated": "Yes",
+      "themes": [
+        "Labor"
+      ],
+      "keywords": [
+        "History",
+        "migration"
+      ],
+      "context_connections": "",
+      "context_sections": [],
+      "references": [
+        "Jung, Moon-Ho. \"Making Sugar, Making 'Coolies': Chinese Laborers Toiled Alongside Black Workers on 19th-Century Louisiana Plantations.\" ARCADE, Stanford Humanities Center, shc.stanford.edu/arcade/interventions/making-sugar-making-coolies-chinese-laborers-toiled-alongside-black-workers-0."
+      ],
+      "ai_copy": "Did you know? After the Civil War, Chinese immigrants joined Black workers on Louisiana sugar plantations, challenging exploitation and reshaping labor history\u2014an untold story connecting New Orleans to global struggles for justice!",
+      "response_qr": "media/LOUISIANA-SUGAR-PRODUCTION-AND-CHINESE-MIGRATION-recN0BWHB8hM6O6Tf/qr",
+      "response_link": "https://airtable.com/appFG4KHwFm3LCbia/pagdSMLDvEmEw6ttl/form?prefill_Submissions=LOUISIANA-SUGAR-PRODUCTION-AND-CHINESE-MIGRATION-recN0BWHB8hM6O6Tf&hide_Submissions=true",
+      "avg_rating": null,
+      "number_of_responses": 0,
+      "clicks": 0,
+      "media_assets": [
+        {
+          "filename": "chinese sugar workers.jpg",
+          "kind": "image",
+          "url": "media/LOUISIANA-SUGAR-PRODUCTION-AND-CHINESE-MIGRATION-recN0BWHB8hM6O6Tf/chinese sugar workers.jpg",
+          "document_url": null,
+          "preview_url": null,
+          "caption": "Harvesting on a Louisiana sugar plantation, 1875.",
+          "mla_citation": "Jung, Moon-Ho. \"Making Sugar, Making 'Coolies': Chinese Laborers Toiled Alongside Black Workers on 19th-Century Louisiana Plantations.\" ARCADE, Stanford Humanities Center, shc.stanford.edu/arcade/interventions/making-sugar-making-coolies-chinese-laborers-toiled-alongside-black-workers-0.",
+          "missing": false,
+          "source_path": "https://v5.airtableusercontent.com/v3/u/52/52/1776808800000/JVodZIjZm7Dziv5FCq5c3g/VzmQejvaDdy6VIT3l0lasbc1xpypWLlJ_bN66d1nwwNeQcgb4KJ1M5OA4Fuc4DpwLuGRijHO1r0uMtbvWgJvWNJLacD44vd-BilWTzGqkR05nbMebVb6oZ6sub3bAy64ODE2eWk0vfwAIwfED-U-5XSI51-kUY75inpM8TXOdUk/dBhPhvtKzAKx9WyS4nqSzj2xUi4LJk3uX7B-xvNtZNk"
+        },
+        {
+          "filename": "chinese sugar workers 2.jpeg",
+          "kind": "image",
+          "url": "media/LOUISIANA-SUGAR-PRODUCTION-AND-CHINESE-MIGRATION-recN0BWHB8hM6O6Tf/chinese sugar workers 2.jpeg",
+          "document_url": null,
+          "preview_url": null,
+          "caption": "An 1871 engraving titled \u2018Chinese cheap labor in Louisiana - Chinamen at work on the Milloudon Sugar Plantation.\u2019",
+          "mla_citation": "Jung, Moon-Ho. \"Making Sugar, Making 'Coolies': Chinese Laborers Toiled Alongside Black Workers on 19th-Century Louisiana Plantations.\" ARCADE, Stanford Humanities Center, shc.stanford.edu/arcade/interventions/making-sugar-making-coolies-chinese-laborers-toiled-alongside-black-workers-0.",
+          "missing": false,
+          "source_path": "https://v5.airtableusercontent.com/v3/u/52/52/1776808800000/Z9NBgOY7aB8xUMpgAKOwDA/WoiObBwnKRHAGcRYoHXW2SoC8nno1aoErwg222xTc3k9tosvv6j1FxZswpdfWYEvxuVMYjwzG0z9AJ_ix3u7JfZPD0ReVS1QgJ7nfUDuQRGkR5_VutalIMkLg0SEWONwYdXIa3bn2ulrDYDwb_nRls2xPRH2v1dkvDaAQN7-T7o/vAVLs6Aco9pTYBKsC1tSeWKoWn5VUw33V6DoU-jyHxc"
+        }
+      ],
+      "date_received": "2026-04-14T21:01:55.000Z",
+      "source_status": "airtable",
+      "workflow_status": "Approved and Published",
+      "publish_order": 10
     }
   ]
 }
