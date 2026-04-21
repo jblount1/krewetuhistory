@@ -3488,6 +3488,7 @@ body.editorial-page {
 
 .carousel-page .display-menu {
   position: relative;
+  z-index: 12;
 }
 
 .carousel-page .display-menu > summary {
@@ -3502,17 +3503,19 @@ body.editorial-page {
 .carousel-page .display-menu-panel {
   position: absolute;
   left: 0;
+  right: auto;
   bottom: calc(100% + 8px);
   display: grid;
   gap: 8px;
   min-width: min(280px, calc(100vw - 32px));
   padding: 10px;
   border-radius: 18px;
-  background: rgba(8, 20, 38, 0.54);
+  background: rgba(8, 20, 38, 0.74);
   border: 1px solid rgba(255, 255, 255, 0.14);
   box-shadow: 0 18px 38px rgba(8, 20, 38, 0.26);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
+  z-index: 20;
 }
 
 .carousel-page .display-menu:not([open]) .display-menu-panel {
