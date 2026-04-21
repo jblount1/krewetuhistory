@@ -610,20 +610,11 @@ class SiteBuilder:
                 video_id = parse_qs(parsed.query).get("v", [""])[0]
             elif parsed.path.startswith("/embed/"):
                 video_id = parsed.path.split("/embed/", 1)[1].split("/", 1)[0]
-            elif parsed.path.startswith("/shorts/"):
-                video_id = parsed.path.split("/shorts/", 1)[1].split("/", 1)[0]
             else:
                 video_id = ""
         else:
             return None
-        if not video_id:
-            return None
-        if parsed.path.startswith("/shorts/"):
-            params = parse_qs(parsed.query)
-            share_id = params.get("si", [""])[0]
-            suffix = f"?feature=oembed&si={share_id}" if share_id else "?feature=oembed"
-            return f"https://www.youtube.com/embed/{video_id}{suffix}"
-        return f"https://www.youtube.com/embed/{video_id}"
+        return f"https://www.youtube.com/embed/{video_id}" if video_id else None
 
     def _vimeo_embed_url(self, value: str) -> Optional[str]:
         parsed = urlparse(value)

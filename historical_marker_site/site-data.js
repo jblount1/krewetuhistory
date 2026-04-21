@@ -206,9 +206,6 @@ export function canRenderMediaAsset(asset) {
   if (asset.kind === "video" || asset.kind === "video_embed") {
     return isAllowedVideoUrl(asset.url);
   }
-  if (asset.kind === "external") {
-    return Boolean(resolveEmbeddableVideoUrl(asset));
-  }
   return false;
 }
 
@@ -221,11 +218,7 @@ export function storyPreviewAsset(story) {
   return (
     assets.find((asset) => asset.kind === "image" && canRenderMediaAsset(asset)) ||
     assets.find((asset) => asset.kind === "pdf" && canRenderMediaAsset(asset)) ||
-    assets.find(
-      (asset) =>
-        (asset.kind === "video_embed" || asset.kind === "video" || asset.kind === "external") &&
-        canRenderMediaAsset(asset)
-    ) ||
+    assets.find((asset) => (asset.kind === "video_embed" || asset.kind === "video") && canRenderMediaAsset(asset)) ||
     null
   );
 }
@@ -262,17 +255,15 @@ export function buildMediaElement(asset, { layout = "detail" } = {}) {
     return wrapper;
   }
 
-  if (asset.kind === "video" || asset.kind === "video_embed" || asset.kind === "external") {
-    const embeddableUrl = resolveEmbeddableVideoUrl(asset);
-    if (!isAllowedVideoUrl(embeddableUrl)) {
+  if (asset.kind === "video" || asset.kind === "video_embed") {
+    if (!isAllowedVideoUrl(asset.url)) {
       return buildVideoUnavailable(layout);
     }
 
     const frame = document.createElement("iframe");
     frame.className = `asset-embed asset-embed--${layout}`;
-    frame.src = withVideoParams(embeddableUrl, {
+    frame.src = withVideoParams(asset.url, {
       autoplay: AUTOPLAY_LAYOUTS.has(layout),
-      asset,
     });
     frame.title = asset.caption || asset.filename || "Embedded video";
     frame.allow =
@@ -374,9 +365,7 @@ function normalizeSupabaseStory(row) {
   const payload = row.payload && typeof row.payload === "object" ? row.payload : {};
   const story = {
     ...payload,
-    media_assets: Array.isArray(payload.media_assets)
-      ? payload.media_assets.map((asset) => normalizeStoryMediaAsset(asset))
-      : [],
+    media_assets: Array.isArray(payload.media_assets) ? payload.media_assets : [],
     story_slug: payload.story_slug || row.story_slug || "",
     workflow_status: payload.workflow_status || row.workflow_status || "",
     date_received: payload.date_received || row.date_received || "",
@@ -405,27 +394,7 @@ function normalizeStoryRecord(story) {
 
   return {
     ...story,
-    media_assets: Array.isArray(story.media_assets)
-      ? story.media_assets.map((asset) => normalizeStoryMediaAsset(asset))
-      : [],
-  };
-}
-
-function normalizeStoryMediaAsset(asset) {
-  if (!asset || typeof asset !== "object") {
-    return asset;
-  }
-
-  const embeddableUrl = resolveEmbeddableVideoUrl(asset);
-  if (!embeddableUrl) {
-    return asset;
-  }
-
-  return {
-    ...asset,
-    kind: "video_embed",
-    url: embeddableUrl,
-    source_url: asset.source_url || asset.url,
+    media_assets: Array.isArray(story.media_assets) ? story.media_assets : [],
   };
 }
 
@@ -452,11 +421,10 @@ function compareStoryOrder(left, right) {
   return String(left?.headline || "").localeCompare(String(right?.headline || ""));
 }
 
-function withVideoParams(url, { autoplay = false, asset = null } = {}) {
+function withVideoParams(url, { autoplay = false } = {}) {
   try {
     const parsed = new URL(url, window.location.href);
     const host = parsed.hostname.toLowerCase();
-    const isShortSource = String(asset?.source_url || asset?.url || "").includes("/shorts/");
 
     if (autoplay) {
       parsed.searchParams.set("autoplay", "1");
@@ -469,15 +437,11 @@ function withVideoParams(url, { autoplay = false, asset = null } = {}) {
     }
 
     if (host.includes("youtube.com") || host.includes("youtu.be") || host.includes("youtube-nocookie.com")) {
-      if (isShortSource) {
-        parsed.searchParams.set("feature", "oembed");
-      } else {
-        parsed.searchParams.set("enablejsapi", "1");
-        parsed.searchParams.set("rel", "0");
-        parsed.searchParams.set("cc_load_policy", "1");
-        parsed.searchParams.set("cc_lang_pref", "en");
-        parsed.searchParams.set("hl", "en");
-      }
+      parsed.searchParams.set("enablejsapi", "1");
+      parsed.searchParams.set("rel", "0");
+      parsed.searchParams.set("cc_load_policy", "1");
+      parsed.searchParams.set("cc_lang_pref", "en");
+      parsed.searchParams.set("hl", "en");
     }
 
     if (host.includes("vimeo.com")) {
@@ -490,64 +454,4 @@ function withVideoParams(url, { autoplay = false, asset = null } = {}) {
   } catch (_error) {
     return url;
   }
-}
-
-function resolveEmbeddableVideoUrl(asset) {
-  const candidates = [asset?.url, asset?.source_url];
-  for (const candidate of candidates) {
-    const normalized = normalizeVideoEmbedUrl(candidate);
-    if (normalized && isAllowedVideoUrl(normalized)) {
-      return normalized;
-    }
-  }
-  return null;
-}
-
-function normalizeVideoEmbedUrl(url) {
-  if (!url) {
-    return null;
-  }
-
-  try {
-    const parsed = new URL(url, window.location.href);
-    const host = parsed.hostname.toLowerCase();
-
-    if (host.includes("youtu.be")) {
-      const videoId = parsed.pathname.replace(/^\/+/, "").split("/", 1)[0];
-      return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
-    }
-
-    if (host.includes("youtube.com") || host.includes("youtube-nocookie.com")) {
-      if (parsed.pathname === "/watch") {
-        const videoId = parsed.searchParams.get("v");
-        return videoId ? `https://www.youtube.com/embed/${videoId}?feature=oembed` : null;
-      }
-      if (parsed.pathname.startsWith("/shorts/")) {
-        const videoId = parsed.pathname.split("/shorts/", 1)[1].split("/", 1)[0];
-        if (!videoId) {
-          return null;
-        }
-        const embed = new URL(`https://www.youtube.com/embed/${videoId}`);
-        embed.searchParams.set("feature", "oembed");
-        const shareId = parsed.searchParams.get("si");
-        if (shareId) {
-          embed.searchParams.set("si", shareId);
-        }
-        return embed.toString();
-      }
-      if (parsed.pathname.startsWith("/embed/")) {
-        const videoId = parsed.pathname.split("/embed/", 1)[1].split("/", 1)[0];
-        return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
-      }
-    }
-
-    if (host.includes("vimeo.com")) {
-      const videoId = parsed.pathname.replace(/^\/+/, "").split("/", 1)[0];
-      return /^\d+$/.test(videoId) ? `https://player.vimeo.com/video/${videoId}` : null;
-    }
-  } catch (_error) {
-    return null;
-  }
-
-  return null;
 }

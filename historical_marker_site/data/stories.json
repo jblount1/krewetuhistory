@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-21T18:37:05Z",
+  "generated_at": "2026-04-21T18:40:18Z",
   "source_mode": "airtable",
   "source_label": "Approved stories",
   "public_publish_ready": false,
@@ -311,10 +311,9 @@
       "clicks": 2,
       "media_assets": [
         {
-          "filename": "video-url",
-          "kind": "video_embed",
-          "url": "https://www.youtube.com/embed/AE_SI52_s9Y?feature=oembed&si=EuLCmLyBvCdHgrk9",
-          "source_url": "https://youtube.com/shorts/AE_SI52_s9Y?si=EuLCmLyBvCdHgrk9",
+          "filename": "youtube.com",
+          "kind": "external",
+          "url": "https://youtube.com/shorts/AE_SI52_s9Y?si=EuLCmLyBvCdHgrk9",
           "caption": "New Orleans' Jewish Community: 300 Years of Home",
           "mla_citation": "",
           "missing": false,
@@ -353,7 +352,7 @@
       "response_link": "https://airtable.com/appFG4KHwFm3LCbia/pagdSMLDvEmEw6ttl/form?prefill_Submissions=THE-FORGOTTEN-HISTORY-OF-CHINATOWN-IN-NEW-ORLEANS-recGdrUW80YmHg8FO&hide_Submissions=true",
       "avg_rating": null,
       "number_of_responses": 0,
-      "clicks": 0,
+      "clicks": 1,
       "media_assets": [
         {
           "filename": "nolachinatownlocations.jpg",
@@ -484,10 +483,9 @@
       "clicks": 1,
       "media_assets": [
         {
-          "filename": "video-url",
-          "kind": "video_embed",
-          "url": "https://www.youtube.com/embed/_F9Zf5mR35I?feature=oembed&si=7Y1bC9WTcYKfY6CD",
-          "source_url": "https://youtube.com/shorts/_F9Zf5mR35I?si=7Y1bC9WTcYKfY6CD",
+          "filename": "youtube.com",
+          "kind": "external",
+          "url": "https://youtube.com/shorts/_F9Zf5mR35I?si=7Y1bC9WTcYKfY6CD",
           "caption": "\"Trading one West Bank for Another\"",
           "mla_citation": "",
           "missing": false,
