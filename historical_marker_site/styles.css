@@ -2502,6 +2502,9 @@ body.editorial-page {
   grid-template-rows: 1fr auto !important;
   align-content: space-between !important;
   padding-top: 0 !important;
+  min-height: 0 !important;
+  overflow-y: auto !important;
+  padding-right: 8px !important;
 }
 
 .carousel-page .display-stage--video .carousel-media-frame {
@@ -2517,6 +2520,14 @@ body.editorial-page {
   max-width: 30ch !important;
   font-size: clamp(1.2rem, 1.55vw, 1.55rem) !important;
   line-height: 1.55 !important;
+}
+
+.carousel-page .display-reference-text,
+.carousel-page .asset-meta-item p {
+  display: block !important;
+  -webkit-line-clamp: unset !important;
+  -webkit-box-orient: initial !important;
+  overflow: visible !important;
 }
 
 .asset-media--feature,
