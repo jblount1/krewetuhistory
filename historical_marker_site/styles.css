@@ -3432,23 +3432,62 @@ body.editorial-page {
 /* Carousel controls + tablet/mobile refinement */
 
 .carousel-page .display-stage {
-  padding-top: 92px !important;
+  padding-top: 16px !important;
 }
 
 .carousel-page .display-controls {
-  top: 16px !important;
+  top: 14px !important;
   right: auto !important;
   bottom: auto !important;
   left: 50% !important;
   transform: translateX(-50%);
-  width: min(calc(100% - 32px), 1120px);
+  width: auto;
   justify-content: center;
   flex-wrap: wrap;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(8, 20, 38, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 12px 28px rgba(8, 20, 38, 0.18);
 }
 
 .carousel-page .display-nav {
   justify-content: center;
   flex-wrap: wrap;
+  gap: 6px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+}
+
+.carousel-page #carousel-position {
+  min-height: 30px;
+  padding: 6px 10px;
+  font-size: 0.78rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.carousel-page .display-nav .secondary-button,
+.carousel-page .display-nav .primary-button {
+  min-height: 30px;
+  padding: 6px 10px;
+  font-size: 0.8rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: none;
+}
+
+.carousel-page .display-nav .secondary-button:hover,
+.carousel-page .display-nav .primary-button:hover {
+  background: rgba(255, 255, 255, 0.22);
 }
 
 @media (max-width: 1180px) {
@@ -3499,7 +3538,7 @@ body.editorial-page {
   .carousel-page .display-stage {
     height: auto !important;
     min-height: calc(100dvh - 16px) !important;
-    padding: 84px 14px 16px !important;
+    padding: 72px 14px 16px !important;
   }
 
   .carousel-page .display-stage--video,
@@ -3549,12 +3588,13 @@ body.editorial-page {
   }
 
   .carousel-page .display-stage {
-    padding-top: 112px !important;
+    padding-top: 94px !important;
   }
 
   .carousel-page .display-controls {
     width: min(calc(100% - 20px), 900px);
     gap: 8px;
+    padding: 7px 8px;
   }
 
   .carousel-page .display-stage--video,
@@ -3583,11 +3623,12 @@ body.editorial-page {
 
 @media (max-width: 720px) {
   .carousel-page .display-stage {
-    padding-top: 128px !important;
+    padding-top: 106px !important;
   }
 
   .carousel-page .display-controls {
     width: calc(100% - 16px);
+    border-radius: 24px;
   }
 
   .carousel-page .display-nav {
