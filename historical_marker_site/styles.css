@@ -3702,3 +3702,67 @@ body.editorial-page {
     padding: 20px;
   }
 }
+
+/* Preview fix: restore fuller single-image carousel proportions */
+
+.carousel-page .display-stage--feature-left,
+.carousel-page .display-stage--feature-right {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.6fr) minmax(320px, 0.52fr) !important;
+  grid-template-rows: 1fr !important;
+  gap: 28px !important;
+  align-items: stretch !important;
+}
+
+.carousel-page .display-stage--feature-left {
+  grid-template-columns: minmax(320px, 0.52fr) minmax(0, 1.6fr) !important;
+}
+
+.carousel-page .display-stage--feature-left .carousel-media-frame {
+  order: 2 !important;
+}
+
+.carousel-page .display-stage--feature-left .display-story-panel {
+  order: 1 !important;
+}
+
+.carousel-page .display-stage--feature-right .carousel-media-frame {
+  order: 1 !important;
+}
+
+.carousel-page .display-stage--feature-right .display-story-panel {
+  order: 2 !important;
+}
+
+.carousel-page .display-stage--feature-left .carousel-media-frame,
+.carousel-page .display-stage--feature-right .carousel-media-frame {
+  min-height: clamp(520px, 76vh, 980px) !important;
+  height: 100% !important;
+}
+
+@media (max-width: 1180px) {
+  .carousel-page .display-stage--feature-left,
+  .carousel-page .display-stage--feature-right {
+    grid-template-columns: minmax(0, 1.32fr) minmax(280px, 0.68fr) !important;
+    gap: 18px !important;
+  }
+
+  .carousel-page .display-stage--feature-left {
+    grid-template-columns: minmax(280px, 0.68fr) minmax(0, 1.32fr) !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .carousel-page .display-stage--feature-left,
+  .carousel-page .display-stage--feature-right {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto auto !important;
+  }
+
+  .carousel-page .display-stage--feature-left .carousel-media-frame,
+  .carousel-page .display-stage--feature-left .display-story-panel,
+  .carousel-page .display-stage--feature-right .carousel-media-frame,
+  .carousel-page .display-stage--feature-right .display-story-panel {
+    order: initial !important;
+  }
+}
