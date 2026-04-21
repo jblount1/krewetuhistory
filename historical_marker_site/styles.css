@@ -3445,12 +3445,12 @@ body.editorial-page {
 
 .carousel-page .display-controls {
   top: auto !important;
-  right: auto !important;
+  right: 14px !important;
   bottom: 14px !important;
   left: 14px !important;
   transform: none !important;
   width: auto;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: flex-end;
   gap: 8px;
   padding: 0;
@@ -3642,6 +3642,7 @@ body.editorial-page {
 
   .carousel-page .display-controls {
     bottom: 12px !important;
+    right: 12px !important;
     left: 12px !important;
     gap: 8px;
   }
