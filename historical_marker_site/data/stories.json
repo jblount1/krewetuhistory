@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-21T18:31:55Z",
+  "generated_at": "2026-04-21T18:37:05Z",
   "source_mode": "airtable",
   "source_label": "Approved stories",
   "public_publish_ready": false,
@@ -313,7 +313,7 @@
         {
           "filename": "video-url",
           "kind": "video_embed",
-          "url": "https://www.youtube.com/embed/AE_SI52_s9Y?feature=oembed",
+          "url": "https://www.youtube.com/embed/AE_SI52_s9Y?feature=oembed&si=EuLCmLyBvCdHgrk9",
           "source_url": "https://youtube.com/shorts/AE_SI52_s9Y?si=EuLCmLyBvCdHgrk9",
           "caption": "New Orleans' Jewish Community: 300 Years of Home",
           "mla_citation": "",
@@ -486,7 +486,7 @@
         {
           "filename": "video-url",
           "kind": "video_embed",
-          "url": "https://www.youtube.com/embed/_F9Zf5mR35I?feature=oembed",
+          "url": "https://www.youtube.com/embed/_F9Zf5mR35I?feature=oembed&si=7Y1bC9WTcYKfY6CD",
           "source_url": "https://youtube.com/shorts/_F9Zf5mR35I?si=7Y1bC9WTcYKfY6CD",
           "caption": "\"Trading one West Bank for Another\"",
           "mla_citation": "",

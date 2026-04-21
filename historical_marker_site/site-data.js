@@ -524,7 +524,16 @@ function normalizeVideoEmbedUrl(url) {
       }
       if (parsed.pathname.startsWith("/shorts/")) {
         const videoId = parsed.pathname.split("/shorts/", 1)[1].split("/", 1)[0];
-        return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
+        if (!videoId) {
+          return null;
+        }
+        const embed = new URL(`https://www.youtube.com/embed/${videoId}`);
+        embed.searchParams.set("feature", "oembed");
+        const shareId = parsed.searchParams.get("si");
+        if (shareId) {
+          embed.searchParams.set("si", shareId);
+        }
+        return embed.toString();
       }
       if (parsed.pathname.startsWith("/embed/")) {
         const videoId = parsed.pathname.split("/embed/", 1)[1].split("/", 1)[0];
