@@ -616,7 +616,11 @@ class SiteBuilder:
                 video_id = ""
         else:
             return None
-        return f"https://www.youtube.com/embed/{video_id}" if video_id else None
+        if not video_id:
+            return None
+        if parsed.path.startswith("/shorts/"):
+            return f"https://www.youtube.com/embed/{video_id}?feature=oembed"
+        return f"https://www.youtube.com/embed/{video_id}"
 
     def _vimeo_embed_url(self, value: str) -> Optional[str]:
         parsed = urlparse(value)

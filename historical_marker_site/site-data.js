@@ -272,6 +272,7 @@ export function buildMediaElement(asset, { layout = "detail" } = {}) {
     frame.className = `asset-embed asset-embed--${layout}`;
     frame.src = withVideoParams(embeddableUrl, {
       autoplay: AUTOPLAY_LAYOUTS.has(layout),
+      asset,
     });
     frame.title = asset.caption || asset.filename || "Embedded video";
     frame.allow =
@@ -451,10 +452,11 @@ function compareStoryOrder(left, right) {
   return String(left?.headline || "").localeCompare(String(right?.headline || ""));
 }
 
-function withVideoParams(url, { autoplay = false } = {}) {
+function withVideoParams(url, { autoplay = false, asset = null } = {}) {
   try {
     const parsed = new URL(url, window.location.href);
     const host = parsed.hostname.toLowerCase();
+    const isShortSource = String(asset?.source_url || asset?.url || "").includes("/shorts/");
 
     if (autoplay) {
       parsed.searchParams.set("autoplay", "1");
@@ -467,11 +469,15 @@ function withVideoParams(url, { autoplay = false } = {}) {
     }
 
     if (host.includes("youtube.com") || host.includes("youtu.be") || host.includes("youtube-nocookie.com")) {
-      parsed.searchParams.set("enablejsapi", "1");
-      parsed.searchParams.set("rel", "0");
-      parsed.searchParams.set("cc_load_policy", "1");
-      parsed.searchParams.set("cc_lang_pref", "en");
-      parsed.searchParams.set("hl", "en");
+      if (isShortSource) {
+        parsed.searchParams.set("feature", "oembed");
+      } else {
+        parsed.searchParams.set("enablejsapi", "1");
+        parsed.searchParams.set("rel", "0");
+        parsed.searchParams.set("cc_load_policy", "1");
+        parsed.searchParams.set("cc_lang_pref", "en");
+        parsed.searchParams.set("hl", "en");
+      }
     }
 
     if (host.includes("vimeo.com")) {
@@ -514,7 +520,7 @@ function normalizeVideoEmbedUrl(url) {
     if (host.includes("youtube.com") || host.includes("youtube-nocookie.com")) {
       if (parsed.pathname === "/watch") {
         const videoId = parsed.searchParams.get("v");
-        return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
+        return videoId ? `https://www.youtube.com/embed/${videoId}?feature=oembed` : null;
       }
       if (parsed.pathname.startsWith("/shorts/")) {
         const videoId = parsed.pathname.split("/shorts/", 1)[1].split("/", 1)[0];
