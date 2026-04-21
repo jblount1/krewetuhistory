@@ -1,12 +1,12 @@
 {
-  "id": "/index.html",
-  "name": "Krewe TU History",
-  "short_name": "Krewe TU",
-  "description": "A digital history project connecting Tulane, New Orleans, and the wider world.",
-  "start_url": "/index.html",
+  "id": "/carousel.html",
+  "name": "Krewe TU History Carousel",
+  "short_name": "Krewe TU Carousel",
+  "description": "Display carousel for Krewe TU History.",
+  "start_url": "/carousel.html",
   "scope": "/",
   "display": "standalone",
-  "orientation": "portrait-primary",
+  "orientation": "landscape-primary",
   "background_color": "#f5efe4",
   "theme_color": "#0c2857",
   "icons": [

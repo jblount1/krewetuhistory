@@ -3417,3 +3417,185 @@ body.editorial-page {
   width: min(820px, 100%) !important;
   margin: 0 auto !important;
 }
+
+/* Carousel controls + tablet/mobile refinement */
+
+.carousel-page .display-stage {
+  padding-top: 92px !important;
+}
+
+.carousel-page .display-controls {
+  top: 16px !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: 50% !important;
+  transform: translateX(-50%);
+  width: min(calc(100% - 32px), 1120px);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.carousel-page .display-nav {
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 1180px) {
+  .home-page .site-backdrop,
+  .explore-page .site-backdrop,
+  .story-page .site-backdrop {
+    width: min(100vw - 20px, 100%);
+  }
+
+  .home-page .hero-shell--streamlined,
+  .explore-shell,
+  .story-article,
+  .story-loading,
+  .story-empty {
+    padding: 24px;
+  }
+
+  .home-page .hero-story--streamlined,
+  .explore-intro {
+    max-width: 100%;
+  }
+
+  .home-page .hero-actions,
+  .explore-intro .hero-actions {
+    justify-content: center;
+  }
+
+  .story-shell {
+    padding-inline: 12px;
+  }
+
+  .story-article {
+    gap: 24px;
+  }
+
+  .story-prose,
+  .story-media-caption,
+  .story-references,
+  .story-rights-note {
+    max-width: 100%;
+  }
+
+  .carousel-page .display-layout--editorial {
+    width: min(100vw - 16px, 100%) !important;
+    padding: 8px 0 !important;
+  }
+
+  .carousel-page .display-stage {
+    height: auto !important;
+    min-height: calc(100dvh - 16px) !important;
+    padding: 84px 14px 16px !important;
+  }
+
+  .carousel-page .display-stage--video,
+  .carousel-page .display-stage--collage-2,
+  .carousel-page .display-stage--collage-3,
+  .carousel-page .display-stage--collage-4,
+  .carousel-page .display-stage--feature-left,
+  .carousel-page .display-stage--feature-right {
+    grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr) !important;
+    gap: 16px !important;
+  }
+
+  .carousel-page .display-story-panel {
+    padding: 18px !important;
+  }
+
+  .carousel-page .display-headline {
+    font-size: clamp(1.8rem, 3vw, 2.5rem) !important;
+  }
+
+  .carousel-page .display-copy {
+    max-width: 100% !important;
+    font-size: clamp(1rem, 1.8vw, 1.2rem) !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .site-nav,
+  .site-nav-links,
+  .site-nav-links--split {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .site-nav-links,
+  .site-nav-links--split {
+    width: 100%;
+    gap: 12px;
+  }
+
+  .site-nav-link-group {
+    flex-wrap: wrap;
+  }
+
+  .home-page .hero-actions {
+    justify-content: center;
+  }
+
+  .carousel-page .display-stage {
+    padding-top: 112px !important;
+  }
+
+  .carousel-page .display-controls {
+    width: min(calc(100% - 20px), 900px);
+    gap: 8px;
+  }
+
+  .carousel-page .display-stage--video,
+  .carousel-page .display-stage--collage-2,
+  .carousel-page .display-stage--collage-3,
+  .carousel-page .display-stage--collage-4,
+  .carousel-page .display-stage--feature-left,
+  .carousel-page .display-stage--feature-right {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto auto !important;
+  }
+
+  .carousel-page .carousel-media-frame,
+  .carousel-page .display-story-panel {
+    order: initial !important;
+  }
+
+  .carousel-page .carousel-media-frame {
+    min-height: clamp(300px, 42vh, 520px) !important;
+  }
+
+  .carousel-page .display-story-panel {
+    min-height: 0 !important;
+  }
+}
+
+@media (max-width: 720px) {
+  .carousel-page .display-stage {
+    padding-top: 128px !important;
+  }
+
+  .carousel-page .display-controls {
+    width: calc(100% - 16px);
+  }
+
+  .carousel-page .display-nav {
+    width: 100%;
+    border-radius: 24px;
+  }
+
+  .carousel-page .display-nav .secondary-button,
+  .carousel-page .display-nav .primary-button {
+    flex: 1 1 140px;
+    justify-content: center;
+  }
+
+  .home-page .hero-shell--streamlined,
+  .mission-shell,
+  .explore-shell,
+  .story-article,
+  .story-loading,
+  .story-empty {
+    padding: 20px;
+  }
+}
