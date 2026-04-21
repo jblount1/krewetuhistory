@@ -57,33 +57,38 @@
         </article>
 
         <div class="display-controls">
-          <div id="carousel-position" class="section-badge">0 / 0</div>
-          <div class="display-nav">
-            <button
-              id="carousel-mode-toggle"
-              class="secondary-button button-reset"
-              type="button"
-              aria-pressed="true"
-            >
-              Carousel Mode: On
-            </button>
-            <a class="secondary-button" href="explore.html">Explore</a>
-            <a id="view-story" class="secondary-button" href="story.html">View Story</a>
-            <button
-              id="autoplay-toggle"
-              class="secondary-button button-reset"
-              type="button"
-              aria-pressed="true"
-            >
-              Pause
-            </button>
-            <button id="prev-story" class="secondary-button button-reset" type="button">
-              Prev
-            </button>
-            <button id="next-story" class="secondary-button button-reset" type="button">
-              Next
-            </button>
-          </div>
+          <a id="view-story" class="secondary-button display-story-link" href="story.html">View Story</a>
+          <details id="carousel-menu" class="display-menu">
+            <summary class="secondary-button display-menu-toggle">Menu</summary>
+            <div class="display-menu-panel">
+              <div id="carousel-position" class="section-badge">0 / 0</div>
+              <div class="display-nav">
+                <button
+                  id="carousel-mode-toggle"
+                  class="secondary-button button-reset"
+                  type="button"
+                  aria-pressed="true"
+                >
+                  Carousel Mode: On
+                </button>
+                <a class="secondary-button" href="explore.html">Explore</a>
+                <button
+                  id="autoplay-toggle"
+                  class="secondary-button button-reset"
+                  type="button"
+                  aria-pressed="true"
+                >
+                  Pause
+                </button>
+                <button id="prev-story" class="secondary-button button-reset" type="button">
+                  Prev
+                </button>
+                <button id="next-story" class="secondary-button button-reset" type="button">
+                  Next
+                </button>
+              </div>
+            </div>
+          </details>
         </div>
       </section>
     </main>

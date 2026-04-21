@@ -28,6 +28,7 @@ const state = {
 const elements = {
   autoplayToggle: document.getElementById("autoplay-toggle"),
   empty: document.getElementById("carousel-empty"),
+  menu: document.getElementById("carousel-menu"),
   stage: document.getElementById("carousel-stage"),
   mediaFrame: document.getElementById("carousel-media-frame"),
   headline: document.getElementById("carousel-headline"),
@@ -177,8 +178,15 @@ function renderStory() {
     ? storyUrl(story, { ref: "carousel", slide: hash })
     : storyUrl(story);
   elements.position.textContent = `${state.storyIndex + 1} / ${state.stories.length}`;
+  closeMenu();
   syncAutoplayButton();
   scheduleAdvance(mediaStrategy);
+}
+
+function closeMenu() {
+  if (elements.menu) {
+    elements.menu.open = false;
+  }
 }
 
 function renderText(story) {
