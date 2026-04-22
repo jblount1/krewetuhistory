@@ -38,7 +38,7 @@ export async function fetchStoryResponses(submissionRecordId) {
       config.supabaseResponsesTable
     )}`
   );
-  endpoint.searchParams.set("select", '*');
+  endpoint.searchParams.set("select", '"Response"');
   endpoint.searchParams.set("submission_id", `eq.${submissionRecordId}`);
   endpoint.searchParams.set("order", "airtable_id.asc");
 
@@ -56,7 +56,6 @@ export async function fetchStoryResponses(submissionRecordId) {
     return [];
   }
   return rows
-    .filter((row) => row && row["Show response"] === true)
     .map((row) => String(row?.Response || "").trim())
     .filter(Boolean);
 }
@@ -67,29 +66,35 @@ export async function fetchSubmissionRecordIdBySlug(storySlug) {
     return null;
   }
 
-  const endpoint = new URL(
-    `${config.supabaseUrl.replace(/\/$/, "")}/rest/v1/${encodeURIComponent(
-      config.supabaseSubmissionsTable
-    )}`
-  );
-  endpoint.searchParams.set("select", "id");
-  endpoint.searchParams.set("story_slug", `eq.${storySlug}`);
-  endpoint.searchParams.set("limit", "1");
+  const endpoint = `${config.supabaseUrl.replace(/\/$/, "")}/rest/v1/rpc/get_submission_id_by_slug`;
+  try {
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        ...buildSupabaseHeaders(config),
+        "Content-Type": "application/json",
+        Prefer: "return=representation",
+      },
+      body: JSON.stringify({ lookup_story_slug: storySlug }),
+      cache: "no-store",
+    });
 
-  const response = await fetch(endpoint.toString(), {
-    headers: buildSupabaseHeaders(config),
-    cache: "no-store",
-  });
+    if (!response.ok) {
+      const detail = await safeJson(response);
+      if (!isMissingRpc(detail)) {
+        throw new Error(`Unable to resolve submission id: ${response.status}`);
+      }
+      return fetchSubmissionRecordIdBySlugDirect(config, storySlug);
+    }
 
-  if (!response.ok) {
-    throw new Error(`Unable to resolve submission id: ${response.status}`);
+    const value = await response.json();
+    return typeof value === "string" && value.trim() ? value : null;
+  } catch (error) {
+    if (error instanceof Error && /Unable to resolve submission id/.test(error.message)) {
+      throw error;
+    }
+    return fetchSubmissionRecordIdBySlugDirect(config, storySlug);
   }
-
-  const rows = await response.json();
-  if (!Array.isArray(rows) || !rows.length) {
-    return null;
-  }
-  return rows[0]?.id || null;
 }
 
 export function incrementStoryClicks(submissionRecordId) {
@@ -221,6 +226,44 @@ export function storyPreviewAsset(story) {
     assets.find((asset) => (asset.kind === "video_embed" || asset.kind === "video") && canRenderMediaAsset(asset)) ||
     null
   );
+}
+
+async function fetchSubmissionRecordIdBySlugDirect(config, storySlug) {
+  const endpoint = new URL(
+    `${config.supabaseUrl.replace(/\/$/, "")}/rest/v1/${encodeURIComponent(
+      config.supabaseSubmissionsTable
+    )}`
+  );
+  endpoint.searchParams.set("select", "id");
+  endpoint.searchParams.set("story_slug", `eq.${storySlug}`);
+  endpoint.searchParams.set("limit", "1");
+
+  const response = await fetch(endpoint.toString(), {
+    headers: buildSupabaseHeaders(config),
+    cache: "no-store",
+  });
+
+  if (!response.ok) {
+    throw new Error(`Unable to resolve submission id: ${response.status}`);
+  }
+
+  const rows = await response.json();
+  if (!Array.isArray(rows) || !rows.length) {
+    return null;
+  }
+  return rows[0]?.id || null;
+}
+
+function isMissingRpc(detail) {
+  return detail?.code === "PGRST202";
+}
+
+async function safeJson(response) {
+  try {
+    return await response.json();
+  } catch {
+    return null;
+  }
 }
 
 export function buildMediaElement(asset, { layout = "detail" } = {}) {
